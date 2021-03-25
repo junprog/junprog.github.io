@@ -1,20 +1,40 @@
 
-div.highlight {
-  background-color: #efefef;
+/* div.highlight {
+  background-color: #1d1d1d;
 /*  padding: 7px 7px 7px 10px;*/
 /*  border: 1px solid #ddd;*/
 /*  -moz-box-shadow: 3px 3px rgba(0,0,0,0.1);
   -webkit-box-shadow: 3px 3px rgba(0,0,0,0.1);
   box-shadow: 3px 3px rgba(0,0,0,0.1); */
 /*  margin: 20px 0 20px 0;*/
-  overflow: scroll;
+/*  overflow: scroll;
   font-size: 12px;
   line-height: 1.4;
+} */
+
+div.highlight {
+  background-color: #272727;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: middle;
+  border-radius: 5px;
 }
 
-code {
+/*code {
   font-family:'Bitstream Vera Sans Mono','Courier', monospace;
   background: #eee;
+}
+*/
+
+code {
+  background-color: #272727;
+  color: #fff;
+  white-space: pre;
+  display: inline-block;
+  margin: 0;
+  font-family: "Menlo", "Consolas", "Courier New", "Courier", "Liberation Mono";
+  padding: 0 0.5em;
+  border-radius: 5px;
 }
 
 .highlight .c { color: #586E75 } /* Comment */
