@@ -29,7 +29,7 @@ $ export DOCKER_CONTAINER=jekyll-app
 $ docker build -t ${DOCKER_IMAGE} .
 $ docker run -it --rm -v ${PWD}:/usr/src/app \
     --name ${DOCKER_CONTAINER} -p 4000:4000 \
-    ${DOCKER_IMAGE} bundle exec jekyll serve --host 0.0.0.0
+    ${DOCKER_IMAGE} bundle exec jekyll serve --future --host 0.0.0.0
 ```
 
 間違ってるかも。

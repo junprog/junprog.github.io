@@ -1,10 +1,10 @@
 ---
 layout: page
-title: About
+title: About junprog
 permalink: /about/
 ---
 
-こんにちは、junprogです。よろしくお願いします！
+こんにちは、`junprog`です。
 
 ### プロフィール
 * 理系私大 情報理工 修士
