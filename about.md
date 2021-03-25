@@ -4,12 +4,15 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+### プロフィール
+* 理系私大 情報理工 修士
+* 興味
+    * 機械学習
+    * 画像認識
 
-### More Information
+### コンテンツ
+* 論文読み (paper)
+* 忘備録 (memo)
+* ブログ (blog)
 
-A place to include any other types of information that you'd like to include about yourself.
-
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+週5個はポストしていきたい(戒め)
