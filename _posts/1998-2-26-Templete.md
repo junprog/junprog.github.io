@@ -5,7 +5,6 @@ category: paper
 tags: ML CV CNN
 ---
 
-## 概要
 最初の説明。アブストラクト。
 <!--more-->
 
