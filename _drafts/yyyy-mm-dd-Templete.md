@@ -2,7 +2,7 @@
 layout: post
 title: Title
 category: paper
-tags: ML CV CNN
+tags: ML CV
 ---
 
 最初の説明。アブストラクト。

@@ -310,10 +310,11 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
+    border: 1px solid #ccc;
+    border-left: 3px solid $blue;
     padding: 0.1em 1em;
-    color: $gray;
-    font-size: 22px;
+    color: $black;
+    font-size: 100%;
     font-style: italic;
   }
 
