@@ -150,9 +150,15 @@ th {
   margin-bottom: 16px;
 }
 
-.entry table td, .entry table th {
-  padding: 6px 13px;
+.entry table td {
+  padding: 6px 10px;
   border: 1px solid #dfe2e5;
+}
+
+.entry table th {	
+  padding: 6px 28px;
+  border: 1px solid #dfe2e5;
+  white-space: nowrap;
 }
 
 .entry table th {
