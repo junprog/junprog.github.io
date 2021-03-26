@@ -56,6 +56,12 @@ h2 {
   font-size: 24px;
 }
 
+.entry h1, .entry h2 {
+  padding-bottom: .3em;
+  border-bottom: 1px solid;
+  border-color: #eaecef;
+}
+
 h3 {
   font-size: 20px;
 }
@@ -109,6 +115,48 @@ strong, b {
 
 img {
   max-width: 100%;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+table {
+  display: table;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 1px;
+  border-color: grey;
+}
+
+th {
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: bold;
+  text-align: -internal-center;
+}
+
+.entry table{
+  display: block;
+  width: 100%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.entry table td, .entry table th {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.entry table th {
+  font-weight: 600;
 }
 
 // Fixes images in popup boxes from Google Translate
