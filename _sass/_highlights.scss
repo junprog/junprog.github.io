@@ -24,12 +24,7 @@ div.highlight {
   border-radius: 5px;
 }
 
-/*code {
-  font-family:'Bitstream Vera Sans Mono','Courier', monospace;
-  background: #eee;
-}
-*/
-pre code {
+pre code{
   display: block;
   overflow-x: auto;
 
@@ -37,19 +32,9 @@ pre code {
   word-break: normal;
 }
 
-
-/*code {
-  background-color: #f3f3f3;
-  white-space: pre;
-  display: inline-block;
-  margin: 0;
-  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-  padding: 0 0.5em;
-  border-radius: 4px;
-} */
-
 code {
-  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  //font-family:'Bitstream Vera Sans Mono','Courier', monospace;
+  font-family: Menlo, Consolas, "Courier New", Courier, "Liberation Mono", monospace;
   background-color: #f3f3f3;
   color: #e83e8c;
   word-break: break-word;
