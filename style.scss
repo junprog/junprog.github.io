@@ -172,8 +172,18 @@ th {
 }
 
 .date {
-  font-style: italic;
-  color: $gray;
+  color: #6c6c6d;
+}
+
+.tag a {
+  display: inline-block;
+  margin: 0 8px 0 0;
+  padding: 1px 8px;
+  border: solid 1px;
+  border-color: #a3a3a3;
+  -webkit-border-radius: 4px;
+  color: #a3a3a3;
+  font-size: 80%;
 }
 
 // Specify the color of the selection
@@ -295,6 +305,13 @@ nav {
   }
 }
 
+nav a.active {
+  color: #ee4c2c;
+  border-bottom: solid 4px #ee4c2c;
+  border-radius: 4px;
+  padding-bottom: 2px;
+}
+
 //
 // .main
 //
@@ -325,7 +342,6 @@ nav {
   }
 
   .read-more {
-    text-transform: uppercase;
     font-size: 15px;
   }
 }
@@ -339,6 +355,25 @@ nav {
 
 footer {
   padding: 20px 0;
+  text-align: center;
+}
+
+.my-title-design:after {
+  width: 330px;
+  margin:0 auto;
+  margin-bottom: 50px;
+  background-color:  #ee4c2c;
+  border-radius: 4px; /* 線幅の半分 */
+  content: "";
+  display: block;
+  height: 8px; /* 線幅 */
+}
+
+.my-title-design h1 {
+  margin: 1em 0 5px;
+}
+
+.my-title-center {
   text-align: center;
 }
 
