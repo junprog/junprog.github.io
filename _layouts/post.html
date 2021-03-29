@@ -9,7 +9,12 @@ layout: default
     Written on {{ page.date | date: "%B %e, %Y" }}
   </div>
 
-  <div class="tag">
+  <div class="cate-tag">
+    カテゴリ:
+      <a href="{{ site.baseurl }}/categories#{{ page.category }}">{{ page.category }} </a>
+
+    &nbsp;
+    
     タグ: 
     {% for tag in page.tags %}
       <a href="{{ site.baseurl }}/tags#{{ tag | slugize }}">{{ tag }} </a>

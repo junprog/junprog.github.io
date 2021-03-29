@@ -16,8 +16,7 @@ permalink: /about/
     * ジャズ
 
 ### コンテンツ
-* 論文読み (paper)
-* 忘備録 (memo)
-* ブログ (blog)
+* <a href="{{ site.baseurl }}/categories#">カテゴリ一覧</a>
+* <a href="{{ site.baseurl }}/tags#">タグ一覧</a>
 
 週5個はポストしていきたいと思っています。(戒め)
