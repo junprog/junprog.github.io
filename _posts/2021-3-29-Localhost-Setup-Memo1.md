@@ -1,8 +1,8 @@
 ---
 layout: post
 permalink: /blog/:title.html
-title: docker を使用してローカルで Jekyll を動かすためのメモ
-category: メモ
+title: docker を使ってローカルで Jekyll を動かす
+category: ブログ
 tags: docker Jekyll
 ---
 GitHub Pages に反映させたい変更を、わざわざ GitHub のリポジトリに push して変更を確認するのは面倒くさい。そこで、 docker を使用してローカル環境にて変更を確認するため、本メモを残す。
@@ -56,4 +56,55 @@ $ docker run -it --rm -v ${PWD}:/usr/src/app \
 ## 感想
 
 Ubuntu 環境だとリアルタイムで変更を加えながら確認が行えた。なぜだろう。
-逆になぜ Windows + WSL2 + docker だと出来ないのだろう。
+逆になぜ Windows + WSL + docker だと出来ないのだろう。
+
+### <追記 2021/3/31>
+
+どうやら WSL 上では、`Auto-regeneration`という機能がうまく作動しない問題があるらしい。確かに以下の警告が出ていた。
+
+```bash
+Auto-regeneration may not work on some Windows versions.
+Please see: https://github.com/Microsoft/BashOnWindows/issues/216
+If it does not work, please upgrade Bash on Windows or run Jekyll with --no-watch.
+```
+
+解決策として、[こちらの issue コメント](https://github.com/microsoft/WSL/issues/216#issuecomment-756424551)を参考にさせていただいた。 コンテナ実行の際に`--force_polling`をつけるとうまく作動した。
+
+ WSL とそれ以外に場合分けした実行コマンドを以下の shell script に実装したので参考までに。
+
+ ```bash
+#!bin/bash
+
+DOCKER_IMAGE=jekyll-app
+DOCKER_CONTAINER=jekyll-app
+
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+    echo "On WSL"
+    if [ "$(docker image ls -q "${DOCKER_IMAGE}")" ]; then
+        echo "Docker image : ${DOCKER_IMAGE} is already existed."
+        docker run -it --rm -v ${PWD}:/usr/src/app \
+            --name ${DOCKER_CONTAINER} -p 4000:4000 \
+            ${DOCKER_IMAGE} bundle exec jekyll serve --future --force_polling --host 0.0.0.0
+    else
+        echo "Create docker image : ${DOCKER_IMAGE}"
+        docker build -t ${DOCKER_IMAGE} .
+        docker run -it --rm -v ${PWD}:/usr/src/app \
+            --name ${DOCKER_CONTAINER} -p 4000:4000 \
+            ${DOCKER_IMAGE} bundle exec jekyll serve --future --force_polling --host 0.0.0.0
+    fi
+else
+    echo "On not WSL"
+    if [ "$(docker image ls -q "${DOCKER_IMAGE}")" ]; then
+        echo "Docker image : ${DOCKER_IMAGE} is already existed."
+        docker run -it --rm -v ${PWD}:/usr/src/app \
+            --name ${DOCKER_CONTAINER} -p 4000:4000 \
+            ${DOCKER_IMAGE} bundle exec jekyll serve --future --host 0.0.0.0
+    else
+        echo "Create docker image : ${DOCKER_IMAGE}"
+        docker build -t ${DOCKER_IMAGE} .
+        docker run -it --rm -v ${PWD}:/usr/src/app \
+            --name ${DOCKER_CONTAINER} -p 4000:4000 \
+            ${DOCKER_IMAGE} bundle exec jekyll serve --future --host 0.0.0.0
+    fi
+fi
+ ```

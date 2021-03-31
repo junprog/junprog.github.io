@@ -5,7 +5,7 @@ title: About junprog
 
 こんにちは、`junprog`です。
 
-### プロフィール
+## プロフィール
 * 私大理系 情報理工 修士
 * 興味
     * 機械学習
@@ -14,11 +14,23 @@ title: About junprog
     * Disney
     * ジャズ
 
-### コンテンツ
-* <a href="{{ site.baseurl }}/todo">To Do</a>
-* <a href="{{ site.baseurl }}/blog">ブログ</a>
-    * <a href="{{ site.baseurl }}/categories">カテゴリ一覧</a>
-    * <a href="{{ site.baseurl }}/tags">タグ一覧</a>
-
 
 週5個はポストしていきたいと思っています。(戒め)
+
+## To Do
+
+* 積み論文
+    * モデルアーキテクチャ系
+        * [ ] AlexNet
+        * [ ] VGG
+        * [ ] Inception
+        * [ ] ResNet
+        * [ ] DenseNet
+    * 気になったやつ
+        * 随時更新...
+
+
+* 勉強したい
+    * 仮想環境/クラウド系技術
+    * データ分析/Kaggle系技術
+    * 競技プログラミング系技術

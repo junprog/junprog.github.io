@@ -210,6 +210,11 @@ th {
     clear: both;
 }
 
+.my-margin {
+  margin: 0 1rem;
+  width: 4px;
+}
+
 /*********************/
 /* LAYOUT / SECTIONS */
 /*********************/
@@ -306,10 +311,10 @@ nav {
 }
 
 nav a.active {
-  color: #ee4c2c;
-  border-bottom: solid 4px #ee4c2c;
-  border-radius: 4px;
-  padding-bottom: 2px;
+  color: #5a83dd;
+  border-bottom: solid 4px #5a83dd;
+  //border-radius: 4px;
+  padding-bottom: 4px;
 }
 
 //
@@ -318,7 +323,8 @@ nav a.active {
 
 .posts > .post {
   padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
+  //border-bottom: 5px solid $lightGray;
+  //border-radius: 2px;
 }
 
 .posts > .post:last-child {
@@ -358,23 +364,40 @@ footer {
   text-align: center;
 }
 
-.my-title-design:after {
-  width: 330px;
-  margin:0 auto;
-  margin-bottom: 50px;
-  background-color:  #ee4c2c;
-  border-radius: 4px; /* 線幅の半分 */
-  content: "";
-  display: block;
-  height: 8px; /* 線幅 */
-}
-
 .my-title-design h1 {
-  margin: 1em 0 5px;
+  margin: 1em 0 1em;
 }
 
 .my-title-center {
   text-align: center;
+  overflow: hidden;
+  span {
+    position: relative;
+    display: inline-block;
+    margin: 0 2.5em;
+    padding: 0 1em;
+    text-align: left;
+  }
+  h1 span::before,
+  h1 span::after {
+    position: absolute;
+    top: 50%;
+    content: '';
+    width: 400%;
+    height: 3px;
+    background-color: #5a83dd;
+  }
+  h1 span::before {
+    right: 100%;
+  }
+  h1 span::after {
+    left: 100%;
+  }
+}
+
+.my-all-contents {
+  text-align: center;
+  margin-top: 30px;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS

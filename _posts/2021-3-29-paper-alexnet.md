@@ -2,7 +2,7 @@
 layout: post
 permalink: /blog/:title.html
 title: ImageNet Classification with Deep Convolutional Neural Networks.
-category: 論文調査
+category: サーベイ
 tags: CV
 ---
 * 表題：ImageNet Classification with Deep Convolutional Neural Networks.
