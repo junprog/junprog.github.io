@@ -13,5 +13,6 @@ tags: CV
 
 
 
+
 ## Reference
 * Alex Krizhevsky, Ilya Sutskever, and Geoffrey E. Hinton. "Imagenet classification with deep convolutional neural networks." Advances in neural information processing systems 25 (2012): 1097-1105. [paper link](https://dl.acm.org/doi/abs/10.1145/3065386)
