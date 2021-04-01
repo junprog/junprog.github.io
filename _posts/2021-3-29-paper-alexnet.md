@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: /blog/:title.html
+permalink: /survey/:title.html
 title: ImageNet Classification with Deep Convolutional Neural Networks.
 category: サーベイ
 tags: CV
