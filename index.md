@@ -26,6 +26,7 @@ title: About junprog
         * [ ] ResNet
         * [ ] DenseNet
     * 気になったやつ
+        * [ ] [Bag of Tricks for Image Classification with Convolutional Neural Networks](https://arxiv.org/abs/1812.01187)
         * 随時更新...
 
 
