@@ -56,8 +56,14 @@ h2 {
   font-size: 24px;
 }
 
-.entry h1, .entry h2 {
+.post > .entry h1, .entry h2 {
   padding-bottom: .3em;
+  border-bottom: 1px solid;
+  border-color: #eaecef;
+}
+
+.post-head {
+  padding-bottom: .6em;
   border-bottom: 1px solid;
   border-color: #eaecef;
 }
@@ -172,19 +178,43 @@ th {
 }
 
 .date {
-  color: #6c6c6d;
+  color: #a3a3a3;
+  margin-right: 10px;
+}
+
+.calendar-font {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.post .tag {
+  color: #a3a3a3;
 }
 
 .tag a {
   display: inline-block;
   margin: 0 8px 0 0;
-  padding: 1px 8px;
+  padding: 2px 6px;
+
   border: solid 1px;
   border-color: #a3a3a3;
-  -webkit-border-radius: 4px;
+  border-radius: 4px;
+
   color: #a3a3a3;
-  font-size: 80%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: small;
 }
+
+.fa-tags:before {
+  color: #a3a3a3;
+  margin: 0 3px 0 0;
+}
+
+.fa-calendar-alt:before {
+  color: #a3a3a3;
+  margin: 0 3px 0 0;
+}
+
+
 
 // Specify the color of the selection
 /*

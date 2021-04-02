@@ -4,18 +4,21 @@ layout: default
 
 <article class="post">
 
-  <h1>{{ page.title }}</h1>
+  <div class="post-head">
+    <h1>{{ page.title }}</h1>
 
-  <div class="date tag" aria-hidden="true">
-    {{ page.date | date: "%Y-%m-%e" }}
-    &nbsp;
-    {% for tag in page.tags %}
-      <a href="{{ site.baseurl }}/tags#{{ tag | slugize }}">{{ tag }} </a>
-    {% endfor %}
+    <span class="date fas fa-calendar-alt fa-sm" aria-hidden="true">
+      <span class="calendar-font">
+        {{ page.date | date: "%Y-%m-%e" }}
+      </span>
+    </span>
+
+    <span class="tag fas fa-tags fa-sm" aria-hidden="true">
+      {% for tag in page.tags %}
+        <a href="{{ site.baseurl }}/tags#{{ tag | slugize }}">{{ tag }} </a>
+      {% endfor %}
+    </span>
   </div>
-
-  <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax:{inlineMath:[['\$','\$'],['\\(','\\)']],processEscapes:true},CommonHTML: {matchFontHeight:false}});</script>
-  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
   <div class="entry">
     {{ content }}

@@ -5,7 +5,7 @@ title: docker を使ってローカルで Jekyll を動かす
 category: ブログ
 tags: docker Jekyll
 ---
-GitHub Pages に反映させたい変更を、わざわざ GitHub のリポジトリに push して変更を確認するのは面倒くさい。そこで、 docker を使用してローカル環境にて変更を確認するため、本メモを残す。
+GitHub Pages に反映させたい変更を、わざわざ GitHub のリポジトリに push して変更を確認するのは面倒くさい。そこで、 docker を使用してローカル環境にて変更を瞬時に確認できるようにするため、本メモを残す。
 
 <!--more-->
 前提環境として以下を挙げる。
