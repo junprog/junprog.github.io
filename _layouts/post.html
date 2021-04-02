@@ -13,7 +13,7 @@ layout: default
       </span>
     </span>
 
-    <span class="tag fas fa-tags fa-sm" aria-hidden="true">
+    <span class="tag fas fa-tag fa-sm" aria-hidden="true">
       {% for tag in page.tags %}
         <a href="{{ site.baseurl }}/tags#{{ tag | slugize }}">{{ tag }} </a>
       {% endfor %}

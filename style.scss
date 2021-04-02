@@ -28,8 +28,8 @@ body {
 .container {
   margin: 0 auto;
   //max-width: 740px;
-  max-width: 800px;
-  padding: 0 10px;
+  max-width: 900px;
+  padding: 0 12px;
   width: 100%;
 }
 
@@ -185,6 +185,7 @@ th {
 }
 
 .calendar-font {
+  font-weight: 200;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -194,7 +195,7 @@ th {
 
 .tag a {
   display: inline-block;
-  margin: 0 8px 0 0;
+  margin: 0 8px 4px 0;
   padding: 2px 6px;
 
   border: solid 1px;
@@ -202,11 +203,12 @@ th {
   border-radius: 4px;
 
   color: #a3a3a3;
+  font-weight: 200;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: small;
 }
 
-.fa-tags:before {
+.fa-tag:before {
   color: #a3a3a3;
   margin: 0 3px 0 0;
 }
@@ -215,8 +217,6 @@ th {
   color: #a3a3a3;
   margin: 0 3px 0 0;
 }
-
-
 
 // Specify the color of the selection
 /*
@@ -257,7 +257,7 @@ th {
 
 .wrapper-masthead {
   background: $white;
-  //margin-bottom: 50px;
+  margin-bottom: 16px;
   border-bottom: 1px solid $lightGray;
 }
 
@@ -367,8 +367,9 @@ nav a.active {
 
 .post {
   background: $white;
-  padding: 1em 1.2em 1.2em 1.2em;
-  margin: 1em 0;
+  padding: 1em 1.6em 2em 1.6em;
+  margin: 16px 0 16px 0;
+  border-radius: 8px;
 
   blockquote {
     margin: 1.8em .8em;
@@ -423,9 +424,11 @@ footer {
   margin-top: 30px;
 }
 
-.my-page-content{
-  padding: 1em;
+.my-page-content {
+  padding: 1em 1.6em 2em 1.6em;
+  margin: 16px 0 16px 0;
   background: $white;
+  border-radius: 8px;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
