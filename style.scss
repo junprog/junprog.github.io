@@ -18,7 +18,8 @@ html {
 }
 
 body {
-	background: $white;
+  background: $lightGray;
+	//background: $white;
   font: 16px/1.4 $helvetica;
   line-height: 1.7;
   color: $darkGray;
@@ -26,7 +27,8 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 740px;
+  //max-width: 740px;
+  max-width: 800px;
   padding: 0 10px;
   width: 100%;
 }
@@ -37,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 
   line-height: 1.7;
-  margin: 1em 0 15px;
+  margin: 0.5em 0 15px;
   padding: 0;
 
   @include mobile {
@@ -254,12 +256,13 @@ th {
 //
 
 .wrapper-masthead {
-  margin-bottom: 50px;
+  background: $white;
+  //margin-bottom: 50px;
+  border-bottom: 1px solid $lightGray;
 }
 
 .masthead {
   padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
 
   @include mobile {
     text-align: center;
@@ -363,6 +366,10 @@ nav a.active {
 }
 
 .post {
+  background: $white;
+  padding: 1em 1.2em 1.2em 1.2em;
+  margin: 1em 0;
+
   blockquote {
     margin: 1.8em .8em;
     border: 1px solid #ccc;
@@ -385,8 +392,8 @@ nav a.active {
 .wrapper-footer {
   margin-top: 50px;
   border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+  //border-bottom: 1px solid #ddd;
+  background-color: $gray;
 }
 
 footer {
@@ -408,27 +415,17 @@ footer {
     padding: 0 0.6em;
     text-align: center;
   }
-  h1 span::before,
-  h1 span::after {
-    position: absolute;
-    top: 50%;
-    content: '';
-    width: 400%;
-    height: 3px;
-    background-color: #5a83dd;
-  }
-  h1 span::before {
-    right: 100%;
-  }
-  h1 span::after {
-    left: 100%;
-  }
 }
 
 .my-all-contents {
   text-align: center;
   margin: auto;
   margin-top: 30px;
+}
+
+.about-page-content{
+  padding: 1em;
+  background: $white;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS

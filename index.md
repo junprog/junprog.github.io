@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: about_page
 title: About junprog
 ---
 
@@ -13,7 +13,6 @@ title: About junprog
 * 趣味
     * Disney
     * ジャズ
-
 
 週5個はポストしていきたいと思っています。(戒め)
 
