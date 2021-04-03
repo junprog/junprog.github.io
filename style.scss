@@ -39,7 +39,7 @@ html[data-theme="dark"] {
   --wrapper-masthead-color: #333;
   --wrapper-footer-color: #17181a;
   --content-background-color: #343638;
-  --content-border-color: #51535a;
+  --content-border-color: #5c5e66;
   --h1-h2-head-border-color: #96999c;
   --calendar-tag-color: #96999c;
 
@@ -487,7 +487,8 @@ footer {
 }
 
 .my-btn {
-  margin: 0 0 0 10px;
+  margin: 4px 4px 4px 10px;
+  padding: 2px;
   color: var(--main-text-color);
   background: none;
   border: none;
