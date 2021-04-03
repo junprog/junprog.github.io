@@ -23,6 +23,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="{{ site.baseurl }}/scripts/nav_active.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/scripts/dark_mode.js"></script>
 
     <div class="wrapper-masthead">
       <div class="container">
@@ -39,6 +40,11 @@
             <a href="{{ site.baseurl }}/blog">Blog</a>
             <a href="{{ site.baseurl }}/survey">Survey</a>
             <a href="{{ site.baseurl }}/playground">Playground</a>
+
+            <button class="my-btn" onclick="modeSwitcher()">
+              <i class="fas fa-adjust fa-lg"></i>
+            </button>
+            
           </nav>
 
         </header>

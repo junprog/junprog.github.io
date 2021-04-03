@@ -13,16 +13,62 @@
 /* BASE RULES */
 /**************/
 
+html, html[data-theme="light"] {
+  --main-background-color: #eee;
+  --main-text-color: #222;
+
+  --wrapper-masthead-color: #fff;
+  --wrapper-footer-color: #666;
+  --content-background-color: #fff;
+  --content-border-color: #ddd;
+  --h1-h2-head-border-color: #eaecef;
+  --calendar-tag-color: #a3a3a3;
+
+  --code-backgroud-color: #f3f3f3;
+  --code-color: #e83e8c;
+
+  --site-disciption-color: #666;
+
+  --foot-cate-tag-color: #4183C4;
+}
+
+html[data-theme="dark"] {
+  --main-background-color: #4d4f53;
+  --main-text-color: #c1c6ca;
+
+  --wrapper-masthead-color: #333;
+  --wrapper-footer-color: #17181a;
+  --content-background-color: #343638;
+  --content-border-color: #51535a;
+  --h1-h2-head-border-color: #96999c;
+  --calendar-tag-color: #96999c;
+
+  --code-backgroud-color: #272727;
+  --code-color: #f8a1ca;
+
+  --site-disciption-color: #7d8286;
+
+  --foot-cate-tag-color: #2090ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    content: "dark";
+  }
+}
+
 html {
   font-size: 100%;
 }
 
 body {
-  background: $lightGray;
+  //background: $lightGray;
 	//background: $white;
+  background: var(--main-background-color);
   font: 16px/1.4 $helvetica;
   line-height: 1.7;
-  color: $darkGray;
+  //color: $darkGray;
+  color: var(--main-text-color);
 }
 
 .container {
@@ -35,7 +81,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
-  color: $darkerGray;
+  color: var(--main-text-color);
   font-weight: bold;
 
   line-height: 1.7;
@@ -50,7 +96,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 30px;
   a {
-    color: inherit;
+    color: var(--main-text-color);
   }
 }
 
@@ -61,13 +107,13 @@ h2 {
 .post > .entry h1, .entry h2 {
   padding-bottom: .3em;
   border-bottom: 1px solid;
-  border-color: #eaecef;
+  border-color: var(--h1-h2-head-border-color);
 }
 
 .post-head {
   padding-bottom: .6em;
   border-bottom: 1px solid;
-  border-color: #eaecef;
+  border-color: var(--h1-h2-head-border-color);;
 }
 
 h3 {
@@ -76,7 +122,7 @@ h3 {
 
 h4 {
   font-size: 18px;
-  color: $gray;
+  color: var(--main-text-color);
 }
 
 p {
@@ -180,7 +226,7 @@ th {
 }
 
 .date {
-  color: #a3a3a3;
+  color: var(--calendar-tag-color);
   margin-right: 10px;
 }
 
@@ -199,22 +245,22 @@ th {
   padding: 2px 6px;
 
   border: solid 1px;
-  border-color: #a3a3a3;
+  border-color: var(--calendar-tag-color);
   border-radius: 4px;
 
-  color: #a3a3a3;
+  color: var(--calendar-tag-color);
   font-weight: 500;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: small;
 }
 
 .fa-tag:before {
-  color: #a3a3a3;
+  color: var(--calendar-tag-color);
   margin: 0 3px 0 0;
 }
 
 .fa-calendar-alt:before {
-  color: #a3a3a3;
+  color: var(--calendar-tag-color);
   margin: 0 3px 0 0;
 }
 
@@ -242,7 +288,9 @@ th {
     clear: both;
 }
 
+// カテゴリ一覧 タグ一覧
 .my-margin {
+  color: var(--foot-cate-tag-color);
   margin: 0 1rem;
   width: 4px;
 }
@@ -256,9 +304,9 @@ th {
 //
 
 .wrapper-masthead {
-  background: $white;
+  background: var(--wrapper-masthead-color);
   margin-bottom: 16px;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: 1px solid var(--content-border-color);
 }
 
 .masthead {
@@ -298,7 +346,7 @@ th {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  //color: $darkGray;
   cursor: pointer;
   font-family: $helveticaNeue;
   font-weight: 300;
@@ -308,7 +356,7 @@ th {
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $gray;
+  color: var(--site-disciption-color);
   font-size: 16px;
 
   @include mobile {
@@ -331,7 +379,8 @@ nav {
 
   a {
     margin-left: 20px;
-    color: $darkGray;
+    //color: $darkGray;
+    color: var(--main-text-color);
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
@@ -366,17 +415,20 @@ nav a.active {
 }
 
 .post {
-  background: $white;
+  //background: $white;
+  background: var(--content-background-color);
   padding: 1em 1.6em 2em 1.6em;
   margin: 16px 0 16px 0;
+  border: 1px solid var(--content-border-color);
   border-radius: 8px;
 
   blockquote {
+    background: var();
     margin: 1.8em .8em;
     border: 1px solid #ccc;
     border-left: 3px solid $blue;
     padding: 0.1em 1em;
-    color: $black;
+    color: var(--main-text-color);
     font-size: 100%;
     font-style: italic;
   }
@@ -392,9 +444,10 @@ nav a.active {
 
 .wrapper-footer {
   margin-top: 50px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--content-border-color);
   //border-bottom: 1px solid #ddd;
-  background-color: $gray;
+  //background-color: $gray;
+  background: var(--wrapper-footer-color);
 }
 
 footer {
@@ -427,9 +480,22 @@ footer {
 .my-page-content {
   padding: 1em 1.6em 2em 1.6em;
   margin: 16px 0 16px 0;
-  background: $white;
+  //background: $white;
+  background: var(--content-background-color);
+  border: 1px solid var(--content-border-color);
   border-radius: 8px;
 }
+
+.my-btn {
+  margin: 0 0 0 10px;
+  color: var(--main-text-color);
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
