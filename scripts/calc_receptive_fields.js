@@ -1,4 +1,6 @@
-const layerModule = ["Conv2D", "Pool2D"];
+const layerModule = {
+    "Conv2D": ["kernel_size", ""],
+    "Pool2D": []};
 
 var layers = document.getElementById("layers")
 
