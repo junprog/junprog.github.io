@@ -8,7 +8,7 @@ function addLayer() {
     // a 要素の作成と属性の指定
     var newAnchor = document.createElement("div");
 
-    var newLayer = document.createTextNode( document.getElementById("favtext").value );
+    var newLayer = document.createTextNode( document.getElementById("module").value );
 
     var kernel_size = document.createTextNode( document.getElementById("kernel_size").value );
     var stride = document.createTextNode( document.getElementById("stride").value );
@@ -20,11 +20,11 @@ function addLayer() {
     newAnchor.setAttribute("padding", padding );
    
     // div 要素の作成
-    var newLayer = document.createElement("div");
-    newLayer.appendChild ( newAnchor );
+    //var newLayer = document.createElement("div");
+    //newLayer.appendChild( newAnchor );
    
     // リストに追加
-    layers.appendChild( newLi );   
+    //layers.appendChild( newAnchor );   
 }
 
 function deleteLayer() {

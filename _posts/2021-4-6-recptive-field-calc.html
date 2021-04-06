@@ -14,26 +14,48 @@ tags: CV
     .conv {
       margin       : auto;
       width        : 400px;
-      height       : 55px;
+      height       : 30px;
       background   : #99ccff;
+      border-radius: 4px;
     }
     .pool {
       margin       : auto;
       width        : 400px;
-      height       : 55px;
+      height       : 30px;
       background   : #ffcf77;
+      border-radius: 4px;
     }
 </style>
-<select id="module">
-    <option disabled selected>Select Layer Module</option>
-    <option value="Conv2D">Conv2D</option>
-    <option value="Pool2D">Pool2D</option>
-  </select>
 
-<input type="text" id="kernel_size" /> 
-<input type="text" id="stride" />
-<input type="text" id="padding" />
-<input type="button" id="addlayer" value="Add" onclick="addLayer();" />
+<div>
+  <label for="module">Module : </label>
+  <select id="module">
+      <option disabled selected>Select Layer Module</option>
+      <option value="Conv2D">Conv2D</option>
+      <option value="Pool2D">Pool2D</option>
+  </select>
+</div>
+
+<div>
+  <form class="input-form">
+    <label for="kernel_size">Kernel Size : </label>
+    <input type="text" id="kernel_size" class="input-box"> 
+  </form>
+
+  <form class="input-form">
+    <label for="stride">Stride : </label>
+    <input type="text" id="stride" class="input-box">
+  </form>
+
+  <form class="input-form">
+    <label for="padding">Padding : </label>
+    <input type="text" id="padding" class="input-box">
+  </form>
+  <input type="button" id="addlayer" value="Add" onclick="addLayer();">
+</div>
+
+<br>
 
 <div id="layers">
+  <div class="conv">表示したい文字列</div>
 </div>
