@@ -30,6 +30,9 @@ html, html[data-theme="light"] {
   --site-disciption-color: #666;
 
   --foot-cate-tag-color: #4183C4;
+
+  --conv-color: #bfdefd;
+  --pool-color: #ffcf77;
 }
 
 html[data-theme="dark"] {
@@ -49,6 +52,9 @@ html[data-theme="dark"] {
   --site-disciption-color: #7d8286;
 
   --foot-cate-tag-color: #2090ff;
+  
+  --conv-color: #254463;
+  --pool-color: #7e5f25;
 }
 
 @media (prefers-color-scheme: dark) {
