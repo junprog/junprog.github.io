@@ -2,30 +2,42 @@
 layout: post
 permalink: /playground/:title.html
 title: Receptive Field 計算機
-category: 遊び場
+category: プレイグラウンド
 tags: CV
 ---
 <p>
-    CNNのReceptive Fieldを動的に計算するページ。
+    CNNのReceptive Fieldを動的に計算するページ。(Define-and-Runになってます笑)
 </p>
 <!--more-->
 <script type="text/javascript" src="{{ site.baseurl }}/scripts/calc_receptive_fields.js"></script>
-<script type="text/javascript" src="{{ site.baseurl }}/scripts/test.js"></script>
+
 <style type="text/css">
+    .layers {
+      text-align: center;
+    }
     .conv {
+      display: inline-block;
+      text-align: center;
       margin       : auto;
-      width        : 50%;
-      height       : 30px;
+      width        : 80%;
+      height       : auto;
       background   : var(--conv-color);
       border: 1px solid var(--content-border-color);
       border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
     }
     .pool {
+      display: inline-block;
+      text-align: center;
       margin       : auto;
-      width        : 50%;
-      height       : 30px;
+      width        : 80%;
+      height       : auto;
       background   : var(--pool-color);
       border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    .del-btn {
+      margin-left: 20px;
     }
 </style>
 
@@ -41,12 +53,14 @@ tags: CV
 <div>
   <form class="input-form">
     <label for="kernel_size">Kernel Size : </label>
-    <input type="text" id="kernel_size" class="input-box"> 
+    <input type="text" id="kernel_size" class="input-box">
+    
   </form>
 
   <form class="input-form">
     <label for="stride">Stride : </label>
     <input type="text" id="stride" class="input-box">
+
   </form>
 
   <form class="input-form">
@@ -58,6 +72,5 @@ tags: CV
 
 <br>
 
-<div id="layers">
-  <div class="conv">表示したい文字列</div>
+<div id="layers" class="layers">
 </div>
