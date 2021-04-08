@@ -14,8 +14,6 @@ title: About junprog
     * Disney
     * ジャズ
 
-週5個はポストしていきたいと思っています。(戒め)
-
 ## To Do
 
 * 積み論文

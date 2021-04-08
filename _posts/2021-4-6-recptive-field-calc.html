@@ -12,7 +12,7 @@ tags: CV
 <script type="text/javascript" src="{{ site.baseurl }}/scripts/calc_receptive_fields.js"></script>
 
 <style type="text/css">
-    .layers {
+    .center {
       text-align: center;
     }
     .conv {
@@ -72,5 +72,22 @@ tags: CV
 
 <br>
 
-<div id="layers" class="layers">
+<div id="layers" class="center">
+</div>
+
+<input type="button" id="delete-all" value="Delete All" onclick="deleteAllLayer();">
+
+<br>
+<br>
+
+<div>
+  <form class="input-form">
+    <label for="input_size">Input Size : </label>
+    <input type="text" id="input_size" class="input-box">
+  </form>
+</div>
+
+<input type="button" id="calc-output-size" value="Calc Output Size" onclick="calcOutputSize();">
+
+<div id="results" class="center">
 </div>
