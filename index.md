@@ -6,13 +6,14 @@ title: About junprog
 こんにちは、`junprog`です。
 
 ## プロフィール
-* 私大理系 情報理工 修士過程
+* 私大理系 情報理工 修士課程
 * 興味
     * 機械学習
     * 画像認識
 * 趣味
     * Disney
     * ジャズ
+    * 最近はバイク
 
 ## To Do
 
@@ -26,7 +27,6 @@ title: About junprog
     * 気になったやつ
         * [ ] [Bag of Tricks for Image Classification with Convolutional Neural Networks](https://arxiv.org/abs/1812.01187)
         * 随時更新...
-
 
 * 勉強したい
     * 仮想環境/クラウド系技術
