@@ -19,13 +19,13 @@ title: About junprog
 
 * 積み論文
     * モデルアーキテクチャ系
-        * [ ] AlexNet
+        * [x] [AlexNet]({{ site.baseurl }}/survey/paper-alexnet.html)
         * [ ] VGG
         * [ ] Inception
         * [ ] ResNet
         * [ ] DenseNet
     * 気になったやつ
-        * [ ] [Bag of Tricks for Image Classification with Convolutional Neural Networks](https://arxiv.org/abs/1812.01187)
+        * [ ] Bag of Tricks for Image Classification with Convolutional Neural Networks ([paper link](https://arxiv.org/abs/1812.01187))
         * 随時更新...
 
 * 勉強したい

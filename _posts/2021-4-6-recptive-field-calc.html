@@ -14,26 +14,30 @@ tags: CV
   .right {
     text-align: right;
   }
-  .conv {
+  div .conv {
     display: inline-block;
+    white-space: nowrap;
+    overflow-x: auto;
     text-align: center;
-    margin       : auto;
-    width        : 80%;
+    width        : 85%;
     height       : auto;
     background   : var(--conv-color);
     border: 1px solid var(--content-border-color);
     border-radius: 4px;
     font-family: 'Courier New', Courier, monospace;
+    padding: 0.4em 1em 0.4em 1em;
   }
-  .pool {
+  div .pool {
     display: inline-block;
+    white-space: nowrap;
+    overflow-x: auto;
     text-align: center;
-    margin       : auto;
-    width        : 80%;
+    width        : 85%;
     height       : auto;
     background   : var(--pool-color);
     border-radius: 4px;
     font-family: 'Courier New', Courier, monospace;
+    padding: 0.4em 1em 0.4em 1em;
   }
   .del-btn {
     margin-left: 20px;
@@ -68,21 +72,21 @@ tags: CV
   Receptive Fieldの計算方法
 </h2>
 <p>
-  まず、各レイヤの出力ベクトルのサイズは以下の式で導出できる。
+  各レイヤの出力ベクトルのサイズは以下の式で導出できる。
   \[
   n_{i} = \left\lfloor \frac{n_{i-1}+2 \times p-k}{s} \right\rfloor + 1
   \]
   ここで$ n_{i} $は$i$レイヤ目の出力ベクトルサイズ、$ n_{i-1} $はひとつ前のレイヤの出力ベクトルのサイズ($i.e.$ $i$レイヤ目の入力ベクトルサイズ)、$ i $はレイヤのインデックスを表す。レイヤのパラメータとして、$ p $はパディングサイズ、$ k $はカーネルサイズ、$ s $はカーネルのストライドを表す。
 </p>
 <p>  
-  次にジャンプという概念を導入する。これは次式で表される。
+  受容野を計算するために、ジャンプという概念を導入する。これは次式で表される。
   \[
   j_{i} = j_{i-1} \times s
   \]
   ここで$ j_{i} $は$i$レイヤ目のジャンプという意味である。
 </p>
 <p>
-  最後に$i$レイヤ目出力ベクトルの受容野$r_{i}$は以下の式で導出できる。
+  そして、$i$レイヤ目の出力ベクトルの受容野$r_{i}$は以下の式で導出できる。
   \[
   r_{i} = r_{i-1} + (k-1) \times j_{i-1}
   \]
@@ -161,7 +165,7 @@ tags: CV
   </p>
 </blockquote>
 
-<div id="results" class="center">
+<div id="results" class="center" style="overflow-x: auto; display: block;">
 </div>
 
 <p class="right">
@@ -173,9 +177,10 @@ tags: CV
   <h3>1. モデル生成</h3>
   はじめに擬似的にCNNを生成する。ModuleにてConv2D,Pool2Dを選択(Receptive Fieldの計算には関係しないけど)して、それぞれのカーネルサイズ、ストライド、パディングを整数値で入力し、Addボタンを押していくことでレイヤが追加されていく。
   <br>
+  <br>
   ※注意 : 生成される各レイヤのDeleteボタンを押すと挙動がおかしくなるかもです。随時修正します...m(_ _)m
   <h3>2. 順伝播</h3>
-  CNNを生成した状態で、Input Sizeにて入力サイズを整数で指定しForwardボタンを押すことで、各レイヤの入力サイズ、出力サイズ、受容野を出力する。
+  CNNを生成した状態で、Input Sizeにて入力サイズを整数で入力し、Forwardボタンを押すことで、各レイヤの入力サイズ、出力サイズ、受容野を出力する。
   <br>
   <br>
 </p>

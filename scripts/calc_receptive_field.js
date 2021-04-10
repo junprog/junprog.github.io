@@ -12,7 +12,7 @@ class Layer {
         this.input_size = input_size
     }
 
-    setJump(pre_jump) {
+    setPreJump(pre_jump) {
         this.pre_jump = pre_jump
         this.jump = this.pre_jump * this.stride
     }
@@ -42,7 +42,7 @@ let layers = [];
 let global_index = 0;
 
 function addLayer() {
-    if (layers.length > 50) {
+    if (layers.length > 80) {
         alert("too many layers!")
     } else {
         // htmlから情報を取得
@@ -107,17 +107,22 @@ function createLayerBlock(index, module, kernel_size, stride, padding) {
     const layers_div_el = document.getElementById("layers");
 
     const layer_block = document.createElement("div");
-    if (module == "Conv2d") {
+    if ( module == "Conv2d") {
         layer_block.classList.add("conv");
-    } else if (module == "Pool2d") {
+    } else if ( module == "Pool2d" || module == "gap" ) {
         layer_block.classList.add("pool");
     }
 
     layer_block.id = index;
 
     // ブロック内の文字
-    const layer_info = index + ": " + module + "(kernel_size=(" + kernel_size + "," + kernel_size + "), stride=(" + stride + "," + stride + "), padding=(" + padding + "," + padding +"))";
-    const text1 = document.createTextNode(layer_info);
+    if ( module == "gap" ) {
+        const layer_info = index + ": " + module + "( adoptive )";
+        var text1 = document.createTextNode(layer_info);
+    } else {
+        const layer_info = index + ": " + module + "(kernel_size=(" + kernel_size + "," + kernel_size + "), stride=(" + stride + "," + stride + "), padding=(" + padding + "," + padding +"))";
+        var text1 = document.createTextNode(layer_info);
+    }
 
     const del_btn = document.createElement("input");
     del_btn.classList.add("del-btn");
@@ -169,15 +174,15 @@ function calcInfo() {
 
         // ジャンプ計算 & 前レイヤのRF指定
         if (i == 0){
-            layers[i].setJump(1);
+            layers[i].setPreJump(1);
             layers[i].setPreReceptiveField(1);
         } else {
-            layers[i].setJump(layers[i-1].jump);
+            layers[i].setPreJump(layers[i-1].jump);
             layers[i].setPreReceptiveField(layers[i-1].receptive_field);
         }
         
 
-        if (layers[i].module == "Conv2d"){
+        if ( layers[i].module == "Conv2d" ) {
             const result_block = document.createElement("div");
             result_block.classList.add("conv");
 
@@ -189,12 +194,27 @@ function calcInfo() {
 
             results_div_el.appendChild(result_block);
 
-        } else if (layers[i].module == "Pool2d") {
+        } else if ( layers[i].module == "Pool2d" ) {
             const result_block = document.createElement("div");
             result_block.classList.add("pool");
 
             // ブロック内の文字
             const result_info = layers[i].index + ": " + layers[i].module + " input_size=" + layers[i].input_size + ", output_size=" + layers[i].output_size + ", receptive_filed=" + layers[i].receptive_field;
+            const text1 = document.createTextNode(result_info);
+
+            result_block.appendChild(text1);
+
+            results_div_el.appendChild(result_block);
+        } else if ( layers[i].module == "gap" ) {
+            const result_block = document.createElement("div");
+            result_block.classList.add("pool");
+
+            layers[i].kernel_size = layers[i-1].output_size;
+            layers[i].stride = 1;
+            layers[i].padding = 0;
+
+            // ブロック内の文字
+            const result_info = layers[i].index + ": " + layers[i].module + "( kernel_size=" + layers[i-1].output_size + " )" + " input_size=" + layers[i].input_size + ", output_size=" + layers[i].output_size + ", receptive_filed=" + layers[i].receptive_field;
             const text1 = document.createTextNode(result_info);
 
             result_block.appendChild(text1);
@@ -286,7 +306,7 @@ function vgg19() {
 }
 
 function resnet50() {
-
+    deleteAllLayers();
     num_blocks = [3, 4, 6, 3];
 
     bottleneck_block_params = {
@@ -304,17 +324,16 @@ function resnet50() {
     };
 
     resnet50_params = {
-        "module": ["Conv2d", "Pool2d", "blocks", "blocks", "blocks", "blocks"],
-        "kernel_size": [7, 3, "blocks", "blocks", "blocks", "blocks"],
-        "stride": [2, 2, "blocks", "blocks", "blocks", "blocks"],
-        "padding": [3, 1, "blocks", "blocks", "blocks", "blocks"]
+        "module": ["Conv2d", "Pool2d", "blocks", "blocks", "blocks", "blocks", "gap"],
+        "kernel_size": [7, 3, "blocks", "blocks", "blocks", "blocks", "gap"],
+        "stride": [2, 2, "blocks", "blocks", "blocks", "blocks", "gap"],
+        "padding": [3, 1, "blocks", "blocks", "blocks", "blocks", "gap"]
     };
 
+    let block_cnt = 0;
     for (let i = 0; i < resnet50_params["module"].length; i++) {
-        
-        let block_cnt = 0;
 
-        if (resnet50_params["module"][i] == "blocks") {
+        if ( resnet50_params["module"][i] == "blocks" ) {
 
             const layers_div_el = document.getElementById("layers");
             const layer_block = document.createElement("div");
@@ -325,7 +344,6 @@ function resnet50() {
             layer_block.appendChild(text1);
             layers_div_el.appendChild(layer_block);
 
-            //for (let bb = 0; bb < num_blocks.length; bb++) { // Block 4ループ分
             for (let b = 0; b < num_blocks[block_cnt]; b++) { // [3, 4, 6, 3] 分
 
                 const layers_div_el = document.getElementById("layers");
@@ -340,31 +358,37 @@ function resnet50() {
                 // Block の中身
                 for (let j = 0; j < bottleneck_block_params["module"].length; j++) {
 
-                    if ( j == 0 ) {
-                        let l = new Layer(global_index, downsample_bottleneck_block_params["module"][j], downsample_bottleneck_block_params["kernel_size"][j], downsample_bottleneck_block_params["stride"][j], downsample_bottleneck_block_params["padding"][j])
-                        layers.push(l)
-
-                        createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
-                        global_index++;
-
-                    } else if (j == 0 && block_cnt == 0 ) {
+                    if ( block_cnt == 0 ) {
                         let l = new Layer(global_index, bottleneck_block_params["module"][j], bottleneck_block_params["kernel_size"][j], bottleneck_block_params["stride"][j], bottleneck_block_params["padding"][j])
                         layers.push(l)
 
                         createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
                         global_index++;
-
                     } else {
-                        let l = new Layer(global_index, bottleneck_block_params["module"][j], bottleneck_block_params["kernel_size"][j], bottleneck_block_params["stride"][j], bottleneck_block_params["padding"][j])
-                        layers.push(l)
-
-                        createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
-                        global_index++;
+                        if ( b == 0 ) {
+                            let l = new Layer(global_index, downsample_bottleneck_block_params["module"][j], downsample_bottleneck_block_params["kernel_size"][j], downsample_bottleneck_block_params["stride"][j], downsample_bottleneck_block_params["padding"][j])
+                            layers.push(l)
+    
+                            createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
+                            global_index++;
+                        } else {
+                            let l = new Layer(global_index, bottleneck_block_params["module"][j], bottleneck_block_params["kernel_size"][j], bottleneck_block_params["stride"][j], bottleneck_block_params["padding"][j])
+                            layers.push(l)
+    
+                            createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
+                            global_index++;
+                        }
                     }
                 }
-                block_cnt++;
             }
-        
+            block_cnt++;
+
+        } else if ( resnet50_params["module"][i] == "gap" ) {
+            let l = new Layer(global_index, resnet50_params["module"][i], resnet50_params["kernel_size"][i], resnet50_params["stride"][i], resnet50_params["padding"][i])
+            layers.push(l)
+            global_index++;
+
+            createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
         } else {
             let l = new Layer(global_index, resnet50_params["module"][i], resnet50_params["kernel_size"][i], resnet50_params["stride"][i], resnet50_params["padding"][i])
             layers.push(l)
@@ -374,6 +398,4 @@ function resnet50() {
             global_index++;
         }
     }
-
-
 }
