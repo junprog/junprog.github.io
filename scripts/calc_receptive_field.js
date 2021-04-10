@@ -96,53 +96,40 @@ function addLayer() {
             layers.push(l)
 
             // 要素追加
-            const layers_div_el = document.getElementById("layers");
-            if (module_el.value == "Conv2d"){
-                const layer_block = document.createElement("div");
-                layer_block.classList.add("conv");
-                layer_block.id = global_index;
-
-                // ブロック内の文字
-                const layer_info = l.index + ": " + module_el.value + "(kernel_size=(" + l.kernel_size + "," + l.kernel_size + "), stride=(" + l.stride + "," + l.stride + "), padding=(" + l.padding + "," + l.padding +"))";
-                const text1 = document.createTextNode(layer_info);
-
-                const del_btn = document.createElement("input");
-                del_btn.classList.add("del-btn");
-                del_btn.type = "button";
-                del_btn.value="Delete";
-                del_btn.onclick = function() {
-                    deleteLayer(l.index);
-                };
-                layer_block.appendChild(text1);
-                layer_block.appendChild(del_btn);
-
-                layers_div_el.appendChild(layer_block);
-
-            } else if (module_el.value == "Pool2d") {
-                const layer_block = document.createElement("div"); 
-                layer_block.classList.add("pool");
-                layer_block.id = global_index;
-
-                // ブロック内の文字
-                const layer_info = l.index + ": " + module_el.value + "(kernel_size=(" + l.kernel_size + "," + l.kernel_size + "), stride=(" + l.stride + "," + l.stride + "), padding=(" + l.padding + "," + l.padding +"))";
-                const text1 = document.createTextNode(layer_info);
-
-                const del_btn = document.createElement("input");
-                del_btn.classList.add("del-btn");
-                del_btn.type = "button";
-                del_btn.value="Delete";
-                del_btn.onclick = function() {
-                    deleteLayer(l.index);
-                };
-                layer_block.appendChild(text1);
-                layer_block.appendChild(del_btn);
-
-                layers_div_el.appendChild(layer_block);
-
-            }
+            createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
+            
             global_index++;
         }
     }
+}
+
+function createLayerBlock(index, module, kernel_size, stride, padding) {
+    const layers_div_el = document.getElementById("layers");
+
+    const layer_block = document.createElement("div");
+    if (module == "Conv2d") {
+        layer_block.classList.add("conv");
+    } else if (module == "Pool2d") {
+        layer_block.classList.add("pool");
+    }
+
+    layer_block.id = index;
+
+    // ブロック内の文字
+    const layer_info = index + ": " + module + "(kernel_size=(" + kernel_size + "," + kernel_size + "), stride=(" + stride + "," + stride + "), padding=(" + padding + "," + padding +"))";
+    const text1 = document.createTextNode(layer_info);
+
+    const del_btn = document.createElement("input");
+    del_btn.classList.add("del-btn");
+    del_btn.type = "button";
+    del_btn.value="Delete";
+    del_btn.onclick = function() {
+        deleteLayer(index);
+    };
+    layer_block.appendChild(text1);
+    layer_block.appendChild(del_btn);
+
+    layers_div_el.appendChild(layer_block);
 }
 
 function deleteLayer(index) {
@@ -238,4 +225,155 @@ function setDefault() {
 
 function vgg16() {
     deleteAllLayers();
+
+    vgg16_params = {
+        "index": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+        "module": ["Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Conv2d", "Pool2d"],
+        "kernel_size": [3, 3, 2, 3, 3, 2, 3, 3, 3, 2, 3, 3, 3, 2, 3, 3, 3, 2],
+        "stride": [1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2], 
+        "padding": [1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0]
+    };
+
+    for (let i = 0; i < vgg16_params["index"].length; i++) {
+        let l = new Layer(vgg16_params["index"][i], vgg16_params["module"][i], vgg16_params["kernel_size"][i], vgg16_params["stride"][i], vgg16_params["padding"][i])
+        layers.push(l)
+
+        // 要素追加
+        createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
+        
+        global_index++;
+    }
+}
+
+function vgg19() {
+    deleteAllLayers();
+
+    vgg19_params = {
+        "index": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        "module": ["Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Conv2d", "Conv2d", "Pool2d"],
+        "kernel_size": [3, 3, 2, 3, 3, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3, 2],
+        "stride": [1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2], 
+        "padding": [1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0]
+    };
+
+    for (let i = 0; i < vgg19_params["index"].length; i++) {
+        let l = new Layer(vgg19_params["index"][i], vgg19_params["module"][i], vgg19_params["kernel_size"][i], vgg19_params["stride"][i], vgg19_params["padding"][i])
+        layers.push(l)
+
+        // 要素追加
+        createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
+    }
+}
+
+function vgg19() {
+    deleteAllLayers();
+
+    vgg19_params = {
+        "index": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        "module": ["Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Conv2d", "Conv2d", "Pool2d", "Conv2d", "Conv2d", "Conv2d", "Conv2d", "Pool2d"],
+        "kernel_size": [3, 3, 2, 3, 3, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3, 2],
+        "stride": [1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2], 
+        "padding": [1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0]
+    };
+
+    for (let i = 0; i < vgg19_params["index"].length; i++) {
+        let l = new Layer(vgg19_params["index"][i], vgg19_params["module"][i], vgg19_params["kernel_size"][i], vgg19_params["stride"][i], vgg19_params["padding"][i])
+        layers.push(l)
+
+        // 要素追加
+        createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
+    }
+}
+
+function resnet50() {
+
+    num_blocks = [3, 4, 6, 3];
+
+    bottleneck_block_params = {
+        "module": ["Conv2d", "Conv2d", "Conv2d"],
+        "kernel_size": [1, 3, 1],
+        "stride": [1, 1, 1],
+        "padding": [0, 1, 0]
+    };
+
+    downsample_bottleneck_block_params = {
+        "module": ["Conv2d", "Conv2d", "Conv2d"],
+        "kernel_size": [1, 3, 1],
+        "stride": [1, 2, 1],
+        "padding": [0, 1, 0]
+    };
+
+    resnet50_params = {
+        "module": ["Conv2d", "Pool2d", "blocks", "blocks", "blocks", "blocks"],
+        "kernel_size": [7, 3, "blocks", "blocks", "blocks", "blocks"],
+        "stride": [2, 2, "blocks", "blocks", "blocks", "blocks"],
+        "padding": [3, 1, "blocks", "blocks", "blocks", "blocks"]
+    };
+
+    for (let i = 0; i < resnet50_params["module"].length; i++) {
+        
+        let block_cnt = 0;
+
+        if (resnet50_params["module"][i] == "blocks") {
+
+            const layers_div_el = document.getElementById("layers");
+            const layer_block = document.createElement("div");
+
+            // ブロック内の文字
+            const layer_info = "--- layer-" + block_cnt + " ---";
+            const text1 = document.createTextNode(layer_info);
+            layer_block.appendChild(text1);
+            layers_div_el.appendChild(layer_block);
+
+            //for (let bb = 0; bb < num_blocks.length; bb++) { // Block 4ループ分
+            for (let b = 0; b < num_blocks[block_cnt]; b++) { // [3, 4, 6, 3] 分
+
+                const layers_div_el = document.getElementById("layers");
+                const layer_block = document.createElement("div");
+
+                // ブロック内の文字
+                const layer_info = "--- block-" + b + " ---";
+                const text1 = document.createTextNode(layer_info);
+                layer_block.appendChild(text1);
+                layers_div_el.appendChild(layer_block);
+
+                // Block の中身
+                for (let j = 0; j < bottleneck_block_params["module"].length; j++) {
+
+                    if ( j == 0 ) {
+                        let l = new Layer(global_index, downsample_bottleneck_block_params["module"][j], downsample_bottleneck_block_params["kernel_size"][j], downsample_bottleneck_block_params["stride"][j], downsample_bottleneck_block_params["padding"][j])
+                        layers.push(l)
+
+                        createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
+                        global_index++;
+
+                    } else if (j == 0 && block_cnt == 0 ) {
+                        let l = new Layer(global_index, bottleneck_block_params["module"][j], bottleneck_block_params["kernel_size"][j], bottleneck_block_params["stride"][j], bottleneck_block_params["padding"][j])
+                        layers.push(l)
+
+                        createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
+                        global_index++;
+
+                    } else {
+                        let l = new Layer(global_index, bottleneck_block_params["module"][j], bottleneck_block_params["kernel_size"][j], bottleneck_block_params["stride"][j], bottleneck_block_params["padding"][j])
+                        layers.push(l)
+
+                        createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
+                        global_index++;
+                    }
+                }
+                block_cnt++;
+            }
+        
+        } else {
+            let l = new Layer(global_index, resnet50_params["module"][i], resnet50_params["kernel_size"][i], resnet50_params["stride"][i], resnet50_params["padding"][i])
+            layers.push(l)
+
+            // 要素追加
+            createLayerBlock(l.index, l.module, l.kernel_size, l.stride, l.padding);
+            global_index++;
+        }
+    }
+
+
 }
