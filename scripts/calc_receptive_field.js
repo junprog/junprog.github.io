@@ -235,3 +235,7 @@ function setDefault() {
         padding_el.value = 0;
     }
 }
+
+function vgg16() {
+    deleteAllLayers();
+}
