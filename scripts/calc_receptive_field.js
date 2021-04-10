@@ -26,7 +26,7 @@ class Layer {
     }
 
     calcOutputSize() {
-        return (Math.ceil((this.input_size - this.kernel_size + 2 * this.padding) / this.stride) + 1);
+        return (Math.floor((this.input_size - this.kernel_size + 2 * this.padding) / this.stride) + 1);
     }
 
     get receptive_field() {
