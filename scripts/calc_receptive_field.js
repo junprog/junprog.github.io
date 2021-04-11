@@ -187,7 +187,7 @@ function calcInfo() {
             result_block.classList.add("conv");
 
             // ブロック内の文字
-            const result_info = layers[i].index + ": " + layers[i].module + " input_size=" + layers[i].input_size + ", output_size=" + layers[i].output_size + ", receptive_filed=" + layers[i].receptive_field;
+            const result_info = layers[i].index + ": " + layers[i].module + " input_size=" + layers[i].input_size + ", output_size=" + layers[i].output_size + ", receptive_field=" + layers[i].receptive_field;
             const text1 = document.createTextNode(result_info);
 
             result_block.appendChild(text1);
@@ -199,7 +199,7 @@ function calcInfo() {
             result_block.classList.add("pool");
 
             // ブロック内の文字
-            const result_info = layers[i].index + ": " + layers[i].module + " input_size=" + layers[i].input_size + ", output_size=" + layers[i].output_size + ", receptive_filed=" + layers[i].receptive_field;
+            const result_info = layers[i].index + ": " + layers[i].module + " input_size=" + layers[i].input_size + ", output_size=" + layers[i].output_size + ", receptive_field=" + layers[i].receptive_field;
             const text1 = document.createTextNode(result_info);
 
             result_block.appendChild(text1);

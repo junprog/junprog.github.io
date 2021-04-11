@@ -13,7 +13,7 @@ title: About junprog
 * 趣味
     * Disney
     * ジャズ
-    * 最近はバイク
+    * 最近はバイクが欲しい
 
 ## To Do
 
