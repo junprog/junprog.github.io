@@ -1,7 +1,7 @@
 ---
 layout: post
 permalink: /blog/:title.html
-title: 【Ubuntu 18.04】HDD,SSDをマウントするためのメモ
+title: HDD,SSDをマウントする (Ubuntu 18.04)
 category: ブログ
 tags: Linux セットアップ
 ---
