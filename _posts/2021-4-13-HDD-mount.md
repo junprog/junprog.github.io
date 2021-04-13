@@ -11,6 +11,9 @@ tags: Linux セットアップ
 ## 環境
 
 * OS : Ubuntu 18.04
+* ディスク
+    * HDD : 4TB
+    * SSD : 1TB
 
 ## 1. OSがHDD,SSDを認識しているかどうか確認
 
