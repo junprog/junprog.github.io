@@ -214,11 +214,12 @@ th {
   padding: 6px 10px;
   border: 1px solid #dfe2e5;
   vertical-align: middle;
-  white-space: nowrap;
+  max-width: 500px;
+  white-space: pre-wrap;
 }
 
 .entry table th {	
-  padding: 6px 28px;
+  padding: 6px 50px; //28px;
   border: 1px solid #dfe2e5;
   white-space: nowrap;
 }
