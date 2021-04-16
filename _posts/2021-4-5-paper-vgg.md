@@ -22,18 +22,36 @@ tags: CV
 
 ## 手法
 
-|            A           |          A-LRN         |            B           |           C          |           D          |           E          |
-|:----------------------:|:----------------------:|:----------------------:|:--------------------:|:--------------------:|:--------------------:|
-|        conv3-64        |     conv3-64<br>LRN    |  conv3-64<br>conv3-64  | conv3-64<br>conv3-64 | conv3-64<br>conv3-64 | conv3-64<br>conv3-64 |
-|        max pool        |        max pool        |        max pool        |       max pool       |       max pool       |       max pool       |
-|        conv3-128       |        conv3-128       | conv3-128<br>conv3-128 |                      |                      |                      |
-|        max pool        |        max pool        |        max pool        |       max pool       |       max pool       |       max pool       |
-| conv3-256<br>conv3-256 | conv3-256<br>conv3-256 | conv3-256<br>conv3-256 |                      |                      |                      |
-|        max pool        |        max pool        |        max pool        |       max pool       |       max pool       |       max pool       |
-| conv3-512<br>conv3-512 | conv3-512<br>conv3-512 | conv3-512<br>conv3-512 |                      |                      |                      |
-|        max pool        |        max pool        |        max pool        |       max pool       |       max pool       |       max pool       |
-| conv3-512<br>conv3-512 | conv3-512<br>conv3-512 | conv3-512<br>conv3-512 |                      |                      |                      |
-|        max pool        |        max pool        |        max pool        |       max pool       |       max pool       |       max pool       |
+### Architecture
+RGB画像を224x224で入力する。
+
+全ての畳み込み層で `Conv2D(in_ch, out_ch, kernel_size=(3,3), stirde=(1,1), padding=(1,1))`を使用する。(`Conv2D(in_ch, out_ch, kernel_size=(1,1), stirde=(1,1), padding=(0,0))`を使用するパターンもある。) カーネルサイズが3の畳み込み層では、ストライドを1、パディングを1に設定する事で特徴マップの解像度を入出力で揃えられる。全てのプーリング層で`MaxPool2D(kernel_size=(3,3), stirde=(1,1))`を使用する。
+
+最後は特徴マップを4096チャネルの1次元データに平滑化し、3層の全結合層で分類を行う。AlexNetで使用されるLRNは基本的に使用しない。
+
+### Configurations
+
+|            A           |          A-LRN         |            B           |                  C                  |                  D                  |                         E                        |
+|:----------------------:|:----------------------:|:----------------------:|:-----------------------------------:|:-----------------------------------:|:------------------------------------------------:|
+|        conv3-64        |     conv3-64<br>LRN    |  conv3-64<br>conv3-64  |         conv3-64<br>conv3-64        |         conv3-64<br>conv3-64        |               conv3-64<br>conv3-64               |
+|        max pool        |        max pool        |        max pool        |               max pool              |               max pool              |                     max pool                     |
+|        conv3-128       |        conv3-128       | conv3-128<br>conv3-128 |        conv3-128<br>conv3-128       |        conv3-128<br>conv3-128       |              conv3-128<br>conv3-128              |
+|        max pool        |        max pool        |        max pool        |               max pool              |               max pool              |                     max pool                     |
+| conv3-256<br>conv3-256 | conv3-256<br>conv3-256 | conv3-256<br>conv3-256 | conv3-256<br>conv3-256<br>conv1-256 | conv3-256<br>conv3-256<br>conv3-256 | conv3-256<br>conv3-256<br>conv3-256<br>conv3-256 |
+|        max pool        |        max pool        |        max pool        |               max pool              |               max pool              |                     max pool                     |
+| conv3-512<br>conv3-512 | conv3-512<br>conv3-512 | conv3-512<br>conv3-512 | conv3-512<br>conv3-512<br>conv1-512 | conv3-512<br>conv3-512<br>conv3-512 | conv3-512<br>conv3-512<br>conv3-512<br>conv3-512 |
+|        max pool        |        max pool        |        max pool        |               max pool              |               max pool              |                     max pool                     |
+| conv3-512<br>conv3-512 | conv3-512<br>conv3-512 | conv3-512<br>conv3-512 | conv3-512<br>conv3-512<br>conv1-512 | conv3-512<br>conv3-512<br>conv3-512 | conv3-512<br>conv3-512<br>conv3-512<br>conv3-512 |
+|        max pool        |        max pool        |        max pool        |               max pool              |               max pool              |                     max pool                     |
+
+* `Linear(4096, 4096)`
+* `Linear(4096, 4096)`
+* `Linear(4096, 1000) + softmax`
+
+### Discussion
+
+
+
 
 ## 実験
 
