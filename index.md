@@ -6,6 +6,7 @@ title: About junprog
 こんにちは、`junprog`です。
 
 ## プロフィール
+
 * 私大理系 情報理工 修士課程
 * 興味
     * 機械学習
@@ -20,7 +21,7 @@ title: About junprog
 * 積み論文
     * モデルアーキテクチャ系
         * [x] [AlexNet]({{ site.baseurl }}/survey/paper-alexnet.html)
-        * [ ] VGG
+        * [x] [VGG]({{ site.baseurl }}/survey/paper-vgg.html)
         * [ ] Inception
         * [ ] ResNet
         * [ ] DenseNet
