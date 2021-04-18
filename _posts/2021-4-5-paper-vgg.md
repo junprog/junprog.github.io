@@ -78,6 +78,8 @@ RGB画像を224x224で入力する。
 
 ## 実験
 
+* ImageNetのValidationセットのTop-1, Top-5エラー率は以下の通り。
+
 ### Single-scale evaluation
 
 | Configurations | train($S$) | test($Q$) | Val Err@1 | Val Err@5 |
