@@ -87,9 +87,7 @@ exclude:
   - README.md
   - CNAME
 
-plugins:
-  - jekyll-paginate
+plugins: [jekyll-paginate]
 
 paginate: 3
-
 paginate_path: "/blog/page:num/"
