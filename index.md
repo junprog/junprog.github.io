@@ -15,6 +15,7 @@ title: About junprog
     * Disney
     * ジャズ
     * 最近はバイクが欲しい
+    * カメラも欲しい
 
 ## To Do
 
