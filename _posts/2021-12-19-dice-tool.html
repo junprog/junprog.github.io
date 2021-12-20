@@ -1,0 +1,212 @@
+---
+layout: post
+permalink: /playground/:title.html
+title: クトゥルフ神話TRPGダイスツール
+category: プレイグラウンド
+tags: ダイス TRPG
+---
+<p>
+    クトゥルフ神話TRPGで使用されるダイスを Web 上で振れるページ。
+</p>
+<!--more-->
+
+<script type="text/javascript" src="{{ site.baseurl }}/scripts/coc_dice.js"></script>
+
+<style type="text/css">
+    .post blockquote {
+        font-style: normal;
+    }
+
+    #dice-anime{
+        animation:0.6s ease rotation;
+    }
+    @keyframes rotation{
+        0%{ transform:rotate(0);}
+        100%{ transform:rotate(1080deg); }
+    }
+</style>
+
+<blockquote style="border-left: 3px solid #ffbb00;">
+    <div style="display: flex;">
+
+        <div style="margin: auto 0 auto 0;">
+            <i class="fas fa-exclamation-triangle", style="color: #ffbb00;"></i>
+        </div>
+        <div>
+            <p style="margin-left: 15px; font-size: small;">
+                本ページは「株式会社アークライト」及び「株式会社KADOKAWA」が権利を有する『クトゥルフ神話TRPG』の二次創作物です。
+                <br>
+                Call of Cthulhu is copyright (C)1981, 2015, 2019 by Chaosium Inc. ;all rights reserved. Arranged by Arclight Inc.
+                Call of Cthulhu is a registered trademark of Chaosium Inc.
+                PUBLISHED BY KADOKAWA CORPORATION
+            </p>
+        </div>
+    </div>
+</blockquote>
+
+<h2>
+    クトゥルフ神話TRPGで使用されるダイスについて
+</h2>
+<p>
+    以下の3種類のダイスのみを使用します。
+</p>
+
+<blockquote>
+    <div style="display: flex; margin: 10px 0 10px 0;">
+        <div style="margin: auto 0 auto 0;">
+            <img src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="80px" height="80px" style="border: none;">
+        </div>
+        <div style="margin-left: 15px;">
+            <h3>10面ダイス（通称: D10）</h3>
+            <ul>
+                <li>
+                    出目: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+                </li>
+            </ul>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</blockquote>
+
+<blockquote>
+    <div style="display: flex; margin: 10px 0 10px 0;">
+        <div style="margin: auto 0 auto 0;">
+            <img src="{{ site.baseurl }}/images/playground-2021-12-19/8面ダイス.svg" width="80px" height="80px" style="border: none;">
+        </div>
+        <div style="margin-left: 15px;">
+            <h3>8面ダイス（通称: D8）</h3>
+            <ul>
+                <li>
+                    出目: {1, 2, 3, 4, 5, 6, 7, 8}
+                </li>
+            </ul>
+        </div>
+    </div>
+</blockquote>
+
+<blockquote>
+    <div style="display: flex; margin: 10px 0 10px 0;">
+        <div style="margin: auto 0 auto 0;">
+            <img src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="80px" height="80px" style="border: none;">
+        </div>
+        <div style="margin-left: 15px;">
+            <h3>6面ダイス（通称: D6）</h3>
+            <ul>
+                <li>
+                    出目: {1, 2, 3, 4, 5, 6}
+                </li>
+            </ul>
+        </div>
+    </div>
+</blockquote>
+
+<p>
+    以上の3種類のダイスを複数個組み合わせることで、様々な出目のパターンを表現します。<br><br>
+    組み合わせの名称として、2つのD10を使用する場合は、2D10と表現されます。具体的には以下のような出目のパターンを表現します。
+</p>
+<ul>
+    <li>
+        100面ダイス（通称: D100，パーセント・ダイス等）
+        <ul>
+            <li>
+                2つの D10 を使用して、0から99までの出目を表現します。
+            </li>
+            <li>
+                1つ目のダイスで1桁目、2つ目のダイスで2桁目を決定する。（2D10）
+            </li>
+        </ul>
+    </li>
+    <li>
+        20面ダイス（通称: D20）
+        <ul>
+            <li>
+                D10 と D6 を使用して、0から19までの出目を表現します。
+            </li>
+            <li>
+                D10 と D6 を使用して、0から19までの出目を表現します。
+            </li>
+        </ul>
+    </li>
+    <li>
+        10面ダイス（通称: D10）
+        <ul>
+            <li>
+                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+            </li>
+        </ul>
+    </li>
+    <li>
+        8面ダイス（通称: D8）
+        <ul>
+            <li>
+                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+            </li>
+        </ul>
+    </li>
+    <li>
+        6面ダイス（通称: D6）
+        <ul>
+            <li>
+                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+            </li>
+        </ul>
+    </li>
+    <li>
+        5面ダイス（通称: D5）
+        <ul>
+            <li>
+                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+            </li>
+        </ul>
+    </li>
+    <li>
+        4面ダイス（通称: D4）
+        <ul>
+            <li>
+                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+            </li>
+        </ul>
+    </li>
+    <li>
+        3面ダイス（通称: D3）
+        <ul>
+            <li>
+                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+            </li>
+        </ul>
+    </li>
+    <li>
+        2面ダイス（通称: D2）
+        <ul>
+            <li>
+                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<h2>
+    【余談】クトゥルフ神話TRPGとは
+</h2>
+<p>
+    クトゥルフ神話TRPGとは何なのか...？<br>
+    説明が非常に難しいですが、まずはクトゥルフ神話とTRPGに分けて説明しましょう。
+    <h3>クトゥルフ神話とは</h3>
+    クトゥルフ神話は、ハワード・フィリップス・ラヴクラフトさんが創作したホラー小説のバックグラウンドを成す神話を指します。ラヴクラフトさんは、1920年から1930年にかけて活躍し、1937年に亡くなられた時には偶像的な存在になっていたらしいです。
+    そして彼の死後、クトゥルフ神話の評価はさらに高まり、今日ではアメリカの偉大な恐怖小説家として名を轟かせています。
+    <br>
+    クトゥルフ神話の内容としては、人間が生まれる前の太古の時代に地球を支配していた大いなる生物たちが現代に蘇る or 蘇らせるというテーマが多いです。
+    大いなる生物は人間の力では到底かなわないようなものばかりであり、その生物が蘇ってしまえば我々に太刀打ちする手段はほぼ無いに等しいです。
+    ただ、大いなる生物たちを蘇らせるのは人間であり、蘇らせる理由も人間に起因するものが多いです。（永遠の命が得られる、時間を操る、など。）
+    <h3>TRPGとは</h3>
+</p>
+
+<h2>Reference</h2>
+<ul>
+  <li>
+    サンディ・ピーターソン、リン・ウィリスほか（著），中山てい子、坂本雅之（訳）（2004），クトゥルフ神話 TRPG ，KADOKAWA/エンターブレイン
+    <a href="https://product.kadokawa.co.jp/p01/product-c/301401001110.html">page link</a>
+  </li>
+</ul>
