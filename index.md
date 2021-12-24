@@ -14,8 +14,9 @@ title: About junprog
 * 趣味
     * Disney
     * ジャズ
-    * 最近はバイクが欲しい
-    * カメラも欲しい
+    * カメラ
+    * 登山
+    * TRPG，マーダーミステリー
 
 ## To Do
 
