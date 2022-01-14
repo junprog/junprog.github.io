@@ -1,73 +1,15 @@
 ---
 layout: post
-permalink: /playground/:title.html
+permalink: /playground/:title
 title: クトゥルフ神話TRPGダイスツール
 category: プレイグラウンド
 tags: ダイス TRPG
 ---
 <p>
     クトゥルフ神話TRPGで使用されるダイスを Web 上で振れるページ。<br>
-    WEBダイスツールなんて、世の中にたくさんありますよね...笑 車輪の再開発にはなってしまっていますが、ぜひ遊んでみてください。
+    WEBダイスツールなんて、世の中にたくさんありますよね...笑 車輪の再開発になってしまっていますが、ぜひ遊んでみてください。
 </p>
 <!--more-->
-
-<script type="text/javascript" src="{{ site.baseurl }}/scripts/coc_dice.js"></script>
-<script>
-    //アニメーション
-    $("#dice-img1").click(function () {
-        $(this).animate({zIndex:1},{
-            //1秒かけてアニメーション
-            duration: 300,
-            //stepは、アニメーションが進むたびに呼ばれる
-            step:function(now){
-                //nowに現在のz-indexの値（0から1に変化しているところ）が渡してもらえる
-                //0から1に向かって変化していくnowを利用して3回転（1080度）させてみる
-                $(this).css({transform:'rotate(' + (now * 720) + 'deg)'});
-            },
-            //終わったら
-            complete:function(){
-                //次のために、元に戻しておく
-                $(this).css('zIndex', 0);
-            }
-        })
-    });
-
-    $("#dice-img2").click(function () {
-        $(this).animate({zIndex:1},{
-            //1秒かけてアニメーション
-            duration: 300,
-            //stepは、アニメーションが進むたびに呼ばれる
-            step:function(now){
-                //nowに現在のz-indexの値（0から1に変化しているところ）が渡してもらえる
-                //0から1に向かって変化していくnowを利用して3回転（1080度）させてみる
-                $(this).css({transform:'rotate(' + (now * 720) + 'deg)'});
-            },
-            //終わったら
-            complete:function(){
-                //次のために、元に戻しておく
-                $(this).css('zIndex', 0);
-            }
-        })
-    });
-
-    $("#dice-img3").click(function () {
-        $(this).animate({zIndex:1},{
-            //1秒かけてアニメーション
-            duration: 300,
-            //stepは、アニメーションが進むたびに呼ばれる
-            step:function(now){
-                //nowに現在のz-indexの値（0から1に変化しているところ）が渡してもらえる
-                //0から1に向かって変化していくnowを利用して3回転（1080度）させてみる
-                $(this).css({transform:'rotate(' + (now * 720) + 'deg)'});
-            },
-            //終わったら
-            complete:function(){
-                //次のために、元に戻しておく
-                $(this).css('zIndex', 0);
-            }
-        })
-    });
-</script>
 
 <style type="text/css">
     .post .entire-dice {
@@ -76,28 +18,38 @@ tags: ダイス TRPG
         margin: 10px;
         border: 1px solid #ccc;
         border-radius: 10px;
+        text-align: center;
     }
+
     .post .entire-dice .dice-box{
         display: flex;
         justify-content: center;
         align-items: center;
         
         height: auto;
-        max-width: 200px;
+
         margin: 5px; 
         padding: 10px;
         border: 1px solid #ddd;
     }
+
     .post .entire-dice .dice-box .res-box{
+        letter-spacing: 2px;
+        width: 60px;
         height: auto;
         margin: 5px 5px 5px 10px; 
         padding: 10px; 
         border-radius: 5px;
         background-color: var(--main-background-color);
+        font-size: larger;
     }
 
     .post blockquote {
         font-style: normal;
+    }
+
+    .dice-box img {
+        margin: 0px 12px;
     }
 
 </style>
@@ -121,65 +73,68 @@ tags: ダイス TRPG
 </blockquote>
 
 <h2>
-    クトゥルフ神話TRPGで使用されるダイスについて
+    クトゥルフ神話TRPGで使用されるダイス
 </h2>
-<p>
-    以下の3種類のダイスのみを使用します。
-</p>
 
+<div style="text-align: center;">
 
-<div class="entire-dice">
-    <div style="margin-left: 15px;">
-        <h3>10面ダイス（D10）</h3>
-    </div>
-
-    <div class="dice-box">
+    <div class="entire-dice">
         <div>
-            <img id="dice-img1" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;">
+            <h4>6面ダイス（D6）</h4>
         </div>
-        <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
-            :
-        </div>
-        <div class="res-box">
-            - -
-        </div>
-    </div>
-</div>
 
-<div class="entire-dice">
-    <div style="margin-left: 15px;">
-        <h3>8面ダイス（D8）</h3>
+        <div class="dice-box">
+    
+            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;">
+    
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
+        </div>
+        <p>{1, 2, 3, 4, 5, 6}</p>
     </div>
 
-    <div class="dice-box">
+    <div class="entire-dice">
         <div>
-            <img id="dice-img2"  src="{{ site.baseurl }}/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;">
+            <h4>8面ダイス（D8）</h4>
         </div>
-        <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
-            :
-        </div>
-        <div class="res-box">
-            - -
-        </div>
-    </div>
-</div>
 
-<div class="entire-dice">
-    <div style="margin-left: 15px;">
-        <h3>6面ダイス（D6）</h3>
+        <div class="dice-box">
+
+            <img class="dice-img" id="dice-8" src="{{ site.baseurl }}/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;">
+            
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
+        </div>
+        <p>{1, 2, 3, 4, 5, 6, 7, 8}</p>
     </div>
 
-    <div class="dice-box">
+    <div class="entire-dice">
         <div>
-            <img id="dice-img3"  src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;">
+            <h4>10面ダイス（D10）</h4>
         </div>
-        <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
-            :
+
+        <div class="dice-box">
+            
+            <img class="dice-img" id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;">
+            
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
         </div>
-        <div class="res-box">
-            - -
-        </div>
+        <p>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}</p>
     </div>
+
 </div>
 
 <p>
@@ -191,13 +146,38 @@ tags: ダイス TRPG
         100面ダイス（通称: D100，パーセント・ダイス等）
         <ul>
             <li>
-                2つの D10 を使用して、0から99までの出目を表現します。
+                2つの D10 を使用して、1から100までの出目を表現します。
             </li>
             <li>
-                1つ目のダイスで1桁目、2つ目のダイスで2桁目を決定する。（2D10）
+                1つ目のダイスで1桁目、2つ目のダイスで2桁目を決定する。（D10，D10）
             </li>
         </ul>
     </li>
+</ul>
+
+<div style="text-align: center;">
+    <div class="entire-dice">
+        <div>
+            <h4>100面ダイス（D10，D10）</h4>
+        </div>
+
+        <div class="dice-box" id="dice-100">
+            <div class="multi-dice-img" style="cursor: pointer; display: flex;">
+                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;">
+                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;">
+            </div>
+
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul>
     <li>
         20面ダイス（通称: D20）
         <ul>
@@ -290,3 +270,5 @@ tags: ダイス TRPG
     <a href="https://product.kadokawa.co.jp/p01/product-c/301401001110.html">page link</a>
   </li>
 </ul>
+
+<script type="text/javascript" src="{{ site.baseurl }}/scripts/coc_dice.js"></script>

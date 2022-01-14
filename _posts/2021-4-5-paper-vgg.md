@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: /survey/:title.html
+permalink: /survey/:title
 title: Very Deep Convolutional Networks For Large-Scale Image Recognition
 category: サーベイ
 tags: CV

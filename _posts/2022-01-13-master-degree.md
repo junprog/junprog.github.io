@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: /blog/:title.html
+permalink: /blog/:title
 title: ぼくのしゅうしかてい
 category: ブログ
 tags: ポエム

@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: /blog/:title.html
+permalink: /blog/:title
 title: docker を使ってローカルで Jekyll を動かす
 category: ブログ
 tags: docker Jekyll
