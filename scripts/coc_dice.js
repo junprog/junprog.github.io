@@ -80,7 +80,7 @@ $(".dice-img").click(function () {
 
 $(".multi-dice-img").click(function () {
     var diceImgList = $(this).children("img");
-    alert(diceImgList[0]);
+
     for (let i = 0; i < diceImgList.length; i++) {
         diceImgList[i].animate({zIndex:1},{
             //0.3秒かけてアニメーション
