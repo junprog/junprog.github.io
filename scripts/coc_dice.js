@@ -54,51 +54,60 @@ function defineSideDice(diceId) {
 }
 
 // ダイスアニメーション
-
-$(".dice-img").click(function () {
-    $(this).animate({zIndex:1},{
+function diceRoll() {
+    var imgObject = event.target;
+    
+    $(imgObject).animate({zIndex:1},{
         //0.3秒かけてアニメーション
         duration: 200,
         //stepは、アニメーションが進むたびに呼ばれる
         step:function(now){
             //nowに現在のz-indexの値（0から1に変化しているところ）が渡してもらえる
             //0から1に向かって変化していくnowを利用して3回転（1080度）させてみる
-            $(this).css({transform:'rotate(' + (now * 360) + 'deg)'});
+            $(imgObject).css({transform:'rotate(' + (now * 360) + 'deg)'});
         },
         //終わったら
         complete:function(){
             //次のために、元に戻しておく
-            $(this).css('zIndex', 0);
+            $(imgObject).css('zIndex', 0);
         }
     })
 
     // ダイス判定
-    var [num_side, num_dice] =  defineSideDice($(this).attr("id"));
+    var [num_side, num_dice] =  defineSideDice($(imgObject).attr("id"));
     
-    $(this).parent().children('.res-box').text(dice(num_side=num_side, num_dice=num_dice));
-});
+    $(imgObject).parent().children('.res-box').text(dice(num_side=num_side, num_dice=num_dice));
+}
 
-$(".multi-dice-img").click(function () {
-    var diceImgList = $(this).children("img");
-    alert(diceImgList[0]);
+function percentDiceRoll() {
+    var multiDiceObject = event.target;
+
+    var diceImgList = $(multiDiceObject).children("img");
+
     for (let i = 0; i < diceImgList.length; i++) {
-        diceImgList[i].animate({zIndex:1},{
+        $(diceImgList[i]).animate({zIndex:1},{
             //0.3秒かけてアニメーション
             duration: 200,
             //stepは、アニメーションが進むたびに呼ばれる
             step:function(now){
                 //nowに現在のz-indexの値（0から1に変化しているところ）が渡してもらえる
                 //0から1に向かって変化していくnowを利用して3回転（1080度）させてみる
-                diceImgList[i].css({transform:'rotate(' + (now * 360) + 'deg)'});
+                $(diceImgList[i]).css({transform:'rotate(' + (now * 360) + 'deg)'});
             },
             //終わったら
             complete:function(){
                 //次のために、元に戻しておく
-                diceImgList[i].css('zIndex', 0);
+                $(diceImgList[i]).css('zIndex', 0);
             }
         })
     }
 
-    $(this).parent().children('.res-box').text(percentDice());
-
-});
+    var res = percentDice()
+    if (res < 6) {
+        $(multiDiceObject).parent().children('.res-box').text(res).css("color", "#0000FF");
+    } else if (res > 95) {
+        $(multiDiceObject).parent().children('.res-box').text(res).css("color", "#FF0000");
+    } else {
+        $(multiDiceObject).parent().children('.res-box').text(res).css("color", "#000000");
+    }
+}
