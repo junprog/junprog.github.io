@@ -52,6 +52,13 @@ tags: ダイス TRPG
         margin: 0px 12px;
     }
 
+    .multi-dice-img {
+        user-select: none; /* CSS3 */
+        -moz-user-select: none; /* Firefox */
+        -webkit-user-select: none; /* Safari、Chromeなど */
+        -ms-user-select: none; /* IE10かららしい */
+    }
+
 </style>
 
 <blockquote style="border-left: 3px solid #ffbb00;">
@@ -85,7 +92,7 @@ tags: ダイス TRPG
 
         <div class="dice-box">
     
-            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;">
+            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll()">
     
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -104,7 +111,7 @@ tags: ダイス TRPG
 
         <div class="dice-box">
 
-            <img class="dice-img" id="dice-8" src="{{ site.baseurl }}/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;">
+            <img class="dice-img" id="dice-8" src="{{ site.baseurl }}/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll()">
             
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -123,7 +130,7 @@ tags: ダイス TRPG
 
         <div class="dice-box">
             
-            <img class="dice-img" id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;">
+            <img class="dice-img" id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll()">
             
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -162,9 +169,9 @@ tags: ダイス TRPG
         </div>
 
         <div class="dice-box" id="dice-100">
-            <div class="multi-dice-img" style="cursor: pointer; display: flex;">
-                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;">
-                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;">
+            <div class="multi-dice-img" style="cursor: pointer; display: flex;" onclick="percentDiceRoll()">
+                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none;">
+                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none;">
             </div>
 
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
