@@ -7,7 +7,7 @@ tags: ダイス TRPG
 ---
 <p>
     クトゥルフ神話TRPGで使用されるダイスを Web 上で振れるページ。<br>
-    WEBダイスツールなんて、世の中にたくさんありますよね...笑 車輪の再開発になってしまっていますが、ぜひ遊んでみてください。
+    WEBダイスツールなんて、世の中にたくさんありますよね...（笑） 車輪の再開発になってしまっていますが、ぜひ遊んでみてください。
 </p>
 <!--more-->
 
@@ -30,7 +30,7 @@ tags: ダイス TRPG
 
         margin: 5px; 
         padding: 10px;
-        border: 1px solid #ddd;
+        border: 1px solid #ccc;
     }
 
     .post .entire-dice .dice-box .res-box{
@@ -42,6 +42,47 @@ tags: ダイス TRPG
         border-radius: 5px;
         background-color: var(--main-background-color);
         font-size: larger;
+    }
+
+    .post .entire-dice .skill{
+        text-align: center;
+        letter-spacing: 2px;
+        height: auto;
+        padding: 6px 0px; 
+        border: 1px solid #ccc;
+        border-radius: 5px;
+
+        background-color: var(--content-background-color);
+        color: var(--main-text-color);
+        cursor : pointer;
+    }
+
+    .post .entire-dice .dice-box .num-dice{
+        letter-spacing: 2px;
+        max-width: 60px;
+        height: auto;
+        margin: 5px 5px 5px 10px; 
+        padding: 14px 0px; 
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: large;
+        background-color: var(--content-background-color);
+        color: var(--main-text-color);
+        cursor : pointer;
+    }
+
+    .post .entire-dice .dice-box .num-side{
+        letter-spacing: 2px;
+        max-width: 100px;
+        height: auto;
+        margin: 5px 5px 5px 10px; 
+        padding: 14px 0px; 
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: large;
+        background-color: var(--content-background-color);
+        color: var(--main-text-color);
+        cursor : pointer;
     }
 
     .post blockquote {
@@ -80,20 +121,24 @@ tags: ダイス TRPG
 </blockquote>
 
 <h2>
-    クトゥルフ神話TRPGで使用されるダイス
+    よく使用するダイス
 </h2>
 
 <div style="text-align: center;">
 
     <div class="entire-dice">
         <div>
-            <h4>6面ダイス（D6）</h4>
+            <h4>
+                CCB $\leqq$ <input type="number" id="skill" class="skill" min="0" max="100" value="50" placeholder="技能値">
+            </h4>
         </div>
 
-        <div class="dice-box">
-    
-            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll()">
-    
+        <div class="dice-box" id="dice-100">
+            <div class="multi-dice-img" style="display: flex;">
+                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="ccbDiceRoll()">
+                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="ccbDiceRoll()">
+            </div>
+
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
             </div>
@@ -101,7 +146,105 @@ tags: ダイス TRPG
                 -
             </div>
         </div>
-        <p>{1, 2, 3, 4, 5, 6}</p>
+
+        <div class="all-res-box">
+            -
+        </div>
+
+        <p><code class="language-plaintext highlighter-rouge">{1, 2, 3, ... , 100}</code></p>
+    </div>
+
+    <div class="entire-dice">
+        <div>
+            <h4>複数ダイス</h4>
+        </div>
+
+        <div class="dice-box" id="dice-n">
+
+            <select id="num-dice" class="num-dice">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+
+            <b>D</b>
+
+            <select id="num-side" class="num-side">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6" selected>6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="100">100</option>
+            </select>
+
+            <i class="far fa-play-circle fa-lg" style="cursor : pointer; color: var(--main-text-color);" onclick="generalizeDiceRoll()"></i>
+
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+
+            <div class="res-box">
+                -
+            </div>
+        </div>
+
+        <div class="all-res-box">
+            -
+        </div>
+
+        <p><code class="language-plaintext highlighter-rouge">個数</code> D <code class="language-plaintext highlighter-rouge">種類</code>を指定してください。</p>
+
+    </div>
+
+</div>
+
+<h2>
+    キャラクターシート決め
+</h2>
+
+<p> 工事中 </p>
+
+<h2>
+    使用するダイスと説明
+</h2>
+
+<h3>
+    基本ダイス
+</h3>
+
+<p>
+    ダイスの構成要素となる基本ダイスです。
+</p>
+
+<div style="text-align: center;">
+    <div class="entire-dice">
+        <div>
+            <h4>6面ダイス（D6）</h4>
+        </div>
+
+        <div class="dice-box">
+
+            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll()">
+
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
+        </div>
+        <p><code class="language-plaintext highlighter-rouge">{1, 2, 3, 4, 5, 6}</code></p>
     </div>
 
     <div class="entire-dice">
@@ -120,7 +263,7 @@ tags: ダイス TRPG
                 -
             </div>
         </div>
-        <p>{1, 2, 3, 4, 5, 6, 7, 8}</p>
+        <p><code class="language-plaintext highlighter-rouge">{1, 2, 3, 4, 5, 6, 7, 8}</code></p>
     </div>
 
     <div class="entire-dice">
@@ -139,12 +282,164 @@ tags: ダイス TRPG
                 -
             </div>
         </div>
-        <p>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}</p>
+        <p><code class="language-plaintext highlighter-rouge">{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}</code></p>
+    </div>
+</div>
+
+<h3>
+    計算ダイス
+</h3>
+
+<p>
+    基本ダイスを使用して出目を計算するダイスです。 
+</p>
+
+<div style="text-align: center;">
+    <div class="entire-dice">
+        <div>
+            <h4>2面ダイス（D2）</h4>
+        </div>
+
+        <div class="dice-box" id="dice-2">
+            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(2)">
+
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
+        </div>
+        <p><code class="language-plaintext highlighter-rouge">{1, 2}</code></p>
     </div>
 
     <div class="entire-dice">
         <div>
-            <h4>100面ダイス（D10，D10）</h4>
+            <h4>3面ダイス（D3）</h4>
+        </div>
+
+        <div class="dice-box" id="dice-3">
+            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(3)">
+
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
+        </div>
+        <p><code class="language-plaintext highlighter-rouge">{1, 2, 3}</code></p>
+    </div>
+
+    <div class="entire-dice">
+        <div>
+            <h4>4面ダイス（D4）</h4>
+        </div>
+
+        <div class="dice-box" id="dice-4">
+            <img class="dice-img" id="dice-8" src="{{ site.baseurl }}/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(4)">
+
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
+        </div>
+        <p><code class="language-plaintext highlighter-rouge">{1, 2, 3, 4}</code></p>
+    </div>
+
+    <div class="entire-dice">
+        <div>
+            <h4>5面ダイス（D5）</h4>
+        </div>
+
+        <div class="dice-box" id="dice-5">
+            <img class="dice-img" id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(5)">
+
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
+        </div>
+        <p><code class="language-plaintext highlighter-rouge">{1, 2, 3, 4, 5}</code></p>
+    </div>
+</div>
+
+<ul>
+    <li>
+        2面ダイス
+        <ul>
+            <li>
+                D6 の出目が<code class="language-plaintext highlighter-rouge">{1, 2, 3}</code>のとき<code class="language-plaintext highlighter-rouge">1</code>、<code class="language-plaintext highlighter-rouge">{4, 5, 6}</code>のとき<code class="language-plaintext highlighter-rouge">2</code>となるダイスです。
+            </li>
+        </ul>
+    </li>
+    <li>
+        3面ダイス
+        <ul>
+            <li>
+                D6 の出目 ÷ 2 が出目となるダイスです。（割り切れない場合は繰り上げます。）
+            </li>
+        </ul>
+    </li>
+    <li>
+        4面ダイス
+        <ul>
+            <li>
+                D8 の出目 ÷ 2 が出目となるダイスです。（割り切れない場合は繰り上げます。）
+            </li>
+        </ul>
+    </li>
+    <li>
+        5面ダイス
+        <ul>
+            <li>
+                D10 の出目 ÷ 2 が出目となるダイスです。（割り切れない場合は繰り上げます。）
+            </li>
+            <li>
+                D10 の出目が<code class="language-plaintext highlighter-rouge">0</code>のとき<code class="language-plaintext highlighter-rouge">5</code>となります。
+            </li>
+        </ul>
+    </li>
+</ul>
+
+
+<h3>
+    組み合わせダイス
+</h3>
+
+<p>
+    基本ダイスを複数使用して出目を計算するダイスです。 
+</p>
+
+<div style="text-align: center;">
+    <div class="entire-dice">
+        <div>
+            <h4>20面ダイス（D20）</h4>
+        </div>
+
+        <div class="dice-box" id="dice-20">
+            <div class="multi-dice-img" style="display: flex;">
+                <img id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="twentyDiceRoll()">
+                <img id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="twentyDiceRoll()">
+            </div>
+
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
+        </div>
+        <p><code class="language-plaintext highlighter-rouge">{1, 2, 3, ... , 20}</code></p>
+    </div>
+
+    <div class="entire-dice">
+        <div>
+            <h4>100面ダイス（D100）</h4>
         </div>
 
         <div class="dice-box" id="dice-100">
@@ -160,120 +455,40 @@ tags: ダイス TRPG
                 -
             </div>
         </div>
-        <p>{1, 2, 3, ... , 100}</p>
+        <p><code class="language-plaintext highlighter-rouge">{1, 2, 3, ... , 100}</code></p>
     </div>
-
-</div>
-
-<p>
-    以上の3種類のダイスを複数個組み合わせることで、様々な出目のパターンを表現します。<br><br>
-    組み合わせの名称として、2つのD10を使用する場合は、2D10と表現されます。具体的には以下のような出目のパターンを表現します。
-</p>
-<ul>
-    <li>
-        100面ダイス（通称: D100，パーセント・ダイス等）
-        <ul>
-            <li>
-                2つの D10 を使用して、1から100までの出目を表現します。
-            </li>
-            <li>
-                1つ目のダイスで1桁目、2つ目のダイスで2桁目を決定します。（D10，D10）
-            </li>
-        </ul>
-    </li>
-</ul>
-
-<div style="text-align: center;">
-
- 
-
 </div>
 
 <ul>
     <li>
-        20面ダイス（通称: D20）
+        20面ダイス
         <ul>
             <li>
-                D10 と D6 を使用して、0から19までの出目を表現します。
+                D10 と D6 を使用します。
             </li>
             <li>
-                D10 と D6 を使用して、0から19までの出目を表現します。
+                D6 が<code class="language-plaintext highlighter-rouge">{1, 2, 3}</code>のとき D10 が出目となります。D10 が<code class="language-plaintext highlighter-rouge">0</code>のときは、<code class="language-plaintext highlighter-rouge">10</code>が出目となります。
             </li>
-        </ul>
-    </li>
-    <li>
-        10面ダイス（通称: D10）
-        <ul>
             <li>
-                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+                D6 が<code class="language-plaintext highlighter-rouge">{4, 5, 6}</code>のとき D10 + 10 が出目となります。D10 が<code class="language-plaintext highlighter-rouge">0</code>のときは、<code class="language-plaintext highlighter-rouge">20</code>が出目となります。
             </li>
         </ul>
     </li>
     <li>
-        8面ダイス（通称: D8）
+        100面ダイス
         <ul>
             <li>
-                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+                D10 と D10 を使用します。
             </li>
-        </ul>
-    </li>
-    <li>
-        6面ダイス（通称: D6）
-        <ul>
             <li>
-                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+                ひとつ目の D10 が1桁目、ふたつ目の D10 が2桁目を表します。
             </li>
-        </ul>
-    </li>
-    <li>
-        5面ダイス（通称: D5）
-        <ul>
             <li>
-                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
-            </li>
-        </ul>
-    </li>
-    <li>
-        4面ダイス（通称: D4）
-        <ul>
-            <li>
-                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
-            </li>
-        </ul>
-    </li>
-    <li>
-        3面ダイス（通称: D3）
-        <ul>
-            <li>
-                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
-            </li>
-        </ul>
-    </li>
-    <li>
-        2面ダイス（通称: D2）
-        <ul>
-            <li>
-                2つの D10 を使用して1桁目と2桁目を決定し、0から99までの出目を表現します。
+                ふたつとも出目が<code class="language-plaintext highlighter-rouge">0</code>のときは、<code class="language-plaintext highlighter-rouge">100</code>が出目となります。
             </li>
         </ul>
     </li>
 </ul>
-
-<h2>
-    【余談】クトゥルフ神話TRPGとは
-</h2>
-<p>
-    クトゥルフ神話TRPGとは何なのか...？<br>
-    説明が非常に難しいですが、まずはクトゥルフ神話とTRPGに分けて説明しましょう。
-    <h3>クトゥルフ神話とは</h3>
-    クトゥルフ神話は、ハワード・フィリップス・ラヴクラフトさんが創作したホラー小説のバックグラウンドを成す神話を指します。ラヴクラフトさんは、1920年から1930年にかけて活躍し、1937年に亡くなられた時には偶像的な存在になっていたらしいです。
-    そして彼の死後、クトゥルフ神話の評価はさらに高まり、今日ではアメリカの偉大な恐怖小説家として名を轟かせています。
-    <br>
-    クトゥルフ神話の内容としては、人間が生まれる前の太古の時代に地球を支配していた大いなる生物たちが現代に蘇る or 蘇らせるというテーマが多いです。
-    大いなる生物は人間の力では到底かなわないようなものばかりであり、その生物が蘇ってしまえば我々に太刀打ちする手段はほぼ無いに等しいです。
-    ただ、大いなる生物たちを蘇らせるのは人間であり、蘇らせる理由も人間に起因するものが多いです。（永遠の命が得られる、時間を操る、など。）
-    <h3>TRPGとは</h3>
-</p>
 
 <h2>Reference</h2>
 <ul>
