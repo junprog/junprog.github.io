@@ -80,7 +80,8 @@ function diceRoll() {
 }
 
 function percentDiceRoll() {
-    var multiDiceObject = event.target;
+    var imgObject = event.target;
+    var multiDiceObject = $(imgObject).parent();
 
     var diceImgList = $(multiDiceObject).children("img");
 

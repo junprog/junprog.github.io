@@ -142,6 +142,27 @@ tags: ダイス TRPG
         <p>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}</p>
     </div>
 
+    <div class="entire-dice">
+        <div>
+            <h4>100面ダイス（D10，D10）</h4>
+        </div>
+
+        <div class="dice-box" id="dice-100">
+            <div class="multi-dice-img" style="display: flex;">
+                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="percentDiceRoll()">
+                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="percentDiceRoll()">
+            </div>
+
+            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
+                :
+            </div>
+            <div class="res-box">
+                -
+            </div>
+        </div>
+        <p>{1, 2, 3, ... , 100}</p>
+    </div>
+
 </div>
 
 <p>
@@ -156,32 +177,16 @@ tags: ダイス TRPG
                 2つの D10 を使用して、1から100までの出目を表現します。
             </li>
             <li>
-                1つ目のダイスで1桁目、2つ目のダイスで2桁目を決定する。（D10，D10）
+                1つ目のダイスで1桁目、2つ目のダイスで2桁目を決定します。（D10，D10）
             </li>
         </ul>
     </li>
 </ul>
 
 <div style="text-align: center;">
-    <div class="entire-dice">
-        <div>
-            <h4>100面ダイス（D10，D10）</h4>
-        </div>
 
-        <div class="dice-box" id="dice-100">
-            <div class="multi-dice-img" style="cursor: pointer; display: flex;" onclick="percentDiceRoll()">
-                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none;">
-                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none;">
-            </div>
+ 
 
-            <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
-                :
-            </div>
-            <div class="res-box">
-                -
-            </div>
-        </div>
-    </div>
 </div>
 
 <ul>
