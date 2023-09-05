@@ -16,7 +16,6 @@ title: About junprog
     * ジャズ
     * カメラ
     * 登山
-    * TRPG，マーダーミステリー
 
 ## To Do
 
