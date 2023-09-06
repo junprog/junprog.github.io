@@ -12,7 +12,7 @@ tags: 趣味 カメラ ガジェット
 
 高校生のころから使い慣れ親しんだAPS-Cサイズのレフ機である `Nikon D3200` から卒業し、憧れのフルサイズミラーレス機である `Nikon Z5` を購入しました！
 
-![z5]({{ site.baseurl }}/images/blog-2023-09-06/img_8505.jpg)
+<img src="https://lh3.googleusercontent.com/pw/AIL4fc_wOBSkF5M3lQF2Lf0ZZaThdl50lyQ1P2Eo2BxsC92aXxgdQ-RP5fjMrG0YCjh1vuxFoDTuft2jEy3nsESQ4k6KGeOMidSvfwsjtpOmtbCzLdwIchDUS2VpXYlSoVMuD3tyNXNTZtFLc_sIvT5XfJd7aw=w617-h463-s-no?authuser=0">
 
 中古で購入したのですが、とても満足しています。
 
@@ -24,13 +24,13 @@ tags: 趣味 カメラ ガジェット
 
 はじめて持つZマウントレンズとして、`Nikon NIKKOR Z 24-70mm f4 S` を選び、購入しました！
 
-![24-70f4]({{ site.baseurl }}/images/blog-2023-09-06/img_8506.jpg)
+<img src="https://lh3.googleusercontent.com/pw/AIL4fc8oylQTSNEBnFPp1SNnOLOswcgfVmv5vdVgseOog2wYZhfsPMvXqkJnAmRhzUHaBy1EBaqqYsGsRoRrvrFENEyLy7aYP_8vJK0fxl65poB-709uESXYjBA8xmgX-8sNKymr6LUyciI4hSm6LyzfzcqPvQ=w637-h478-s-no?authuser=0">
 
 こちらも中古で購入したのですが、状態も良く満足しています。
 
 レンズフードを取り付けるとかっこいいですね。
 
-![total]({{ site.baseurl }}/images/blog-2023-09-06/img_8507.jpg)
+<img src="https://lh3.googleusercontent.com/pw/AIL4fc8FFPsw4MYJYIxkzHWRO-I3LOdc-UKREu0tRcNVwjb-HdhfxUNpc5TeQ2BSazcAKGMPEalwpyfo7APnYk33hfV5BRuHIwTSgsgbEif_XCILYdt2EdeDFWnXbtm1QfGaEcVBEr43e8ZygDWS7gsQbe4hJA=w637-h478-s-no?authuser=0">
 
 ## 撮ってみた
 
@@ -52,4 +52,4 @@ tags: 趣味 カメラ ガジェット
 <div style="text-align: center">作例5: 東京国際フォーラム2</div>
 
 <img src="https://lh3.googleusercontent.com/pw/AIL4fc_ohxpykCYHJaLkmA-DFur-7xZR3bJELIXKtB2umv5GKraWh1bRbsLkRAoysPvMKdGVWG97A6nkUu65RPiENs0vZee1R8z9HC1kI6JQkZSPRv2JEYAMdHyZsYVQOfA-suuQw7mLB0gwlooElLDR5OmnQg=w1431-h955-s-no?authuser=0">
-<div style="text-align: center">作例6: 八重洲口周辺</div>
+<div style="text-align: center">作例6: 東京駅周辺</div>
