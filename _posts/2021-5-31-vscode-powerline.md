@@ -1,11 +1,11 @@
 ---
 layout: post
 permalink: /blog/:title
-title: Windowsのvscodeのターミナル上でssh先のPowerline-shellを表示させる
+title: WindowsのVSCodeのターミナル上でssh先のPowerline-shellを表示させる
 category: ブログ
-tags: vscode teminal
+tags: VSCode terminal
 ---
-Windows上のvscodeでssh先(linux)のターミナルに接続した際に、ssh先でPowerline-shellを導入していたためにvscode上でフォントがガタガタになってたので、その対処法のメモ。
+Windows上のVSCodeでssh先(linux)のターミナルに接続した際に、ssh先でPowerline-shellを導入していたためにVSCode上でフォントがガタガタになってたので、その対処法のメモ。
 <!--more-->
 
 ## 手順 1
@@ -25,9 +25,9 @@ $ ./install.ps1
 
 ## 手順 2
 
-vscodeを起動して、`Ctrl + ,`を押してvscodeでユーザー設定を開く。
+VSCodeを起動して、`Ctrl + ,`を押してVSCodeでユーザー設定を開く。
 
-vscodeのユーザー設定で検査欄に`terminal font`で検索をかける。
+VSCodeのユーザー設定で検査欄に`terminal font`で検索をかける。
 
 すると以下のように出てくる。
 

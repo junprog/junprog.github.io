@@ -1,16 +1,16 @@
 ---
 layout: post
 permalink: /blog/:title
-title: docker を使ってローカルで Jekyll を動かす
+title: Docker を使ってローカルで Jekyll を動かす
 category: ブログ
-tags: docker Jekyll
+tags: Docker Jekyll
 ---
-GitHub Pages に反映させたい変更を、わざわざ GitHub のリポジトリに push して変更を確認するのは面倒くさい。そこで、 docker を使用してローカル環境にて変更を瞬時に確認できるようにするため、本メモを残す。
+GitHub Pages に反映させたい変更を、わざわざ GitHub のリポジトリに push して変更を確認するのは面倒くさい。そこで、 Docker を使用してローカル環境にて変更を瞬時に確認できるようにするため、本メモを残す。
 
 <!--more-->
 前提環境として以下を挙げる。
 * git
-* docker
+* Docker
 * Jekyllサイトのテンプレートが一色揃っている GitHub リポジトリ
 
 もし Jekyll サイトのテンプレートが一色揃っている GitHub リポジトリが無い場合は [jekyll-now](https://github.com/barryclark/jekyll-now) を fork して、ローカルに clone してみてはいかがだろう。（私自身こちらを使用させて頂いた。）
@@ -36,7 +36,7 @@ RUN bundle install
 CMD ["/bin/bash"]
 ```
 
-私自身 docker の知識が浅はかなため、上記の Dockerfile の記述で改善すべき点があればご教授願いたい...
+私自身 Docker の知識が浅はかなため、上記の Dockerfile の記述で改善すべき点があればご教授願いたい...
 
 ## 3. コンテナを作成し、ローカルホスト(PORT:4000)でサーバーを建てる。
 
@@ -56,7 +56,7 @@ $ docker run -it --rm -v ${PWD}:/usr/src/app \
 ## 感想
 
 Ubuntu 環境だとリアルタイムで変更を加えながら確認が行えた。なぜだろう。
-逆になぜ Windows + WSL + docker だと出来ないのだろう。
+逆になぜ Windows + WSL + Docker だと出来ないのだろう。
 
 ### <追記 2021/3/31>
 
