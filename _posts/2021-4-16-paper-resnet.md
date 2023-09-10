@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: /survey/:title
+permalink: /posts/survey/:title
 title: Deep Residual Learning for Image Recognition
 category: サーベイ
 tags: CV

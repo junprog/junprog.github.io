@@ -1,13 +1,24 @@
 ---
-layout: cate_tag
-title: Categories
+layout: cate
+title: カテゴリ
 permalink: /categories
 ---
 
 {% for cate in site.categories %}
 <article>
-  <div class="my-page-content">  
-    <h2 id="{{ cate[0] }}">{{ cate[0] }}</h2>
+  <div class="my-page-content">
+    <h2 id="{{ cate[0] }}">
+      {% if cate[0] == "ブログ" %}
+        <i class="fa-solid fa-pencil"></i>
+        <a href="{{ site.baseurl }}/posts/blog">{{ cate[0] }}</a>
+      {% elsif cate[0] == "サーベイ" %}
+        <i class="fa-solid fa-square-poll-vertical"></i>
+        <a href="{{ site.baseurl }}/posts/survey">{{ cate[0] }}</a>
+      {% elsif cate[0] == "プレイグラウンド" %}
+        <i class="fa-solid fa-hand"></i>
+        <a href="{{ site.baseurl }}/posts/playground">{{ cate[0] }}</a>
+      {% endif %}
+    </h2>
     <ul>
       {% for post in cate[1] %}
       <li><a href="{{ post.url }}">{{ post.title }}</a></li>

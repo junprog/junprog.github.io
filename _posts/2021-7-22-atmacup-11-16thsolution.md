@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: /blog/:title
+permalink: /posts/blog/:title
 title: 16位解法 (atmaCup#11)
 category: ブログ
 tags: CV データ分析 コンペ

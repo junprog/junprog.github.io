@@ -1,8 +1,15 @@
 ---
 layout: page
 title: Playground
-permalink: /playground/
+permalink: /posts/playground/
 ---
+<blockquote class="my-title-design my-title-center">
+    
+  <h1><span>
+    <i class="fa-solid fa-hand"></i>
+  </span></h1>
+
+</blockquote>
 
 {% for post in site.posts %}
     {% if post.category == "プレイグラウンド" %}
@@ -16,6 +23,10 @@ permalink: /playground/
               <span class="calendar-font">
                 {{ post.date | date: "%Y-%m-%d" }}
               </span>
+            </span>
+
+            <span class="category fa-solid fa-folder-tree fa-sm"  aria-hidden="true">
+              <a href="{{ site.baseurl }}/posts/playground">{{ post.category }}</a>
             </span>
 
             <span class="tag fas fa-tag fa-sm" aria-hidden="true">

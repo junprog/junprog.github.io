@@ -1,6 +1,6 @@
 ---
 layout: about_page
-title: About junprog
+title: about me
 ---
 
 こんにちは、`junprog`です。

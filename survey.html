@@ -1,8 +1,15 @@
 ---
 layout: page
 title: Survey
-permalink: /survey/
+permalink: /posts/survey/
 ---
+<blockquote class="my-title-design my-title-center">
+    
+  <h1><span>
+    <i class="fa-solid fa-square-poll-vertical"></i>
+  </span></h1>
+
+</blockquote>
 
 <div class="posts">
   {% for post in site.posts %}
@@ -17,6 +24,10 @@ permalink: /survey/
               <span class="calendar-font">
                 {{ post.date | date: "%Y-%m-%d" }}
               </span>
+            </span>
+
+            <span class="category fa-solid fa-folder-tree fa-sm"  aria-hidden="true">
+              <a href="{{ site.baseurl }}/posts/survey">{{ post.category }}</a>
             </span>
 
             <span class="tag fas fa-tag fa-sm" aria-hidden="true">

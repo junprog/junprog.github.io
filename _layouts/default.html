@@ -22,8 +22,9 @@
   <body>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ site.baseurl }}/scripts/nav_active.js"></script>
+    <!-- <script type="text/javascript" src="{{ site.baseurl }}/scripts/nav_active.js"></script> -->
     <script type="text/javascript" src="{{ site.baseurl }}/scripts/dark_mode.js"></script>
+    <script type="text/javascript" src="{{ site.baseurl }}/scripts/change_dir.js"></script>
 
     <div class="wrapper-masthead">
       <div class="container">
@@ -36,18 +37,25 @@
           </div>
 
           <nav>
-            <!--<a href="{{ site.baseurl }}/">About</a>-->
-            <a href="{{ site.baseurl }}/blog">Blog</a>
-            <a href="{{ site.baseurl }}/survey">Survey</a>
-            <a href="{{ site.baseurl }}/playground">Playground</a>
+            <a href="{{ site.baseurl }}/">Home</a>
+            <a href="{{ site.baseurl }}/posts">Posts</a>
+            <!-- <a href="{{ site.baseurl }}/post/blog">Blog</a>
+            <a href="{{ site.baseurl }}/post/survey">Survey</a>
+            <a href="{{ site.baseurl }}/post/playground">Playground</a> -->
 
             <button class="my-btn" onclick="modeSwitcher()">
               <i class="fas fa-adjust fa-lg"></i>
             </button>
-
           </nav>
-
         </header>
+
+        <div class="terminal">
+          <div class="user">you@junprog</div><div class="command">:</div><div class="path" id="terminal-path"></div><div class="command">$ </div>
+          <form type="submit" style="display: inline-block;" id="command_form" onsubmit="changeDir()">
+            <input type="text" id="exec" class="exec">
+          </form>
+        </div>
+
       </div>
     </div>
 

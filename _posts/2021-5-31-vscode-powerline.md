@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: /blog/:title
+permalink: /posts/blog/:title
 title: WindowsのVSCodeのターミナル上でssh先のPowerline-shellを表示させる
 category: ブログ
 tags: VSCode terminal

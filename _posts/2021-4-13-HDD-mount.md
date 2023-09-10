@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: /blog/:title
+permalink: /posts/blog/:title
 title: HDD,SSDをマウントする (Ubuntu 18.04)
 category: ブログ
 tags: Linux セットアップ

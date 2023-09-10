@@ -33,6 +33,11 @@ html, html[data-theme="light"] {
 
   --conv-color: #bfdefd;
   --pool-color: #ffcf77;
+
+  --terminal-background-color: #eee;
+  --terminal-text-color: #222;
+  --terminal-user-text-color: rgb(18, 143, 18);
+  --terminal-path-text-color: #4497cf;
 }
 
 html[data-theme="dark"] {
@@ -55,6 +60,11 @@ html[data-theme="dark"] {
   
   --conv-color: #254463;
   --pool-color: #7e5f25;
+
+  --terminal-background-color: #222;
+  --terminal-text-color: #c1c6ca;
+  --terminal-user-text-color: lightgreen;
+  --terminal-path-text-color: #355ee6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -238,19 +248,27 @@ th {
   margin-right: 10px;
 }
 
+.category {
+  margin-right: 10px;
+}
+
 .calendar-font {
   font-weight: 500;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .post .tag {
-  color: #a3a3a3;
+  color: var(--calendar-tag-color);
+}
+
+.post .category {
+  color: var(--calendar-tag-color);
 }
 
 .tag a {
   display: inline-block;
   margin: 0 8px 4px 0;
-  padding: 2px 6px;
+  padding: 8px 6px;
 
   border: solid 1px;
   border-color: var(--calendar-tag-color);
@@ -262,13 +280,22 @@ th {
   font-size: small;
 }
 
-.fa-tag:before {
+.category a{
   color: var(--calendar-tag-color);
+  font-weight: 500;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.fa-tag:before {
   margin: 0 3px 0 0;
 }
 
 .fa-calendar-alt:before {
   color: var(--calendar-tag-color);
+  margin: 0 3px 0 0;
+}
+
+.fa-folder-tree:before {
   margin: 0 3px 0 0;
 }
 
@@ -503,7 +530,7 @@ footer {
 }
 
 .my-btn {
-  margin: 4px 4px 4px 10px;
+  margin: 4px 4px 4px 20px;
   padding: 2px;
   color: var(--main-text-color);
   background: none;
@@ -514,6 +541,64 @@ footer {
 
 .my-btn:hover {
   color: #5a83dd;
+}
+
+.terminal {
+  background-color: var(--terminal-background-color);
+  color: var(--terminal-text-color);
+  font-family: Consolas, monaco, monospace;
+  padding: 4px 10px;
+  margin-bottom: 20px;
+  border: 1px solid var(--content-border-color);
+  border-radius: 8px;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.terminal::-webkit-scrollbar {
+  display: none;
+}
+
+.terminal .user {
+  color: var(--terminal-user-text-color);
+  display: inline-block;
+}
+
+.terminal .path {
+  color: var(--terminal-path-text-color);
+  display: inline-block;
+}
+
+.terminal .command {
+  display: inline-block;
+}
+
+.terminal .exec {
+  background-color: var(--terminal-background-color);
+  border: none;
+  outline: none;
+  padding: 0px;
+}
+
+.terminal form {
+  width: 60%;
+}
+
+.terminal input {
+  color: var(--terminal-text-color);
+  box-sizing: content-box;
+  width: 100%;
+  height: 40px;
+  font-family: Consolas, monaco, monospace;
+  font-size: 16px;
+}
+
+.pagination {
+  margin: 20px auto;
+}
+
+.pagination a {
+  margin: 0px 8px;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
