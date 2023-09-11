@@ -17,7 +17,20 @@ title: about me
     * カメラ
     * 登山
 
-## To Do
+## サイトマップ
+```
+ ~/
+ ├ posts/
+ │  ├ blog/
+ │  |  └ ... 
+ │  ├ survey/
+ │  |  └ ...
+ │  └ playground/
+ │     └ ...
+ ├ tags/
+ └ categories/
+```
+## TODO
 
 * 積み論文
     * モデルアーキテクチャ系

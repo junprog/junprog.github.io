@@ -50,10 +50,14 @@
         </header>
 
         <div class="terminal">
-          <div class="user">you@junprog</div><div class="command">:</div><div class="path" id="terminal-path"></div><div class="command">$ </div>
-          <form type="submit" style="display: inline-block;" id="command_form" onsubmit="changeDir()">
-            <input type="text" id="exec" class="exec">
-          </form>
+          <div id="terminal-line-1">
+            <div id="post-user"></div><div id="post-command"></div><div id="post-path"></div><div id="post-exec"></div>
+          </div>
+          <div id="terminal-line-2">
+            <div id="user">you@junprog</div><div id="command">:</div><div id="path"></div><div id="exec">$ </div>
+            <input type="text" id="exec-cmd" class="exec">
+          </div>
+
         </div>
 
       </div>

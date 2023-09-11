@@ -553,42 +553,63 @@ footer {
   border-radius: 8px;
   white-space: nowrap;
   overflow-x: scroll;
+  width: 100%;
 }
 
 .terminal::-webkit-scrollbar {
   display: none;
 }
 
-.terminal .user {
+.terminal #post-user {
   color: var(--terminal-user-text-color);
   display: inline-block;
 }
 
-.terminal .path {
+.terminal #post-path {
   color: var(--terminal-path-text-color);
   display: inline-block;
 }
 
-.terminal .command {
+.terminal #post-command {
+  display: inline-block;
+}
+.terminal #post-exec {
   display: inline-block;
 }
 
-.terminal .exec {
+.terminal #user {
+  color: var(--terminal-user-text-color);
+  display: inline-block;
+}
+
+.terminal #path {
+  color: var(--terminal-path-text-color);
+  display: inline-block;
+}
+
+.terminal #command {
+  display: inline-block;
+}
+
+.terminal #exec {
+  display: inline-block;
+}
+
+.terminal #exec-cmd {
   background-color: var(--terminal-background-color);
   border: none;
   outline: none;
   padding: 0px;
 }
 
-.terminal form {
-  width: 60%;
-}
-
 .terminal input {
   color: var(--terminal-text-color);
-  box-sizing: content-box;
-  width: 100%;
-  height: 40px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  height: 30px;
   font-family: Consolas, monaco, monospace;
   font-size: 16px;
 }
