@@ -86,6 +86,10 @@ $(function(){
                 inputElement.value = "";
                 location.assign(next_path);
                 return false;
+            } else if (inputValue === "clear") {
+                sessionStorage.clear();
+                location.reload();
+                return false;
             } else {
                 alert("無効なコマンドです。");
                 inputElement.value = "";
@@ -93,9 +97,6 @@ $(function(){
             }
         }
     });
-
-    
-
 });
 
 
