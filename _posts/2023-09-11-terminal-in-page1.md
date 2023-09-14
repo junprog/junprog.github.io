@@ -1,7 +1,7 @@
 ---
 layout: post
 permalink: /posts/blog/:title
-title: junprog.github.io 改造記録#1
+title: junprog.github.io改造記録#1
 category: ブログ
 tags: Web terminal
 ---
