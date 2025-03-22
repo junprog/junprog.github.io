@@ -4,18 +4,18 @@ title: all posts
 ---
 
 <blockquote class="my-title-design my-title-center">
-    
+
     <h1><span>
-        <i class="fa-solid fa-book fa-lg"></i>
-    </span></h1>
+            <i class="fa-solid fa-book fa-lg"></i>
+        </span></h1>
 
 </blockquote>
 
 <div class="posts">
     {% for post in paginator.posts %}
-        <article class="post">
+    <article class="post">
 
-            <div class="post-head">
+        <div class="post-head">
             <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
             <div>
@@ -25,63 +25,67 @@ title: all posts
                     </span>
                 </span>
 
-                <span class="category fa-solid fa-folder-tree fa-sm"  aria-hidden="true">
+                <span class="category fa-solid fa-folder-tree fa-sm" aria-hidden="true">
                     <span class="category-font">
                         {% if post.category == "ブログ" %}
-                            <a href="{{ site.baseurl }}/posts/blog">{{ post.category }}</a>
+                        <a href="{{ site.baseurl }}/posts/blog">{{ post.category }}</a>
                         {% elsif post.category == "サーベイ" %}
-                            <a href="{{ site.baseurl }}/posts/survey">{{ post.category }}</a>
+                        <a href="{{ site.baseurl }}/posts/survey">{{ post.category }}</a>
                         {% elsif post.category == "プレイグラウンド" %}
-                            <a href="{{ site.baseurl }}/posts/playground">{{ post.category }}</a>
+                        <a href="{{ site.baseurl }}/posts/playground">{{ post.category }}</a>
                         {% endif %}
                     </span>
                 </span>
-            
+
                 <span class="tag fas fa-tag fa-sm" aria-hidden="true">
-                {% for tag in post.tags %}
+                    {% for tag in post.tags %}
                     <a href="{{ site.baseurl }}/tags#{{ tag | slugize }}">{{ tag }} </a>
-                {% endfor %}
+                    {% endfor %}
                 </span>
             </div>
-            </div>
+        </div>
 
 
-            <div class="entry">
+        <div class="entry">
             {{ post.excerpt }}
-            </div>
+        </div>
 
-            <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+        <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
 
-        </article>
+    </article>
     {% endfor %}
 </div>
 
 <div class="my-all-contents">
     <!-- Pagination links -->
     {% if paginator.total_pages > 1 %}
-        <div class="pagination">
-            {% if paginator.previous_page %}
-                <a href="{{ paginator.previous_page_path | relative_url }}"><i class="fa-solid fa-chevron-up fa-rotate-270 fa-sm"></i>前へ</a>
-            {% else %}
-                <span><i class="fa-solid fa-chevron-up fa-rotate-270 fa-sm"></i>前へ</span>
-            {% endif %}
-        
-            {% for page in (1..paginator.total_pages) %}
-                {% if page == paginator.page %}
-                    <em>{{ page }}</em>
-                {% elsif page == 1 %}
-                    <a href="{{ paginator.previous_page_path | relative_url }}">{{ page }}</a>
-                {% else %}
-                    <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
-                {% endif %}
-            {% endfor %}
-        
-            {% if paginator.next_page %}
-                <a href="{{ paginator.next_page_path | relative_url }}">次へ<i class="fa-solid fa-chevron-up fa-rotate-90 fa-sm"></i></a>
-            {% else %}
-                <span>次へ<i class="fa-solid fa-chevron-up fa-rotate-90 fa-sm"></i></span>
-            {% endif %}
-        </div>
+    <div class="pagination">
+        {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}"><i
+                class="fa-solid fa-chevron-up fa-rotate-270 fa-sm"></i> 前へ</a>
+        {% else %}
+        <span style="color: var(--calendar-tag-color);"><i class="fa-solid fa-chevron-up fa-rotate-270 fa-sm"></i>
+            前へ</span>
+        {% endif %}
+
+        {% for page in (1..paginator.total_pages) %}
+        {% if page == paginator.page %}
+        <em>{{ page }}</em>
+        {% elsif page == 1 %}
+        <a href="{{ paginator.previous_page_path | relative_url }}">{{ page }}</a>
+        {% else %}
+        <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+        {% endif %}
+        {% endfor %}
+
+        {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}">次へ <i
+                class="fa-solid fa-chevron-up fa-rotate-90 fa-sm"></i></a>
+        {% else %}
+        <span style="color: var(--calendar-tag-color);">次へ <i
+                class="fa-solid fa-chevron-up fa-rotate-90 fa-sm"></i></span>
+        {% endif %}
+    </div>
     {% endif %}
 
     <a href="{{ site.baseurl }}/categories" class="my-margin">カテゴリ一覧</a>

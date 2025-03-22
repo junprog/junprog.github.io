@@ -618,8 +618,16 @@ footer {
   margin: 20px auto;
 }
 
-.pagination a {
-  margin: 0px 8px;
+.pagination em {
+  color: var(--calendar-tag-color);
+}
+
+.pagination > * {
+  border: 1px solid var(--content-border-color);
+  border-radius: 8px;
+  padding: 6px 8px;
+  background-color: var(--content-background-color);
+  text-decoration: none;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
