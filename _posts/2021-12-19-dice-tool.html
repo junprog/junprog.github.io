@@ -135,8 +135,8 @@ tags: ダイス TRPG
 
         <div class="dice-box" id="dice-100">
             <div class="multi-dice-img" style="display: flex;">
-                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="ccbDiceRoll()">
-                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="ccbDiceRoll()">
+                <img id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="ccbDiceRoll(event)">
+                <img id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="ccbDiceRoll(event)">
             </div>
 
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
@@ -188,7 +188,7 @@ tags: ダイス TRPG
                 <option value="100">100</option>
             </select>
 
-            <i class="far fa-play-circle fa-lg" style="cursor : pointer; color: var(--main-text-color);" onclick="generalizeDiceRoll()"></i>
+            <i class="far fa-play-circle fa-lg" style="cursor : pointer; color: var(--main-text-color);" onclick="generalizeDiceRoll(event)"></i>
 
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -235,7 +235,7 @@ tags: ダイス TRPG
 
         <div class="dice-box">
 
-            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll()">
+            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll(event)">
 
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -254,7 +254,7 @@ tags: ダイス TRPG
 
         <div class="dice-box">
 
-            <img class="dice-img" id="dice-8" src="{{ site.baseurl }}/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll()">
+            <img class="dice-img" id="dice-8" src="{{ site.baseurl }}/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll(event)">
             
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -273,7 +273,7 @@ tags: ダイス TRPG
 
         <div class="dice-box">
             
-            <img class="dice-img" id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll()">
+            <img class="dice-img" id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="diceRoll(event)">
             
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -301,7 +301,7 @@ tags: ダイス TRPG
         </div>
 
         <div class="dice-box" id="dice-2">
-            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(2)">
+            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(event, 2)">
 
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -319,7 +319,7 @@ tags: ダイス TRPG
         </div>
 
         <div class="dice-box" id="dice-3">
-            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(3)">
+            <img class="dice-img" id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(event, 3)">
 
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -337,7 +337,7 @@ tags: ダイス TRPG
         </div>
 
         <div class="dice-box" id="dice-4">
-            <img class="dice-img" id="dice-8" src="{{ site.baseurl }}/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(4)">
+            <img class="dice-img" id="dice-8" src="{{ site.baseurl }}/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(event, 4)">
 
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -355,7 +355,7 @@ tags: ダイス TRPG
         </div>
 
         <div class="dice-box" id="dice-5">
-            <img class="dice-img" id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(5)">
+            <img class="dice-img" id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor : pointer;" onclick="specialDiceRoll(event, 5)">
 
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
                 :
@@ -423,8 +423,8 @@ tags: ダイス TRPG
 
         <div class="dice-box" id="dice-20">
             <div class="multi-dice-img" style="display: flex;">
-                <img id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="twentyDiceRoll()">
-                <img id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="twentyDiceRoll()">
+                <img id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="twentyDiceRoll(event)">
+                <img id="dice-6" src="{{ site.baseurl }}/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="twentyDiceRoll(event)">
             </div>
 
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">
@@ -444,8 +444,8 @@ tags: ダイス TRPG
 
         <div class="dice-box" id="dice-100">
             <div class="multi-dice-img" style="display: flex;">
-                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="percentDiceRoll()">
-                <img id="dice-100" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="percentDiceRoll()">
+                <img id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="percentDiceRoll(event)">
+                <img id="dice-10" src="{{ site.baseurl }}/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" style="border: none; max-width: none; cursor: pointer;" onclick="percentDiceRoll(event)">
             </div>
 
             <div style="font-size: larger; margin-left: 10px; margin-right: 10px">

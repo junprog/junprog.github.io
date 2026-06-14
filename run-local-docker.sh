@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 DOCKER_IMAGE=jekyll-app
 DOCKER_CONTAINER=jekyll-app
@@ -6,8 +6,6 @@ DOCKER_CONTAINER=jekyll-app
 
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
     echo "On WSL"
-
-    sed -i 's/\r//' ./run-local-docker.sh
 
     if [ "$(docker image ls -q "${DOCKER_IMAGE}")" ]; then
         echo "Docker image : ${DOCKER_IMAGE} is already existed."
