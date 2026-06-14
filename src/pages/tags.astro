@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Terminal from '../components/Terminal.astro';
+import { sortPostsDesc, getPostUrl } from '../utils/post';
+
+const posts = await getCollection('posts');
+
+const tagMap: Record<string, any[]> = {};
+posts.forEach(post => {
+  const tags = post.data.tags || [];
+  tags.forEach(tag => {
+    if (!tagMap[tag]) {
+      tagMap[tag] = [];
+    }
+    tagMap[tag].push(post);
+  });
+});
+
+const sortedTags = Object.keys(tagMap).sort();
+---
+
+<Layout title="タグ">
+  <Terminal slot="terminal" />
+
+  {sortedTags.map(tag => {
+    const tagPosts = sortPostsDesc(tagMap[tag]);
+
+    return (
+      <article>
+        <div class="my-page-content">
+          <h2 id={tag} class="tag">{tag}</h2>
+          <ul>
+            {tagPosts.map(post => (
+              <li>
+                <a href={getPostUrl(post)}>{post.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    );
+  })}
+
+  <div class="my-all-contents">
+    <a href="/categories" class="my-margin">カテゴリ一覧</a>
+    <a href="/tags" class="my-margin">タグ一覧</a>
+  </div>
+</Layout>

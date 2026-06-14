@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Terminal from '../components/Terminal.astro';
+---
+
+<Layout title="about me">
+  <Terminal slot="terminal" />
+
+  <div class="my-page-content">
+    <p>こんにちは、<code>junprog</code>です。</p>
+
+    <h2>プロフィール</h2>
+    <ul>
+      <li>修士卒 → 民間企業勤務</li>
+      <li>興味
+        <ul>
+          <li>機械学習</li>
+          <li>画像認識</li>
+        </ul>
+      </li>
+      <li>趣味
+        <ul>
+          <li>Disney</li>
+          <li>ジャズ</li>
+          <li>カメラ</li>
+          <li>登山</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>サイトマップ</h2>
+    <pre><code> ~/
+ ├ posts/
+ ├ tags/
+ └ categories/</code></pre>
+
+    <h2>TODO</h2>
+    <ul>
+      <li>積み論文
+        <ul>
+          <li>モデルアーキテクチャ系
+            <ul>
+              <li>[x] <a href="/posts/survey/paper-alexnet">AlexNet</a></li>
+              <li>[x] <a href="/posts/survey/paper-vgg">VGG</a></li>
+              <li>[ ] Inception</li>
+              <li>[x] <a href="/posts/survey/paper-resnet">ResNet</a></li>
+              <li>[ ] DenseNet</li>
+            </ul>
+          </li>
+          <li>気になったやつ
+            <ul>
+              <li>[ ] Bag of Tricks for Image Classification with Convolutional Neural Networks (<a href="https://arxiv.org/abs/1812.01187" target="_blank" rel="noopener noreferrer">paper link</a>)</li>
+              <li>随時更新...</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>勉強したい
+        <ul>
+          <li>仮想環境/クラウド系技術</li>
+          <li>データ分析/Kaggle系技術</li>
+          <li>競技プログラミング系技術</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</Layout>

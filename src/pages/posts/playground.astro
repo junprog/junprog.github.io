@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Terminal from '../../components/Terminal.astro';
+import { sortPostsDesc, getPostUrl, getPostDate } from '../../utils/post';
+
+const posts = await getCollection('posts');
+import { marked } from 'marked';
+const playgroundPosts = sortPostsDesc(posts.filter(post => post.data.category === "プレイグラウンド"));
+---
+
+<Layout title="Playground">
+  <Terminal slot="terminal" />
+
+  <blockquote class="my-title-design my-title-center">
+    <h1><span>
+      <i class="fa-solid fa-hand"></i>
+    </span></h1>
+  </blockquote>
+
+  <div class="posts">
+    {playgroundPosts.map((post: any) => {
+      const displayDate = getPostDate(post).toISOString().split('T')[0];
+      const postUrl = getPostUrl(post);
+      const bodyWithoutFrontmatter = post.body.replace(/^---\n[\s\S]*?\n---\n/, '');
+      const excerptRaw = bodyWithoutFrontmatter.split('<!--more-->')[0];
+      const excerpt = marked.parse(excerptRaw);
+
+      return (
+        <article class="post">
+          <div class="post-head">
+            <h1><a href={postUrl}>{post.data.title}</a></h1>
+            <div>
+              <span class="date fas fa-calendar-alt fa-sm" aria-hidden="true">
+                <span class="calendar-font">{displayDate}</span>
+              </span>
+
+              <span class="category fa-solid fa-folder-tree fa-sm" aria-hidden="true">
+                <a href="/posts/playground">{post.data.category}</a>
+              </span>
+
+              <span class="tag fas fa-tag fa-sm" aria-hidden="true">
+                {(post.data.tags || []).map((tag: string) => (
+                  <a href={`/tags#${tag}`}>{tag} </a>
+                ))}
+              </span>
+            </div>
+          </div>
+
+          <div class="entry" set:html={excerpt} />
+
+          <a href={postUrl} class="read-more">Read More</a>
+        </article>
+      );
+    })}
+  </div>
+
+  <div class="my-all-contents">
+    <a href="/categories" class="my-margin">カテゴリ一覧</a>
+    <a href="/tags" class="my-margin">タグ一覧</a>
+  </div>
+</Layout>

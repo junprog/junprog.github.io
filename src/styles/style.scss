@@ -1,0 +1,701 @@
+//
+// IMPORTS
+//
+
+@import "reset";
+@import "variables";
+@import "katex/dist/katex.min.css";
+// Syntax highlighting @import is at the bottom of this file
+
+/**************/
+/* BASE RULES */
+/**************/
+
+html, html[data-theme="light"] {
+  --main-background-color: #eee;
+  --main-text-color: #222;
+
+  --wrapper-masthead-color: #fff;
+  --wrapper-footer-color: #666;
+  --content-background-color: #fff;
+  --content-border-color: #ddd;
+  --h1-h2-head-border-color: #eaecef;
+  --calendar-tag-color: #a3a3a3;
+
+  --code-backgroud-color: #f3f3f3;
+  --code-color: #e83e8c;
+
+  --site-disciption-color: #666;
+
+  --foot-cate-tag-color: #4183C4;
+
+  --conv-color: #bfdefd;
+  --pool-color: #ffcf77;
+
+  --terminal-background-color: #eee;
+  --terminal-text-color: #222;
+  --terminal-user-text-color: rgb(18, 143, 18);
+  --terminal-path-text-color: #4497cf;
+}
+
+html[data-theme="dark"] {
+  --main-background-color: #4d4f53;
+  --main-text-color: #c1c6ca;
+
+  --wrapper-masthead-color: #333;
+  --wrapper-footer-color: #17181a;
+  --content-background-color: #343638;
+  --content-border-color: #5c5e66;
+  --h1-h2-head-border-color: #96999c;
+  --calendar-tag-color: #96999c;
+
+  --code-backgroud-color: #272727;
+  --code-color: #f8a1ca;
+
+  --site-disciption-color: #7d8286;
+
+  --foot-cate-tag-color: #2090ff;
+  
+  --conv-color: #254463;
+  --pool-color: #7e5f25;
+
+  --terminal-background-color: #222;
+  --terminal-text-color: #c1c6ca;
+  --terminal-user-text-color: lightgreen;
+  --terminal-path-text-color: #355ee6;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    content: "dark";
+  }
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  //background: $lightGray;
+	//background: $white;
+  background: var(--main-background-color);
+  font: 16px/1.4 $helvetica;
+  line-height: 1.7;
+  //color: $darkGray;
+  color: var(--main-text-color);
+}
+
+.container {
+  margin: 0 auto;
+  //max-width: 740px;
+  max-width: 900px;
+  padding: 0 12px;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $helveticaNeue;
+  color: var(--main-text-color);
+  font-weight: bold;
+
+  line-height: 1.7;
+  margin: 0.5em 0 15px;
+  padding: 0;
+
+  @include mobile {
+    line-height: 1.4;
+  }
+}
+
+h1 {
+  font-size: 30px;
+  a {
+    color: var(--main-text-color);
+  }
+}
+
+h2 {
+  font-size: 24px;
+}
+
+.post > .entry h1, .entry h2 {
+  padding-bottom: .3em;
+  border-bottom: 1px solid;
+  border-color: var(--h1-h2-head-border-color);
+}
+
+.post-head {
+  padding-bottom: .6em;
+  border-bottom: 1px solid;
+  border-color: var(--h1-h2-head-border-color);;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 18px;
+  color: var(--main-text-color);
+}
+
+p {
+  margin: 15px 0;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+	cursor: pointer;
+  &:hover, &:active {
+    color: $blue;
+  }
+}
+
+ul, ol {
+  margin: 15px 0;
+  padding-left: 30px;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+ol ul, ul ol, ul ul, ol ol {
+  margin: 0;
+}
+
+ul ul, ol ul {
+  list-style-type: circle;
+}
+
+em, i {
+  font-style: italic;
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+img {
+  max-width: 100%;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+table {
+  display: table;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 1px;
+  border-color: grey;
+}
+
+th {
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: bold;
+  text-align: -internal-center;
+}
+
+.entry table{
+  display: block;
+  width: 100%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.entry table td {
+  padding: 6px 10px;
+  border: 1px solid #dfe2e5;
+  vertical-align: middle;
+  max-width: 500px;
+  white-space: pre-wrap;
+}
+
+.entry table th {	
+  padding: 6px 50px; //28px;
+  border: 1px solid #dfe2e5;
+  white-space: nowrap;
+}
+
+.entry table th {
+  font-weight: 600;
+}
+
+// Fixes images in popup boxes from Google Translate
+.gmnoprint img {
+  max-width: none;
+}
+
+.date {
+  color: var(--calendar-tag-color);
+  margin-right: 10px;
+}
+
+.category {
+  margin-right: 10px;
+}
+
+.calendar-font {
+  font-weight: 500;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.post .tag {
+  color: var(--calendar-tag-color);
+}
+
+.post .category {
+  color: var(--calendar-tag-color);
+}
+
+.tag a {
+  display: inline-block;
+  margin: 0 8px 4px 0;
+  padding: 8px 6px;
+
+  border: solid 1px;
+  border-color: var(--calendar-tag-color);
+  border-radius: 4px;
+
+  color: var(--calendar-tag-color);
+  font-weight: 500;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: small;
+}
+
+.category a{
+  color: var(--calendar-tag-color);
+  font-weight: 500;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.fa-tag:before {
+  margin: 0 3px 0 0;
+}
+
+.fa-calendar-alt:before {
+  color: var(--calendar-tag-color);
+  margin: 0 3px 0 0;
+}
+
+.fa-folder-tree:before {
+  margin: 0 3px 0 0;
+}
+
+// Specify the color of the selection
+/*
+::-moz-selection {
+  color: $black;
+  background: $lightGray;
+}
+::selection {
+  color: $black;
+  background: $lightGray;
+}
+*/
+
+// Nicolas Gallagher's micro clearfix hack
+// http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+// カテゴリ一覧 タグ一覧
+.my-margin {
+  color: var(--foot-cate-tag-color);
+  margin: 0 1rem;
+  width: 4px;
+}
+
+/*********************/
+/* LAYOUT / SECTIONS */
+/*********************/
+
+//
+// .masthead
+//
+
+.wrapper-masthead {
+  background: var(--wrapper-masthead-color);
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--content-border-color);
+}
+
+.masthead {
+  padding: 20px 0;
+
+  @include mobile {
+    text-align: center;
+  }
+}
+
+.site-avatar {
+  float: left;
+  width: 70px;
+  height: 70px;
+  margin-right: 15px;
+
+  @include mobile {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+
+  img {
+    border-radius: 10px;
+  }
+}
+
+.site-info {
+  float: left;
+
+  @include mobile {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.site-name {
+  margin: 0;
+  //color: $darkGray;
+  cursor: pointer;
+  font-family: $helveticaNeue;
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.site-description {
+  margin: -5px 0 0 0;
+  color: var(--site-disciption-color);
+  font-size: 16px;
+
+  @include mobile {
+    margin: 3px 0;
+  }
+}
+
+nav {
+  float: right;
+  margin-top: 23px; // @TODO: Vertically middle align
+  font-family: $helveticaNeue;
+  font-size: 18px;
+
+  @include mobile {
+    float: none;
+    margin-top: 9px;
+    display: block;
+    font-size: 16px;
+  }
+
+  a {
+    margin-left: 20px;
+    //color: $darkGray;
+    color: var(--main-text-color);
+    text-align: right;
+    font-weight: 300;
+    letter-spacing: 1px;
+
+    @include mobile {
+      margin: 0 10px;
+      //color: $blue;
+    }
+  }
+}
+
+nav a.active {
+  color: #5a83dd;
+  border-bottom: solid 3px #5a83dd;
+  //border-radius: 4px;
+  padding-bottom: 5px;
+}
+
+//
+// .main
+//
+
+.posts > .post {
+  padding-bottom: 2em;
+  //border-bottom: 5px solid $lightGray;
+  //border-radius: 2px;
+}
+
+.posts > .post:last-child {
+  padding-bottom: 1em;
+  border-bottom: none;
+}
+
+.post img {
+  max-width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid var(--content-border-color);
+}
+
+.post {
+  //background: $white;
+  background: var(--content-background-color);
+  padding: 1em 1.6em 2em 1.6em;
+  margin: 16px 0 16px 0;
+  border: 1px solid var(--content-border-color);
+  border-radius: 8px;
+
+  blockquote {
+    background: var();
+    margin: 1.8em .8em;
+    border: 1px solid #ccc;
+    border-left: 3px solid $blue;
+    padding: 0.1em 1em;
+    color: var(--main-text-color);
+    font-size: 100%;
+    font-style: italic;
+  }
+
+  .comments {
+    margin-top: 10px;
+  }
+
+  .read-more {
+    font-size: 15px;
+  }
+}
+
+.wrapper-footer {
+  margin-top: 50px;
+  border-top: 1px solid var(--content-border-color);
+  //border-bottom: 1px solid #ddd;
+  //background-color: $gray;
+  background: var(--wrapper-footer-color);
+}
+
+footer {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.my-title-design h1 {
+  margin: 1em 0 1em;
+}
+
+.my-title-center {
+  text-align: center;
+  overflow: hidden;
+  span {
+    position: relative;
+    display: inline-block;
+    margin: 0 2.5em;
+    padding: 0 0.6em;
+    text-align: center;
+  }
+}
+
+.my-all-contents {
+  text-align: center;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.my-page-content {
+  padding: 1em 1.6em 2em 1.6em;
+  margin: 16px 0 16px 0;
+  //background: $white;
+  background: var(--content-background-color);
+  border: 1px solid var(--content-border-color);
+  border-radius: 8px;
+}
+
+.my-btn {
+  margin: 4px 4px 4px 20px;
+  padding: 2px;
+  color: var(--main-text-color);
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.my-btn:hover {
+  color: #5a83dd;
+}
+
+.terminal {
+  background-color: var(--terminal-background-color);
+  color: var(--terminal-text-color);
+  font-family: Consolas, monaco, monospace;
+  padding: 8px 12px;
+  margin-bottom: 20px;
+  border: 1px solid var(--content-border-color);
+  border-radius: 8px;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 250px;
+  width: 100%;
+}
+
+.terminal::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.terminal::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+html[data-theme="dark"] .terminal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.terminal #terminal-line-1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-history-line {
+  margin-bottom: 2px;
+}
+
+.terminal-history-line .user {
+  color: var(--terminal-user-text-color);
+  display: inline-block;
+}
+
+.terminal-history-line .path {
+  color: var(--terminal-path-text-color);
+  display: inline-block;
+}
+
+.terminal-history-line .command-colon,
+.terminal-history-line .exec,
+.terminal-history-line .command-text {
+  display: inline-block;
+}
+
+.terminal-history-output {
+  white-space: pre-wrap;
+  margin: 4px 0 8px 12px;
+  color: var(--terminal-text-color);
+  line-height: 1.5;
+}
+
+.terminal-dir {
+  color: var(--terminal-path-text-color);
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.terminal-file {
+  color: var(--terminal-text-color);
+  margin-right: 12px;
+}
+
+.terminal-link {
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.terminal #post-user {
+  color: var(--terminal-user-text-color);
+  display: inline-block;
+}
+
+.terminal #post-path {
+  color: var(--terminal-path-text-color);
+  display: inline-block;
+}
+
+.terminal #post-command {
+  display: inline-block;
+}
+.terminal #post-exec {
+  display: inline-block;
+}
+
+.terminal #user {
+  color: var(--terminal-user-text-color);
+  display: inline-block;
+}
+
+.terminal #path {
+  color: var(--terminal-path-text-color);
+  display: inline-block;
+}
+
+.terminal #command {
+  display: inline-block;
+}
+
+.terminal #exec {
+  display: inline-block;
+}
+
+.terminal #exec-cmd {
+  background-color: var(--terminal-background-color);
+  border: none;
+  outline: none;
+  padding: 0px;
+}
+
+.terminal input {
+  color: var(--terminal-text-color);
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  height: 30px;
+  font-family: Consolas, monaco, monospace;
+  font-size: 16px;
+
+  &::placeholder {
+    color: var(--terminal-text-color);
+    opacity: 0.4;
+    font-style: italic;
+  }
+}
+
+.pagination {
+  margin: 20px auto;
+}
+
+.pagination em {
+  color: var(--calendar-tag-color);
+}
+
+.pagination > * {
+  border: 1px solid var(--content-border-color);
+  border-radius: 8px;
+  padding: 6px 8px;
+  background-color: var(--content-background-color);
+  text-decoration: none;
+}
+
+// Settled on moving the import of syntax highlighting to the bottom of the CSS
+// ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
+@import "highlights";
+@import "svg-icons";

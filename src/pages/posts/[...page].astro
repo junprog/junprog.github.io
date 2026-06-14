@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Terminal from '../../components/Terminal.astro';
+import { sortPostsDesc, getPostUrl, getPostDate, CATEGORY_MAP } from '../../utils/post';
+import { marked } from 'marked';
+
+export async function getStaticPaths({ paginate }: any) {
+  const posts = await getCollection('posts');
+  const sorted = sortPostsDesc(posts);
+  return paginate(sorted, { pageSize: 5 });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title="all posts">
+  <Terminal slot="terminal" />
+
+  <blockquote class="my-title-design my-title-center">
+    <h1><span>
+      <i class="fa-solid fa-book fa-lg"></i>
+    </span></h1>
+  </blockquote>
+
+  <div class="posts">
+    {page.data.map((post: any) => {
+      const displayDate = getPostDate(post).toISOString().split('T')[0];
+      const rawCategory = post.data.category || "ブログ";
+      const categoryUrl = CATEGORY_MAP[rawCategory] || "blog";
+      const postUrl = getPostUrl(post);
+      
+      // Parse excerpt: strip frontmatter then split by <!--more-->
+      const bodyWithoutFrontmatter = post.body.replace(/^---\n[\s\S]*?\n---\n/, '');
+      const excerptRaw = bodyWithoutFrontmatter.split('<!--more-->')[0];
+      const excerpt = marked.parse(excerptRaw);
+      return (
+        <article class="post">
+          <div class="post-head">
+            <h1><a href={postUrl}>{post.data.title}</a></h1>
+            <div>
+              <span class="date fas fa-calendar-alt fa-sm" aria-hidden="true">
+                <span class="calendar-font">{displayDate}</span>
+              </span>
+
+              <span class="category fa-solid fa-folder-tree fa-sm" aria-hidden="true">
+                <span class="category-font">
+                  <a href={`/posts/${categoryUrl}`}>{rawCategory}</a>
+                </span>
+              </span>
+
+              <span class="tag fas fa-tag fa-sm" aria-hidden="true">
+                {(post.data.tags || []).map((tag: string) => (
+                  <a href={`/tags#${tag}`}>{tag} </a>
+                ))}
+              </span>
+            </div>
+          </div>
+
+          <div class="entry" set:html={excerpt} />
+
+          <a href={postUrl} class="read-more">Read More</a>
+        </article>
+      );
+    })}
+  </div>
+
+  <div class="my-all-contents">
+    {page.lastPage > 1 && (
+      <div class="pagination">
+        {page.url.prev ? (
+          <a href={page.url.prev}><i class="fa-solid fa-chevron-up fa-rotate-270 fa-sm"></i> 前へ</a>
+        ) : (
+          <span style="color: var(--calendar-tag-color);"><i class="fa-solid fa-chevron-up fa-rotate-270 fa-sm"></i> 前へ</span>
+        )}
+
+        {Array.from({ length: page.lastPage }, (_, i) => i + 1).map(pageNum => {
+          const url = pageNum === 1 ? '/posts' : `/posts/${pageNum}`;
+          const isCurrent = pageNum === page.currentPage;
+          return isCurrent ? (
+            <em>{pageNum}</em>
+          ) : (
+            <a href={url}>{pageNum}</a>
+          );
+        })}
+
+        {page.url.next ? (
+          <a href={page.url.next}>次へ <i class="fa-solid fa-chevron-up fa-rotate-90 fa-sm"></i></a>
+        ) : (
+          <span style="color: var(--calendar-tag-color);">次へ <i class="fa-solid fa-chevron-up fa-rotate-90 fa-sm"></i></span>
+        )}
+      </div>
+    )}
+
+    <a href="/categories" class="my-margin">カテゴリ一覧</a>
+    <a href="/tags" class="my-margin">タグ一覧</a>
+  </div>
+</Layout>

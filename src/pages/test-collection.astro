@@ -1,0 +1,6 @@
+---
+import { getCollection } from 'astro:content';
+const posts = await getCollection('posts');
+const list = posts.map(p => p.id);
+---
+<pre>{JSON.stringify(list, null, 2)}</pre>

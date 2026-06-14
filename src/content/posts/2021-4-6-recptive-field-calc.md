@@ -1,0 +1,177 @@
+---
+layout: post
+permalink: /posts/playground/:title
+title: Receptive Field 計算機
+category: プレイグラウンド
+tags: CV
+---
+<p>
+CNNのReceptive Fieldを動的に計算するページ。
+</p>
+<!--more-->
+<script type="text/javascript" src="/scripts/calc_receptive_field.js"></script>
+<style type="text/css">
+.center {
+text-align: center;
+}
+.right {
+text-align: right;
+}
+div .conv {
+display: inline-block;
+white-space: nowrap;
+overflow-x: auto;
+text-align: center;
+width: 85%;
+height: auto;
+background: var(--conv-color);
+border: 1px solid var(--content-border-color);
+border-radius: 4px;
+font-family: 'Courier New', Courier, monospace;
+padding: 0.4em 1em 0.4em 1em;
+}
+div .pool {
+display: inline-block;
+white-space: nowrap;
+overflow-x: auto;
+text-align: center;
+width: 85%;
+height: auto;
+background: var(--pool-color);
+border-radius: 4px;
+font-family: 'Courier New', Courier, monospace;
+padding: 0.4em 1em 0.4em 1em;
+}
+.del-btn {
+margin-left: 20px;
+}
+label {
+font-size: 15px;
+display: inline-block;
+width: 6em;
+}
+.input-form {
+display: inline-block;
+font-style: normal;
+}
+.input-box {
+width: 100px;
+margin-right: 20px;
+}
+</style>
+<h2>
+概要
+</h2>
+<p>
+CNNは階層的に、入力ベクトルがレイヤで何かしらの操作(畳み込みやプーリング)が施され出力ベクトルが作成される構造となっている。出力ベクトルの1要素に影響を与える入力ベクトルの領域は「受容野 (Receptive
+Field)」と呼ばれる。
+</p>
+<h2>
+Receptive Fieldの計算方法
+</h2>
+<p>
+各レイヤの出力ベクトルのサイズは以下の式で導出できる。
+\[
+n_{i} = \left\lfloor \frac{n_{i-1}+2 \times p-k}{s} \right\rfloor + 1
+\]
+ここで$ n_{i} $は$i$レイヤ目の出力ベクトルサイズ、$ n_{i-1} $はひとつ前のレイヤの出力ベクトルのサイズ($i.e.$ $i$レイヤ目の入力ベクトルサイズ)、$ i
+$はレイヤのインデックスを表す。レイヤのパラメータとして、$ p $はパディングサイズ、$ k $はカーネルサイズ、$ s $はカーネルのストライドを表す。
+</p>
+<p>
+受容野を計算するために、ジャンプという概念を導入する。これは次式で表される。
+\[
+j_{i} = j_{i-1} \times s
+\]
+ここで$ j_{i} $は$i$レイヤ目のジャンプという意味である。そして、$i$レイヤ目の出力ベクトルの受容野$r_{i}$は以下の式で導出できる。
+\[
+r_{i} = r_{i-1} + (k-1) \times j_{i-1}
+\]
+</p>
+<h2>
+モデル生成
+</h2>
+<blockquote>
+<p>
+<div>
+<label class="input-form" for="module">Module : </label>
+<select id="module">
+<option disabled selected>Select Layer Module</option>
+<option class="module" value="Conv2d" data-id="conv">Conv2d</option>
+<option class="module" value="Pool2d" data-id="pool">Pool2d</option>
+</select>
+<button class='set' onclick="setDefault();">Set Default</button>
+</div>
+<div>
+<form class="input-form">
+<label for="kernel_size">Kernel Size : </label>
+<input type="text" id="kernel_size" class="input-box">
+</form>
+<form class="input-form">
+<label for="stride">Stride : </label>
+<input type="text" id="stride" class="input-box">
+</form>
+<form class="input-form">
+<label for="padding">Padding : </label>
+<input type="text" id="padding" class="input-box">
+</form>
+<input type="button" id="addlayer" value="Add Layer" onclick="addLayer();">
+</div>
+</p>
+</blockquote>
+<blockquote style="border-left: 3px solid #ff662a;">
+<p>
+<div class="input-form">
+Example :
+<input type="button" id="vgg16" value="VGG16" onclick="vgg16();" style="margin-left: 10px;">
+<input type="button" id="vgg19" value="VGG19" onclick="vgg19();" style="margin-left: 10px;">
+<input type="button" id="resnet50" value="ResNet50" onclick="resnet50();" style="margin-left: 10px;">
+</div>
+</p>
+</blockquote>
+<div id="layers" class="center">
+</div>
+<p class="right">
+<input type="button" id="delete-all-layer" value="Delete All Layers" onclick="deleteAllLayers();">
+</p>
+<h2>
+順伝播
+</h2>
+<blockquote>
+<p>
+<div>
+<form class="input-form">
+<label for="input_size">Input Size : </label>
+<input type="text" id="input_size" class="input-box" value="224">
+</form>
+<input type="button" id="calc-output-size" value="Forward" onclick="calcInfo();">
+</div>
+</p>
+</blockquote>
+<div id="results" class="center" style="overflow-x: auto; display: block;">
+</div>
+<p class="right">
+<input type="button" id="delete-all-results" value="Delete Results" onclick="deleteAllResults();">
+</p>
+<h2>使い方</h2>
+<p>
+<h3>1. モデル生成</h3>
+はじめに擬似的にCNNを生成する。ModuleにてConv2D,Pool2Dを選択(Receptive
+Fieldの計算には関係しないけど)して、それぞれのカーネルサイズ、ストライド、パディングを整数値で入力し、Addボタンを押していくことでレイヤが追加されていく。
+<br>
+<br>
+※注意 : 生成される各レイヤのDeleteボタンを押すと挙動がおかしくなるかもです。随時修正します...m(_ _)m
+<br>
+<br>
+<h3>2. 順伝播</h3>
+CNNを生成した状態で、Input Sizeにて入力サイズを整数で入力し、Forwardボタンを押すことで、各レイヤの入力サイズ、出力サイズ、受容野を出力する。
+<br>
+<br>
+</p>
+<h2>Reference</h2>
+<ul>
+<li>
+Receptive Field Arithmetic for Convolutional Neural Networks
+<a href="https://rubikscode.net/2020/05/18/receptive-field-arithmetic-for-convolutional-neural-networks/">page
+link</a>
+</li>
+</ul>

@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Terminal from '../../../components/Terminal.astro';
+import { getPostDate, CATEGORY_MAP } from '../../../utils/post';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+
+  return posts.map(post => {
+    // 拡張子を除去
+    const filename = post.id.replace(/\.[^/.]+$/, "");
+    // 日付プレフィックス (YYYY-MM-DD- または YYYY-M-D-) を除去
+    const match = filename.match(/^\d{4}-\d{1,2}-\d{1,2}-(.*)$/);
+    const slugWithoutDate = match ? match[1] : filename;
+    
+    // カテゴリをマッピング
+    const rawCategory = post.data.category || "ブログ";
+    const categoryUrl = CATEGORY_MAP[rawCategory] || "blog";
+
+    return {
+      params: {
+        category: categoryUrl,
+        slug: slugWithoutDate
+      },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const displayDate = getPostDate(post).toISOString().split('T')[0];
+const category = post.data.category || "ブログ";
+const tags = post.data.tags || [];
+---
+
+<Layout title={post.data.title} description={post.body.slice(0, 150)}>
+  <Terminal slot="terminal" />
+
+  <article class="post">
+    <div class="post-head">
+      <h1><a href={`/posts/${Astro.params.category}/${Astro.params.slug}`}>{post.data.title}</a></h1>
+      <div>
+        <span class="date fas fa-calendar-alt fa-sm" aria-hidden="true">
+          <span class="calendar-font">{displayDate}</span>
+        </span>
+
+        <span class="category fa-solid fa-folder-tree fa-sm" aria-hidden="true">
+          <a href={`/posts/${Astro.params.category}`}>{category}</a>
+        </span>
+
+        <span class="tag fas fa-tag fa-sm" aria-hidden="true">
+          {tags.map((tag: string) => (
+            <a href={`/tags#${tag}`}>{tag} </a>
+          ))}
+        </span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <Content />
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Terminal from '../components/Terminal.astro';
+import { sortPostsDesc, getPostUrl, CATEGORY_MAP } from '../utils/post';
+
+const posts = await getCollection('posts');
+
+const categoryMap: Record<string, any[]> = {};
+posts.forEach(post => {
+  const category = post.data.category || "ブログ";
+  if (!categoryMap[category]) {
+    categoryMap[category] = [];
+  }
+  categoryMap[category].push(post);
+});
+
+const sortedCategories = Object.keys(categoryMap).sort();
+
+const CATEGORY_ICON: Record<string, string> = {
+  "ブログ": "fa-pencil",
+  "サーベイ": "fa-square-poll-vertical",
+  "プレイグラウンド": "fa-hand"
+};
+---
+
+<Layout title="カテゴリ">
+  <Terminal slot="terminal" />
+
+  {sortedCategories.map(category => {
+    const categoryPosts = sortPostsDesc(categoryMap[category]);
+    
+    const categoryUrl = CATEGORY_MAP[category] || "blog";
+    const iconClass = CATEGORY_ICON[category] || "fa-pencil";
+
+    return (
+      <article>
+        <div class="my-page-content">
+          <h2 id={category}>
+            <i class={`fa-solid ${iconClass}`}></i>
+            <a href={`/posts/${categoryUrl}`}>{category}</a>
+          </h2>
+          <ul>
+            {categoryPosts.map(post => (
+              <li>
+                <a href={getPostUrl(post)}>{post.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    );
+  })}
+
+  <div class="my-all-contents">
+    <a href="/categories" class="my-margin">カテゴリ一覧</a>
+    <a href="/tags" class="my-margin">タグ一覧</a>
+  </div>
+</Layout>
