@@ -110,13 +110,33 @@ $$ \mathbf{y} = \mathcal{F} ( \mathbf{x}, {W_{i}} ) + W_{s} \mathbf{x} $$
 * 分類層にはdropoutなし。
 * テスト時には10クロップ入力し、平均をとる。
 
+
 ## 実験
+
+* **ImageNet分類タスク**:
+    * 18層と34層のプレーンネットワーク（残差結合なし）を比較すると、34層の方が学習エラーも検証エラーも高くなるという「Degradation（精度劣化）」問題が観測された。
+    * 一方、ResNet構造を導入した18層と34層を比較すると、34層のResNetの方が18層よりもエラー率が低く（25.03% vs 27.88%）、勾配消失による学習阻害を解消できることが確認された。
+    * VGG-16/19と同等以下の計算量（FLOPs）を保ちつつ、Bottleneckアーキテクチャを活用することで50層、101層、152層へと深くしたモデルを学習。152層のResNetアンサンブルによりTop-5エラー率3.57%を達成し、ILSVRC 2015で優勝を果たした。
+* **CIFAR-10データセット**:
+    * CIFAR-10にて最大1202層のResNetを学習させたところ、最適化の困難さは見られず、訓練エラーを0.1%未満に抑えることに成功した。ただし、1202層では過学習の傾向が見られ、110層のモデルの方がテスト精度は若干良かった。
+* **PASCAL VOC / MS COCO**:
+    * VGG-16をResNet-101に置き換えるだけで、Faster R-CNNを用いた物体検出（MS COCO）のmAP指標が相対的に28%向上。特徴表現力の高さが他のタスクでも有効であることを証明した。
 
 ## 議論
 
+* ResNetがなぜ最適化しやすいのかについて、論文では「個々の層が非線形変換（新しい特徴の学習）を行うより、恒等写像からの微小な変化（残差）を学習する方が、ソルバーにとって容易である」という仮説を立て、実験的に層の出力の標準偏差が小さいことを確認している。
+* Shortcut Connection（スキップ結合）はパラメータや計算量を追加せずに実装できるため、プレーンなモデルとの純粋な比較や、実用時のメモリ効率の面で非常に強力である。
+* 1000層を超えるような極端に深いモデルでは、最適化（学習を進めること自体）は可能になったものの、過学習（Overfitting）への対策（DropoutやMaxoutなどの強力な正則化）が今後の課題として残されている。
+
 ## 次に読むべき論文
 
-* 
+* [Identity Mappings in Deep Residual Networks](https://arxiv.org/abs/1603.05027) (He et al., 2016)
+    * ResNetの著者らが、Activation (ReLU) や Batch Normalization の配置順序（Pre-activation）について改良を行い、さらに学習効率を高めた「ResNet v2」の提案論文。
+* [Aggregated Residual Transformations for Deep Neural Networks](https://arxiv.org/abs/1611.05431) (Xie et al., 2017)
+    * ResNetの拡張版であり、ネットワークの幅（カーディナリティ）という新しい概念を導入した「ResNeXt」の提案論文。
+* [Wide Residual Networks](https://arxiv.org/abs/1605.07146) (Zagoruyko & Komodakis, 2016)
+    * モデルを深くする代わりに、各層のチャネル数（幅）を広げることで、より少ない層数でもResNetと同等以上の精度を短時間で達成できることを示した論文。## Reference
+
 
 ## Reference
 

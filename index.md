@@ -27,17 +27,17 @@ title: about me
  │  │  └ ...
  │  └ playground/
  │     └ ...
- ├ tags/
- └ categories/
+ ├ tags
+ └ categories
 ```
 ## TODO
 
 * 積み論文
     * モデルアーキテクチャ系
-        * [x] [AlexNet]({{ site.baseurl }}/survey/paper-alexnet.html)
-        * [x] [VGG]({{ site.baseurl }}/survey/paper-vgg.html)
+        * [x] [AlexNet]({{ site.baseurl }}/posts/survey/paper-alexnet)
+        * [x] [VGG]({{ site.baseurl }}/posts/survey/paper-vgg)
         * [ ] Inception
-        * [ ] ResNet
+        * [x] [ResNet]({{ site.baseurl }}/posts/survey/paper-resnet)
         * [ ] DenseNet
     * 気になったやつ
         * [ ] Bag of Tricks for Image Classification with Convolutional Neural Networks ([paper link](https://arxiv.org/abs/1812.01187))
