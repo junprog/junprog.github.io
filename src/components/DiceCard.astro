@@ -1,0 +1,30 @@
+---
+const { description, diceId, hasAllResBox = false } = Astro.props;
+---
+<div class="entire-dice inline-flex flex-col p-4 m-3 border border-gray-300 dark:border-gray-700 rounded-2xl text-center shadow-sm bg-white dark:bg-gray-800 transition-all hover:shadow-md min-w-[280px]">
+  <div class="mb-3">
+    <h4 class="text-xl font-bold m-0 text-gray-800 dark:text-gray-200 flex items-center justify-center gap-2">
+      <slot name="title" />
+    </h4>
+  </div>
+  
+  <div class="dice-box flex justify-center items-center gap-2 h-auto my-2 p-4 border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 rounded-xl" id={diceId}>
+      <slot />
+    <div class="text-2xl font-bold mx-3 text-gray-400 dark:text-gray-500">:</div>
+    <div class="res-box text-2xl font-mono tracking-widest min-w-[70px] min-h-[56px] py-2 px-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-inner text-gray-900 dark:text-gray-100 flex justify-center items-center">
+      -
+    </div>
+  </div>
+
+  {hasAllResBox && (
+    <div class="all-res-box text-lg font-bold min-h-[44px] my-2 p-2 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800 flex justify-center items-center">
+      -
+    </div>
+  )}
+
+  {description && (
+    <div class="mt-3 text-sm">
+      <code class="bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded-md text-gray-600 dark:text-gray-300 font-mono text-[13px] tracking-wide">{description}</code>
+    </div>
+  )}
+</div>

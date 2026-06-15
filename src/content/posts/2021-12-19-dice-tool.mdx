@@ -1,0 +1,206 @@
+---
+
+permalink: /posts/playground/:title
+title: クトゥルフ神話TRPGダイスツール
+category: プレイグラウンド
+tags: ダイス TRPG
+---
+
+クトゥルフ神話TRPGで使用されるダイスを Web 上で振れるページ。<br />
+WEBダイスツールなんて、世の中にたくさんありますよね...（笑） 車輪の再開発になってしまっていますが、ぜひ遊んでみてください。
+
+{/* more */}
+
+import DiceCard from "../../components/DiceCard.astro";
+
+<blockquote class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 dark:bg-yellow-900/20 my-6">
+<div class="flex items-center">
+<div class="flex-shrink-0">
+<i class="fas fa-exclamation-triangle text-yellow-500 text-lg"></i>
+</div>
+<p class="ml-3 text-sm text-gray-700 dark:text-gray-300">
+本ページは「株式会社アークライト」及び「株式会社KADOKAWA」が権利を有する『クトゥルフ神話TRPG』の二次創作物です。<br />
+Call of Cthulhu is copyright (C)1981, 2015, 2019 by Chaosium Inc. ;all rights reserved. Arranged by Arclight Inc.
+Call of Cthulhu is a registered trademark of Chaosium Inc.
+PUBLISHED BY KADOKAWA CORPORATION
+</p>
+</div>
+</blockquote>
+## よく使用するダイス
+<div class="flex flex-wrap justify-center gap-4">
+<DiceCard diceId="dice-100" hasAllResBox={true} description="{1, 2, 3, ... , 100}">
+  <span slot="title">CCB ≤ <input type="number" id="skill" class="w-20 text-center tracking-widest px-1 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none" min="0" max="100" value="50" placeholder="技能値" /></span>
+  <div class="multi-dice-img flex gap-2 select-none">
+    <img id="dice-10" src="/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" class="border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" onclick="ccbDiceRoll(event)" />
+    <img id="dice-10" src="/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" class="border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" onclick="ccbDiceRoll(event)" />
+  </div>
+</DiceCard>
+<DiceCard diceId="dice-n" hasAllResBox={true} description="個数 D 種類 を指定してください。">
+  <span slot="title">複数ダイス</span>
+  <select id="num-dice" class="w-16 text-center tracking-widest py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 cursor-pointer text-lg">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3" selected={true}>3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+  </select>
+  <b class="text-xl mx-1">D</b>
+  <select id="num-side" class="w-20 text-center tracking-widest py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 cursor-pointer text-lg">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6" selected={true}>6</option>
+    <option value="8">8</option>
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="100">100</option>
+  </select>
+  <i class="far fa-play-circle fa-2x ml-2 cursor-pointer text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors" onclick="generalizeDiceRoll(event)"></i>
+</DiceCard>
+</div>
+## キャラクターシート決め
+
+工事中
+
+## 使用するダイスと説明
+### 基本ダイス
+
+ダイスの構成要素となる基本ダイスです。
+
+<div class="flex flex-wrap justify-center gap-4">
+<DiceCard description="{1, 2, 3, 4, 5, 6}">
+  <span slot="title">6面ダイス（D6）</span>
+  <img class="dice-img border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" id="dice-6" src="/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" onclick="diceRoll(event)" />
+</DiceCard>
+<DiceCard description="{1, 2, 3, 4, 5, 6, 7, 8}">
+  <span slot="title">8面ダイス（D8）</span>
+  <img class="dice-img border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" id="dice-8" src="/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" onclick="diceRoll(event)" />
+</DiceCard>
+<DiceCard description="{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}">
+  <span slot="title">10面ダイス（D10）</span>
+  <img class="dice-img border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" id="dice-10" src="/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" onclick="diceRoll(event)" />
+</DiceCard>
+</div>
+### 計算ダイス
+
+基本ダイスを使用して出目を計算するダイスです。
+
+<div class="flex flex-wrap justify-center gap-4">
+<DiceCard id="dice-2" description="{1, 2}">
+  <span slot="title">2面ダイス（D2）</span>
+  <img class="dice-img border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" id="dice-6" src="/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" onclick="specialDiceRoll(event, 2)" />
+</DiceCard>
+<DiceCard id="dice-3" description="{1, 2, 3}">
+  <span slot="title">3面ダイス（D3）</span>
+  <img class="dice-img border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" id="dice-6" src="/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" onclick="specialDiceRoll(event, 3)" />
+</DiceCard>
+<DiceCard id="dice-4" description="{1, 2, 3, 4}">
+  <span slot="title">4面ダイス（D4）</span>
+  <img class="dice-img border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" id="dice-8" src="/images/playground-2021-12-19/8面ダイス.svg" width="40px" height="40px" onclick="specialDiceRoll(event, 4)" />
+</DiceCard>
+<DiceCard id="dice-5" description="{1, 2, 3, 4, 5}">
+  <span slot="title">5面ダイス（D5）</span>
+  <img class="dice-img border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" id="dice-10" src="/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" onclick="specialDiceRoll(event, 5)" />
+</DiceCard>
+</div>
+<ul>
+<li>
+2面ダイス
+<ul>
+<li>
+D6 の出目が<code class="language-plaintext highlighter-rouge">{1, 2, 3}</code>のとき<code class="language-plaintext highlighter-rouge">1</code>、<code class="language-plaintext highlighter-rouge">{4, 5, 6}</code>のとき<code class="language-plaintext highlighter-rouge">2</code>となるダイスです。
+</li>
+</ul>
+</li>
+<li>
+3面ダイス
+<ul>
+<li>
+D6 の出目 ÷ 2 が出目となるダイスです。（割り切れない場合は繰り上げます。）
+</li>
+</ul>
+</li>
+<li>
+4面ダイス
+<ul>
+<li>
+D8 の出目 ÷ 2 が出目となるダイスです。（割り切れない場合は繰り上げます。）
+</li>
+</ul>
+</li>
+<li>
+5面ダイス
+<ul>
+<li>
+D10 の出目 ÷ 2 が出目となるダイスです。（割り切れない場合は繰り上げます。）
+</li>
+<li>
+D10 の出目が<code class="language-plaintext highlighter-rouge">0</code>のとき<code class="language-plaintext highlighter-rouge">5</code>となります。
+</li>
+</ul>
+</li>
+</ul>
+### 組み合わせダイス
+
+基本ダイスを複数使用して出目を計算するダイスです。
+
+<div class="flex flex-wrap justify-center gap-4">
+<DiceCard id="dice-20" description="{1, 2, 3, ... , 20}">
+  <span slot="title">20面ダイス（D20）</span>
+  <div class="multi-dice-img flex gap-2 select-none">
+    <img id="dice-10" src="/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" class="border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" onclick="twentyDiceRoll(event)" />
+    <img id="dice-6" src="/images/playground-2021-12-19/6面ダイス.svg" width="40px" height="40px" class="border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" onclick="twentyDiceRoll(event)" />
+  </div>
+</DiceCard>
+<DiceCard id="dice-100" description="{1, 2, 3, ... , 100}">
+  <span slot="title">100面ダイス（D100）</span>
+  <div class="multi-dice-img flex gap-2 select-none">
+    <img id="dice-10" src="/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" class="border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" onclick="percentDiceRoll(event)" />
+    <img id="dice-10" src="/images/playground-2021-12-19/10面ダイス.svg" width="40px" height="40px" class="border-none max-w-none cursor-pointer hover:opacity-80 transition-opacity dark:invert" onclick="percentDiceRoll(event)" />
+  </div>
+</DiceCard>
+</div>
+<ul>
+<li>
+20面ダイス
+<ul>
+<li>
+D10 と D6 を使用します。
+</li>
+<li>
+D6 が<code class="language-plaintext highlighter-rouge">{1, 2, 3}</code>のとき D10 が出目となります。D10 が<code class="language-plaintext highlighter-rouge">0</code>のときは、<code class="language-plaintext highlighter-rouge">10</code>が出目となります。
+</li>
+<li>
+D6 が<code class="language-plaintext highlighter-rouge">{4, 5, 6}</code>のとき D10 + 10 が出目となります。D10 が<code class="language-plaintext highlighter-rouge">0</code>のときは、<code class="language-plaintext highlighter-rouge">20</code>が出目となります。
+</li>
+</ul>
+</li>
+<li>
+100面ダイス
+<ul>
+<li>
+D10 と D10 を使用します。
+</li>
+<li>
+ひとつ目の D10 が1桁目、ふたつ目の D10 が2桁目を表します。
+</li>
+<li>
+ふたつとも出目が<code class="language-plaintext highlighter-rouge">0</code>のときは、<code class="language-plaintext highlighter-rouge">100</code>が出目となります。
+</li>
+</ul>
+</li>
+</ul>
+## Reference
+<ul>
+<li>
+サンディ・ピーターソン、リン・ウィリスほか（著），中山てい子、坂本雅之（訳）（2004），クトゥルフ神話 TRPG ，KADOKAWA/エンターブレイン
+<a href="https://product.kadokawa.co.jp/p01/product-c/301401001110.html">page link</a>
+</li>
+</ul>
+<script type="text/javascript" src="/scripts/coc_dice.js"></script>

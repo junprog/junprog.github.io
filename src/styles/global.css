@@ -1,0 +1,150 @@
+@import "katex/dist/katex.min.css";
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-primary: #5a83dd;
+}
+
+.katex-display {
+  text-align: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 1em 0;
+}
+
+/* ---------- Typography Overrides ---------- */
+
+/* Inline Code */
+.prose :not(pre)>code {
+  @apply bg-[var(--color-gray-100)] dark:bg-[var(--color-gray-900)] text-[#c7254e] dark:text-[#ff7eb6] px-1.5 py-0.5 rounded font-medium;
+}
+
+.prose :not(pre)>code::before,
+.prose :not(pre)>code::after {
+  content: none;
+}
+
+/* Code Blocks: Reset inline code styles */
+.prose pre code {
+  @apply bg-transparent text-inherit p-0 rounded-none;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+/* Tables: Add background and borders */
+.prose table {
+  @apply border-collapse w-full my-6;
+}
+
+.prose th {
+  @apply bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 p-3 text-gray-900 dark:text-gray-100 font-semibold;
+}
+
+.prose td {
+  @apply border border-gray-200 dark:border-gray-600 p-3;
+}
+
+.prose tr:nth-child(even) td {
+  @apply bg-gray-50 dark:bg-gray-800;
+}
+
+/* Blockquote overrides */
+.prose {
+  --tw-prose-quotes: none !important;
+}
+
+.prose blockquote {
+  background-color: #f3f4f6 !important;
+  /* gray-100 */
+  border-left-width: 4px !important;
+  /* border-left-color: #5a83dd !important; */
+  /* Primary color */
+  padding: 1rem 1.5rem !important;
+  border-radius: 0 0.25rem 0.25rem 0 !important;
+  font-style: normal !important;
+  color: inherit !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 1.5em !important;
+}
+
+.dark .prose blockquote {
+  background-color: var(--color-gray-900) !important;
+}
+
+/* Force remove annoying quotes from paragraphs inside blockquote */
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after {
+  content: none !important;
+}
+
+/* Headings: Add horizontal line to h2 */
+.prose h2 {
+  @apply border-b border-gray-200 dark:border-gray-700 pb-2;
+}
+
+/* Center images */
+.prose img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* Easter Egg: Party Mode */
+@keyframes rainbow-bg {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes dance {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    transform: translateY(-10px) scale(1.05);
+  }
+}
+
+body.party-mode {
+  animation: rainbow-bg 2s linear infinite;
+}
+
+body.party-mode main *,
+body.party-mode header * {
+  animation: dance 0.4s alternate ease-in-out infinite;
+}
+
+/* Easter Egg: Deleting Mode */
+@keyframes drop {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+html.deleting-mode,
+body.deleting-mode {
+  overflow: hidden !important;
+}
+
+body.deleting-mode main * {
+  animation: drop 2s forwards ease-in;
+}
+
+body.deleting-mode header {
+  animation: drop 3s forwards ease-in;
+}

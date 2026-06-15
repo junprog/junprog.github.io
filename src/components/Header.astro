@@ -1,0 +1,312 @@
+---
+const siteName = "junprog";
+const siteDescription = "日常、研究、勉強、趣味、等々。";
+const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
+---
+
+<div
+	id="site-header"
+	class="sticky top-0 z-50 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 mb-6 transition-all duration-300"
+	style="overflow-anchor: none;"
+>
+	<div class="max-w-4xl mx-auto px-4">
+		<header
+			id="header-content"
+			class="py-6 flex flex-row items-center justify-between transition-all duration-300"
+		>
+			<div class="flex items-center">
+				<a
+					href="/"
+					class="w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] mr-3 sm:mr-4 flex-shrink-0 block transition-all duration-300"
+					id="header-avatar"
+				>
+					<img
+						src={siteAvatar}
+						alt="avatar"
+						class="rounded-xl object-cover w-full h-full shadow-sm"
+					/>
+				</a>
+
+				<div class="flex flex-col justify-center">
+					<h1
+						class="text-xl sm:text-[28px] font-light tracking-wide m-0 leading-tight transition-all duration-300"
+						id="header-title"
+					>
+						<a
+							href="/"
+							class="text-gray-900 dark:text-gray-100 hover:text-blue-500 transition-colors"
+							>{siteName}</a
+						>
+					</h1>
+					<p
+						class="text-gray-500 dark:text-gray-400 m-0 text-sm sm:text-base mt-1 transition-all duration-300 overflow-hidden hidden sm:block"
+						id="header-desc"
+					>
+						{siteDescription}
+					</p>
+				</div>
+			</div>
+
+			<nav
+				class="flex flex-row justify-end items-center gap-x-3 sm:gap-x-6 text-base sm:text-lg font-light tracking-wide transition-all duration-300"
+				id="header-nav"
+			>
+				<a
+					href="/"
+					class="text-gray-800 dark:text-gray-200 hover:text-blue-500 transition-colors"
+					>Home</a
+				>
+				<a
+					href="/posts"
+					class="text-gray-800 dark:text-gray-200 hover:text-blue-500 transition-colors"
+					>Posts</a
+				>
+				<button
+					id="theme-toggle"
+					class="text-gray-800 dark:text-gray-200 hover:text-blue-500 transition-colors focus:outline-none ml-1 sm:ml-2"
+					aria-label="Toggle dark mode"
+				>
+					<i class="fas fa-adjust fa-lg"></i>
+				</button>
+			</nav>
+		</header>
+		<!-- 疑似ターミナルUI -->
+		<div
+			id="terminal-container"
+			class="transition-all duration-500 ease-in-out overflow-hidden transform origin-top opacity-100 max-h-[500px]"
+		>
+			<slot name="terminal" />
+		</div>
+	</div>
+</div>
+
+<script is:inline>
+	// Dark Mode Toggle
+	const toggleBtn = document.getElementById("theme-toggle");
+	if (toggleBtn) {
+		toggleBtn.addEventListener("click", () => {
+			const isDark = document.documentElement.classList.contains("dark");
+			if (isDark) {
+				document.documentElement.classList.remove("dark");
+				document.documentElement.setAttribute("data-theme", "light");
+				localStorage.setItem("theme", "light");
+			} else {
+				document.documentElement.classList.add("dark");
+				document.documentElement.setAttribute("data-theme", "dark");
+				localStorage.setItem("theme", "dark");
+			}
+		});
+	}
+
+	// Scroll and Hover Logic
+	const siteHeader = document.getElementById("site-header");
+	const headerContent = document.getElementById("header-content");
+	const terminalContainer = document.getElementById("terminal-container");
+	const headerAvatar = document.getElementById("header-avatar");
+	const headerTitle = document.getElementById("header-title");
+	const headerDesc = document.getElementById("header-desc");
+
+	let lastScrollY = window.scrollY;
+	let scrollUpDistance = 0;
+	// 上方向へのスクロールでターミナルを表示するための閾値（後で手動でチューニングしてください）
+	const SCROLL_UP_THRESHOLD = 1000;
+
+	let isTerminalVisible = true;
+	let ignoreScrollEvents = false;
+	let scrollTimeout = null;
+
+	function setIgnoreScroll() {
+		ignoreScrollEvents = true;
+		if (scrollTimeout) clearTimeout(scrollTimeout);
+		scrollTimeout = setTimeout(() => {
+			ignoreScrollEvents = false;
+			lastScrollY = window.scrollY; // アニメーション終了後の位置を基準にする
+		}, 550); // 500msのトランジション + 少し余裕を持たせる
+	}
+	window.setIgnoreHeaderScroll = setIgnoreScroll;
+
+	function hideTerminal() {
+		if (!isTerminalVisible) return;
+		isTerminalVisible = false;
+		sessionStorage.setItem("terminal_visibility", "hidden");
+		setIgnoreScroll();
+
+		headerContent.classList.remove("py-6");
+		headerContent.classList.add("py-3");
+
+		headerAvatar.classList.remove(
+			"sm:w-[70px]",
+			"sm:h-[70px]",
+			"w-[50px]",
+			"h-[50px]",
+		);
+		headerAvatar.classList.add(
+			"w-[32px]",
+			"h-[32px]",
+			"sm:w-[40px]",
+			"sm:h-[40px]",
+		);
+
+		headerTitle.classList.remove("sm:text-[28px]");
+		headerTitle.classList.add("sm:text-xl");
+
+		headerDesc.classList.remove("max-h-10", "opacity-100", "mt-1");
+		headerDesc.classList.add("max-h-0", "opacity-0", "mt-0");
+
+		if (terminalContainer) {
+			terminalContainer.classList.remove("max-h-[500px]", "opacity-100");
+			terminalContainer.classList.add("max-h-0", "opacity-0");
+			terminalContainer.style.transform = "scaleY(0)";
+		}
+	}
+
+	function showTerminal() {
+		if (isTerminalVisible) return;
+		isTerminalVisible = true;
+		sessionStorage.setItem("terminal_visibility", "visible");
+		setIgnoreScroll();
+
+		headerContent.classList.add("py-6");
+		headerContent.classList.remove("py-3");
+
+		headerAvatar.classList.add(
+			"sm:w-[70px]",
+			"sm:h-[70px]",
+			"w-[50px]",
+			"h-[50px]",
+		);
+		headerAvatar.classList.remove(
+			"w-[32px]",
+			"h-[32px]",
+			"sm:w-[40px]",
+			"sm:h-[40px]",
+		);
+
+		headerTitle.classList.add("sm:text-[28px]");
+		headerTitle.classList.remove("sm:text-xl");
+
+		headerDesc.classList.add("max-h-10", "opacity-100", "mt-1");
+		headerDesc.classList.remove("max-h-0", "opacity-0", "mt-0");
+
+		if (terminalContainer) {
+			terminalContainer.classList.add("max-h-[500px]", "opacity-100");
+			terminalContainer.classList.remove("max-h-0", "opacity-0");
+			terminalContainer.style.transform = "scaleY(1)";
+		}
+	}
+
+	// ページ読み込み時に状態を復元（アニメーションなしで即時反映）
+	const savedState = sessionStorage.getItem("terminal_visibility");
+	if (savedState === "hidden") {
+		const elementsWithTransition = [
+			siteHeader,
+			headerContent,
+			headerAvatar,
+			headerTitle,
+			headerDesc,
+			terminalContainer,
+		];
+
+		elementsWithTransition.forEach((el) => {
+			if (el) el.style.transition = "none";
+		});
+
+		isTerminalVisible = true; // hideTerminal()を確実に実行させるため
+		hideTerminal();
+
+		void document.body.offsetHeight; // 強制リフロー
+
+		elementsWithTransition.forEach((el) => {
+			if (el) el.style.transition = "";
+		});
+	} else {
+		sessionStorage.setItem("terminal_visibility", "visible");
+	}
+
+	if (siteHeader) {
+		siteHeader.addEventListener("mouseenter", () => {
+			if (!isTerminalVisible) {
+				showTerminal();
+			}
+		});
+	}
+
+	// ページ最上部にいるときの上スクロール検知
+	// （位置が変わらないためscrollイベントが発火しないブラウザ環境への対策）
+	window.addEventListener(
+		"wheel",
+		(e) => {
+			if (window.scrollY <= 0 && e.deltaY < 0) {
+				if (!isTerminalVisible) {
+					showTerminal();
+				}
+			}
+		},
+		{ passive: true },
+	);
+
+	let touchStartY = 0;
+	window.addEventListener(
+		"touchstart",
+		(e) => {
+			touchStartY = e.touches[0].clientY;
+		},
+		{ passive: true },
+	);
+
+	window.addEventListener(
+		"touchmove",
+		(e) => {
+			if (window.scrollY <= 0) {
+				const touchY = e.touches[0].clientY;
+				// スワイプダウン（画面上では上方向へのスクロール）
+				if (touchY > touchStartY + 10) {
+					if (!isTerminalVisible) {
+						showTerminal();
+					}
+				}
+			}
+		},
+		{ passive: true },
+	);
+
+	let scrollEndTimeout = null;
+	window.addEventListener(
+		"scroll",
+		() => {
+			if (ignoreScrollEvents) return;
+
+			const currentScrollY = window.scrollY;
+
+			// バウンススクロール（iOSなど）の対策やページ最上部での表示
+			if (currentScrollY <= 0) {
+				showTerminal();
+				scrollUpDistance = 0;
+				lastScrollY = currentScrollY;
+				return;
+			}
+
+			if (currentScrollY > lastScrollY) {
+				// スクロールが下がった場合 (少しでも)
+				hideTerminal();
+				scrollUpDistance = 0; // 上方向のスクロール距離をリセット
+			} else if (currentScrollY < lastScrollY) {
+				// スクロールが上がった場合
+				scrollUpDistance += lastScrollY - currentScrollY;
+
+				if (scrollUpDistance >= SCROLL_UP_THRESHOLD) {
+					showTerminal();
+				}
+			}
+
+			lastScrollY = currentScrollY;
+
+			// スクロールが止まったら scrollUpDistance をリセットする
+			if (scrollEndTimeout) clearTimeout(scrollEndTimeout);
+			scrollEndTimeout = setTimeout(() => {
+				scrollUpDistance = 0;
+			}, 150);
+		},
+		{ passive: true },
+	);
+</script>

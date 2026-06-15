@@ -1,0 +1,44 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const siteName = "junprog";
+const siteDescription = "日常、研究、勉強、趣味、等々。";
+
+const displayTitle = title ? `${title} – ${siteName}` : `${siteName} – ${siteDescription}`;
+const displayDescription = description || siteDescription;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{displayTitle}</title>
+<meta name="description" content={displayDescription} />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+<!-- FontAwesome -->
+<script src="https://kit.fontawesome.com/b4e4b1f764.js" crossorigin="anonymous"></script>
+
+<!-- jQuery (required for legacy tools like dice and receptive field calc) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" is:inline></script>
+
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({tex2jax:{inlineMath:[['$','$'],['\\(','\\)']],processEscapes:true},CommonHTML: {matchFontHeight:false}});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<!-- Dark Mode Initialization Script -->
+<script is:inline>
+	const theme = localStorage.getItem('theme');
+	if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+		document.documentElement.setAttribute('data-theme', 'dark');
+		document.documentElement.classList.add('dark');
+	} else {
+		document.documentElement.setAttribute('data-theme', 'light');
+		document.documentElement.classList.remove('dark');
+	}
+</script>
