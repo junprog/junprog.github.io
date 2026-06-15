@@ -105,4 +105,17 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // ターミナル領域クリック時に入力欄へフォーカスする
+    const terminalElement = document.querySelector(".terminal");
+    if (terminalElement && inputElement) {
+        terminalElement.addEventListener("click", (event) => {
+            if (!event.target.closest("a") && !event.target.closest(".terminal-link")) {
+                const selection = window.getSelection();
+                if (!selection || selection.toString().length === 0) {
+                    inputElement.focus();
+                }
+            }
+        });
+    }
 });

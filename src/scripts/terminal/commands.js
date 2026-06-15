@@ -32,7 +32,6 @@ export function executeCommand(inputValue) {
   ll          Alias for 'ls -al'
   cd [path]   Change directory (use "cd .." to go up)
   cat [file]  Open/view a file (transitions to the page)
-  rm          Remove file or directory (dummy)
   clear       Clear terminal history
   help        Display this help message`;
         addOutputHistory(helpText, false);
@@ -107,7 +106,7 @@ export function executeCommand(inputValue) {
 
     if (cmd === "neofetch") {
         const fetchOutput = `
-<div style="display: flex; gap: 20px; font-family: monospace; white-space: pre-wrap;">
+<div style="display: flex; gap: 20px; white-space: pre-wrap;">
 <div style="color: #4497cf; font-weight: bold; line-height: 1.1;">
        _,met$$$$$gg.
     ,g$$$$$$$$$$$$$$$P.
@@ -170,16 +169,20 @@ export function executeCommand(inputValue) {
         if (node && node.type === "dir") {
             let outputHtml = "";
             let keys = Object.keys(node.children).sort();
-            
+
             if (showHidden) {
-                keys = [".", "..", ...keys];
+                if (targetPath === "~" || targetPath === "/") {
+                    keys = [".", ...keys];
+                } else {
+                    keys = [".", "..", ...keys];
+                }
             }
 
             if (keys.length === 0) {
                 outputHtml = "(empty)";
             } else {
                 if (longFormat) {
-                    outputHtml = `<div style="white-space: pre-wrap; font-family: monospace;">` + keys.map(key => {
+                    outputHtml = `<div style="white-space: pre-wrap;">` + keys.map(key => {
                         let child;
                         if (key === "." || key === "..") {
                             child = { type: "dir", link: targetPath };
@@ -189,17 +192,18 @@ export function executeCommand(inputValue) {
                         const isDir = child.type === "dir";
                         const perms = isDir ? "drwxr-xr-x" : "-rw-r--r--";
                         const size = isDir ? "4096" : "1024";
-                        
+
                         const now = new Date();
                         const month = now.toLocaleString('en-US', { month: 'short' });
                         const day = now.getDate().toString().padStart(2, " ");
                         const hours = now.getHours().toString().padStart(2, "0");
                         const mins = now.getMinutes().toString().padStart(2, "0");
                         const dateStr = `${month} ${day} ${hours}:${mins}`;
-                        
-                        const nameSpan = isDir 
-                            ? `<span class="terminal-dir terminal-link" data-link="${child.link}">${key}/</span>`
-                            : `<span class="terminal-file terminal-link" data-link="${child.link}">${key}</span>`;
+
+                        const absPath = resolvePath(targetPath, key);
+                        const nameSpan = isDir
+                            ? `<span class="terminal-dir terminal-link" data-link="${child.link}" data-path="${absPath}">${key}/</span>`
+                            : `<span class="terminal-file terminal-link" data-link="${child.link}" data-path="${absPath}">${key}</span>`;
                         return `${perms} 1 junprog junprog ${size.padStart(5, " ")} ${dateStr} ${nameSpan}`;
                     }).join("<br>") + `</div>`;
                 } else {
@@ -210,10 +214,11 @@ export function executeCommand(inputValue) {
                         } else {
                             child = node.children[key];
                         }
+                        const absPath = resolvePath(targetPath, key);
                         if (child.type === "dir") {
-                            return `<span class="terminal-dir terminal-link" data-link="${child.link}">${key}/</span>`;
+                            return `<span class="terminal-dir terminal-link" data-link="${child.link}" data-path="${absPath}">${key}/</span>`;
                         } else {
-                            return `<span class="terminal-file terminal-link" data-link="${child.link}">${key}</span>`;
+                            return `<span class="terminal-file terminal-link" data-link="${child.link}" data-path="${absPath}">${key}</span>`;
                         }
                     }).join("  ");
                 }
@@ -221,7 +226,7 @@ export function executeCommand(inputValue) {
             addOutputHistory(outputHtml, true);
         } else if (node && node.type === "file") {
             const filename = targetPath.slice(targetPath.lastIndexOf("/") + 1);
-            addOutputHistory(`<span class="terminal-file terminal-link" data-link="${node.link}">${filename}</span>`, true);
+            addOutputHistory(`<span class="terminal-file terminal-link" data-link="${node.link}" data-path="${targetPath}">${filename}</span>`, true);
         } else {
             const notFoundTarget = targetStrs.length > 0 ? targetStrs[0] : "";
             addOutputHistory(`ls: cannot access '${notFoundTarget}': No such file or directory`, false);
@@ -238,6 +243,11 @@ export function executeCommand(inputValue) {
 
         if (node) {
             if (node.type === "dir") {
+                if (current_path === targetPath) {
+                    renderHistory();
+                    clearInput();
+                    return;
+                }
                 saveHistory();
                 location.assign(node.link);
             } else {

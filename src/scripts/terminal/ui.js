@@ -88,8 +88,9 @@ export function renderHistory() {
                     link.addEventListener("click", () => {
                         const isDir = link.classList.contains("terminal-dir");
                         const cmdName = isDir ? "cd " : "cat ";
-                        const displayName = link.textContent.replace(/\/$/, "");
-                        executeCommand(cmdName + displayName);
+                        const dataPath = link.getAttribute("data-path");
+                        const arg = dataPath ? dataPath : link.textContent.replace(/\/$/, "");
+                        executeCommand(cmdName + arg);
                     });
                 });
             } else {

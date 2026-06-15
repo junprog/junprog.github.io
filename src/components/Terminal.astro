@@ -1,163 +1,190 @@
 ---
+
 ---
+
 <div class="terminal">
   <div id="terminal-line-1"></div>
   <div id="terminal-line-2">
-    <div id="user">you@junprog</div><div id="command">:</div><div id="path"></div><div id="exec">$ </div>
-    <input type="text" id="exec-cmd" class="exec" placeholder="困ったときは 'help' を入力してください" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    <div id="user">you@junprog</div><div id="command">:</div><div id="path">
+    </div><div id="exec">$</div>
+    <input
+      type="text"
+      id="exec-cmd"
+      class="exec"
+      placeholder="困ったときは 'help' を入力してください"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    />
   </div>
 </div>
 
 <script>
-  import '../scripts/terminal/index.js';
+  import "../scripts/terminal/index.js";
 </script>
 
 <style>
-.terminal {
-  background-color: #eee;
-  color: #222;
-  font-family: Consolas, monaco, monospace;
-  padding: 8px 12px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 250px;
-  width: 100%;
-}
+  .terminal {
+    background-color: #eee;
+    color: #222;
+    font-family: "Consolas", "monaco", monospace !important;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 250px;
+    width: 100%;
+  }
 
-:global(html.dark) .terminal {
-  background-color: #222;
-  color: #c1c6ca;
-  border-color: #5c5e66;
-}
+  :global(html.dark) .terminal {
+    background-color: #222;
+    color: #c1c6ca;
+    border-color: #5c5e66;
+  }
 
-.terminal::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-.terminal::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
-:global(html.dark) .terminal::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-}
+  .terminal::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .terminal::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+  :global(html.dark) .terminal::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+  }
 
-#terminal-line-1 {
-  display: flex;
-  flex-direction: column;
-}
+  #terminal-line-1 {
+    display: flex;
+    flex-direction: column;
+  }
 
-:global(.terminal-history-line) {
-  margin-bottom: 2px;
-}
+  :global(.terminal-history-line) {
+    font-family: Consolas, monaco, monospace;
+  }
 
-:global(.terminal-history-line .user) {
-  color: rgb(18, 143, 18);
-  display: inline-block;
-}
-:global(html.dark) :global(.terminal-history-line .user) {
-  color: lightgreen;
-}
+  :global(.terminal-history-line .user) {
+    color: rgb(18, 143, 18);
+    display: inline-block;
+  }
+  :global(html.dark) :global(.terminal-history-line .user) {
+    color: lightgreen;
+  }
 
-:global(.terminal-history-line .path) {
-  color: #4497cf;
-  display: inline-block;
-}
-:global(html.dark) :global(.terminal-history-line .path) {
-  color: #355ee6;
-}
+  :global(.terminal-history-line .path) {
+    color: #4497cf;
+    display: inline-block;
+  }
+  :global(html.dark) :global(.terminal-history-line .path) {
+    color: #355ee6;
+  }
 
-:global(.terminal-history-line .command-colon),
-:global(.terminal-history-line .exec),
-:global(.terminal-history-line .command-text) {
-  display: inline-block;
-}
+  :global(.terminal-history-line .command-colon),
+  :global(.terminal-history-line .exec),
+  :global(.terminal-history-line .command-text) {
+    display: inline-block;
+  }
 
-:global(.terminal-history-output) {
-  white-space: pre-wrap;
-  margin: 4px 0 8px 12px;
-  color: #222;
-  line-height: 1.5;
-}
-:global(html.dark) :global(.terminal-history-output) {
-  color: #c1c6ca;
-}
+  :global(.terminal-history-output) {
+    white-space: pre-wrap;
+    /* margin: 2px 0 6px 12px; */
+    color: #222;
+    line-height: 1.4;
+    font-family: Consolas, monaco, monospace;
+  }
+  :global(html.dark) :global(.terminal-history-output) {
+    color: #c1c6ca;
+  }
 
-:global(.terminal-dir) {
-  color: #4497cf;
-  font-weight: bold;
-  margin-right: 12px;
-}
-:global(html.dark) :global(.terminal-dir) {
-  color: #355ee6;
-}
+  :global(.terminal-dir) {
+    color: #4497cf;
+    font-weight: bold;
+    margin-right: 12px;
+  }
+  :global(html.dark) :global(.terminal-dir) {
+    color: #355ee6;
+  }
 
-:global(.terminal-file) {
-  color: #222;
-  margin-right: 12px;
-}
-:global(html.dark) :global(.terminal-file) {
-  color: #c1c6ca;
-}
+  :global(.terminal-file) {
+    color: #222;
+    margin-right: 12px;
+  }
+  :global(html.dark) :global(.terminal-file) {
+    color: #c1c6ca;
+  }
 
-:global(.terminal-link) {
-  cursor: pointer;
-  text-decoration: none;
-}
-:global(.terminal-link:hover) {
-  text-decoration: underline;
-}
+  :global(.terminal-link) {
+    cursor: pointer;
+    text-decoration: none;
+  }
+  :global(.terminal-link:hover) {
+    text-decoration: underline;
+  }
 
-#user {
-  color: rgb(18, 143, 18);
-  display: inline-block;
-}
-:global(html.dark) #user {
-  color: lightgreen;
-}
+  #user {
+    color: rgb(18, 143, 18);
+    display: inline-block;
+  }
+  :global(html.dark) #user {
+    color: lightgreen;
+  }
 
-#path {
-  color: #4497cf;
-  display: inline-block;
-}
-:global(html.dark) #path {
-  color: #355ee6;
-}
+  #path {
+    color: #4497cf;
+    display: inline-block;
+  }
+  :global(html.dark) #path {
+    color: #355ee6;
+  }
 
-#command, #exec {
-  display: inline-block;
-}
+  #command,
+  #exec {
+    display: inline-block;
+  }
 
-#exec-cmd {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  padding: 0px;
-}
+  #exec-cmd {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0px;
+  }
 
-.terminal input {
-  color: #222;
-  box-sizing: border-box;
-  display: inline-block;
-  width: 50%;
-  height: 30px;
-  font-family: Consolas, monaco, monospace;
-  font-size: 16px;
-}
-:global(html.dark) .terminal input {
-  color: #c1c6ca;
-}
+  .terminal input {
+    color: #222;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 50%;
+    height: 20px;
+    font-family: Consolas, monaco, monospace;
+    font-size: inherit;
+    letter-spacing: inherit;
+  }
+  :global(html.dark) .terminal input {
+    color: #c1c6ca;
+  }
 
-.terminal input::placeholder {
-  color: #222;
-  opacity: 0.4;
-  font-style: italic;
-}
-:global(html.dark) .terminal input::placeholder {
-  color: #c1c6ca;
-}
+  .terminal input::placeholder {
+    color: #222;
+    opacity: 0.4;
+    font-style: italic;
+  }
+  :global(html.dark) .terminal input::placeholder {
+    color: #c1c6ca;
+  }
+
+  @media (max-width: 640px) {
+    .terminal {
+      font-size: 12px;
+    }
+    .terminal input {
+      height: 20px;
+    }
+  }
 </style>

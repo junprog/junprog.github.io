@@ -37,7 +37,7 @@
 
 /* Tables: Add background and borders */
 .prose table {
-  @apply border-collapse w-full my-6;
+  @apply border-collapse w-full my-6 block overflow-x-auto whitespace-nowrap;
 }
 
 .prose th {
