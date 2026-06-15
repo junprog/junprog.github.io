@@ -1,67 +1,295 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Terminal from '../components/Terminal.astro';
+import Layout from "../layouts/Layout.astro";
+import Terminal from "../components/Terminal.astro";
+import GadgetCard from "../components/GadgetCard.astro";
 ---
 
 <Layout title="about me">
   <Terminal slot="terminal" />
 
-  <div class="my-page-content">
-    <p>こんにちは、<code>junprog</code>です。</p>
+  <div class="max-w-4xl mx-auto pb-12">
+    <!-- Header Section -->
+    <div class="prose prose-slate dark:prose-invert max-w-none mb-10">
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        こんにちは、<code>junprog</code>です。<br /><br />
+        本ブログでは、日常であったこと、やってみたいことなど、思ったことをゆるく発信していきます。
+      </p>
+    </div>
 
-    <h2>プロフィール</h2>
-    <ul>
-      <li>修士卒 → 民間企業勤務</li>
-      <li>興味
-        <ul>
-          <li>機械学習</li>
-          <li>画像認識</li>
-        </ul>
-      </li>
-      <li>趣味
-        <ul>
-          <li>Disney</li>
-          <li>ジャズ</li>
-          <li>カメラ</li>
-          <li>登山</li>
-        </ul>
-      </li>
-    </ul>
+    <div class="space-y-16">
+      <!-- 🛠️ スキル・技術スタック -->
+      <section>
+        <h2
+          class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center gap-2"
+        >
+          <svg
+            class="w-6 h-6 text-gray-700 dark:text-gray-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+          </svg>
+          スキル・技術スタック
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div
+            class="flex items-start gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm"
+          >
+            <div
+              class="p-3 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-lg"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 dark:text-gray-100">
+                言語・フレームワーク
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                Python / PyTorch / Tensorflow など
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex items-start gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm"
+          >
+            <div
+              class="p-3 bg-pink-50 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-lg"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 dark:text-gray-100">
+                分野・専門
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                コンピュータビジョン / 機械学習 など
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <h2>サイトマップ</h2>
-    <pre><code> ~/
- ├ posts/
- ├ tags/
- └ categories/</code></pre>
+      <!-- 🔭 最近ハマっていること (Icon Cards / Chips) -->
+      <section>
+        <h2
+          class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center gap-2"
+        >
+          <svg
+            class="w-6 h-6 text-gray-700 dark:text-gray-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+            ></path>
+          </svg>
+          最近ハマっていること
+        </h2>
+        <div
+          class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm"
+        >
+          <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+            多趣味な性格です。小さい頃からサイクリングや絵描き、楽器など色々触れては飽きを繰り返しています。
+            現在は、以下の趣味に夢中になってます。
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <div
+              class="flex items-center gap-2 px-4 py-2 bg-blue-100/50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium text-sm border border-blue-200 dark:border-blue-800"
+            >
+              🦆 野鳥撮影
+            </div>
+            <div
+              class="flex items-center gap-2 px-4 py-2 bg-green-100/50 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full font-medium text-sm border border-green-200 dark:border-green-800"
+            >
+              ⛰️ 登山
+            </div>
+            <div
+              class="flex items-center gap-2 px-4 py-2 bg-purple-100/50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full font-medium text-sm border border-purple-200 dark:border-purple-800"
+            >
+              🏰 ディズニー
+            </div>
+            <div
+              class="flex items-center gap-2 px-4 py-2 bg-yellow-100/50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded-full font-medium text-sm border border-yellow-200 dark:border-yellow-800"
+            >
+              🎷 ジャズ
+            </div>
+            <div
+              class="flex items-center gap-2 px-4 py-2 bg-red-100/50 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-full font-medium text-sm border border-red-200 dark:border-red-800"
+            >
+              🏃 ランニング
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <h2>TODO</h2>
-    <ul>
-      <li>積み論文
-        <ul>
-          <li>モデルアーキテクチャ系
-            <ul>
-              <li>[x] <a href="/posts/survey/paper-alexnet">AlexNet</a></li>
-              <li>[x] <a href="/posts/survey/paper-vgg">VGG</a></li>
-              <li>[ ] Inception</li>
-              <li>[x] <a href="/posts/survey/paper-resnet">ResNet</a></li>
-              <li>[ ] DenseNet</li>
+      <!-- 📷 愛用機材・ガジェット (Image Cards) -->
+      <section>
+        <h2
+          class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center gap-2"
+        >
+          <svg
+            class="w-6 h-6 text-gray-700 dark:text-gray-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+            ></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+          愛用機材・ガジェット
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Camera Card -->
+          <GadgetCard
+            title="カメラ & レンズ"
+            description="野鳥撮影などに活躍する相棒たちです。"
+            images={[
+              "https://lh3.googleusercontent.com/pw/AP1GczOY1hO-HtTuj1ALZpYfQ1xYDy_0V3ACrMfZ0eKM0f_RjSFMB5x0qYjjfUf_pq52n_L-o83hHqfzXSWruKYN-ITxDTkAXPHwqrUeHpDreNwFdJbhlJr-6TLMS04kslCCEucVzWYtJA8OEEDzZ4hUSOxYgw=w1260-h945-s-no-gm?authuser=0",
+            ]}
+          >
+            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+              <li>
+                <span class="font-semibold text-gray-900 dark:text-gray-100"
+                  >ボディ:</span
+                > Nikon D3200 → Nikon Z5 → Canon EOS R6 Mark3
+              </li>
+              <li>
+                <span class="font-semibold text-gray-900 dark:text-gray-100"
+                  >レンズ:</span
+                >
+                <ul
+                  class="ml-4 mt-1.5 space-y-1.5 list-disc list-inside text-gray-500 dark:text-gray-400"
+                >
+                  <li>RF 35mm F1.8 MACRO IS STM</li>
+                  <li>RF 45mm F1.2 STM</li>
+                  <li>RF 70-200mm F2.8 L IS USM</li>
+                  <li>RF 100-500mm F4.5-7.1 L IS USM</li>
+                </ul>
+              </li>
             </ul>
-          </li>
-          <li>気になったやつ
-            <ul>
-              <li>[ ] Bag of Tricks for Image Classification with Convolutional Neural Networks (<a href="https://arxiv.org/abs/1812.01187" target="_blank" rel="noopener noreferrer">paper link</a>)</li>
-              <li>随時更新...</li>
+          </GadgetCard>
+
+          <!-- PC Card -->
+          <GadgetCard
+            title="PC & デスク周り"
+            description="開発とゲームを快適にするための環境です。"
+            images={[
+              "https://lh3.googleusercontent.com/pw/AP1GczOP4TVs_MsmcRG-WiymzfoWeqPiITSSJAAicJ0XqpATvHUGTC_p46oUshRIctH6q8V4V1BinAE2b9iF5LsxzU8AVJX2KYE9TRUJ3Sq61Bh7Z-3xCq4KEgfInfnQVP_TVm9sd4OYEYXu7Ltq-hMKeU-kSQ=w1418-h945-s-no-gm?authuser=0",
+              "https://lh3.googleusercontent.com/pw/AP1GczOLwbL6Z8gnmNaKh6k0VTJqOX5148MI_5XPM_zezk_NKF-mpyn5bj84D5G5CKAqST05cTZv0pl4diBEUztifPqKEjKyxQG0wnWCp2srOlTS2yQYW85EPTgExtQwMuoZJIzjylUu0VuZcF_8p0WpXVrqPQ=w1260-h945-s-no-gm?authuser=0",
+            ]}
+          >
+            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+              <li>
+                <span class="font-semibold text-gray-900 dark:text-gray-100"
+                  >PC:</span
+                > 自作PC (Core i7 / RTX 3080)
+              </li>
+              <li>
+                <span class="font-semibold text-gray-900 dark:text-gray-100"
+                  >キーボード:</span
+                > HHKB
+              </li>
             </ul>
-          </li>
-        </ul>
-      </li>
-      <li>勉強したい
-        <ul>
-          <li>仮想環境/クラウド系技術</li>
-          <li>データ分析/Kaggle系技術</li>
-          <li>競技プログラミング系技術</li>
-        </ul>
-      </li>
-    </ul>
+          </GadgetCard>
+
+          <!-- Audio Card -->
+          <GadgetCard
+            title="オーディオ"
+            description="音楽をいい音で聴くための環境です。"
+            images={[
+              "https://lh3.googleusercontent.com/pw/AP1GczNkLXXtI_QKYhCZvinNVroo_IfKATFeNulZA72kJL6P0oaCgwMPO56ApUvoIlGYpr88hU-fzYq3ThJM6STK4I6I1uR53oxqZBAQb-yVB0LTL94EWA9VqIoxuTzO7XCq8iFuISscKPi214OasWzn4S4oIw=w1260-h945-s-no-gm?authuser=0",
+            ]}
+          >
+            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+              <li>
+                <span class="font-semibold text-gray-900 dark:text-gray-100"
+                  >プリメインアンプ:</span
+                > Marantz STEREO 70s
+              </li>
+              <li>
+                <span class="font-semibold text-gray-900 dark:text-gray-100"
+                  >スピーカー:</span
+                > B&W 607 S3
+              </li>
+            </ul>
+          </GadgetCard>
+        </div>
+      </section>
+
+      <!-- サイトマップ -->
+      <section>
+        <h2
+          class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center gap-2"
+        >
+          <svg
+            class="w-6 h-6 text-gray-700 dark:text-gray-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+            ></path>
+          </svg>
+          サイトマップ
+        </h2>
+        <div
+          class="bg-gray-900 rounded-xl p-6 overflow-hidden shadow-inner border border-gray-800"
+        >
+          <pre
+            class="text-green-400 font-mono text-sm m-0 bg-transparent p-0 leading-relaxed"><code> ~/
+  ├ posts/
+  │ ├ blog/
+  │ ├ playground/
+  │ └ survey/
+  ├ tags
+  └ categories</code></pre>
+        </div>
+      </section>
+    </div>
   </div>
 </Layout>

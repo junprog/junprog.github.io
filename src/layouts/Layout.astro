@@ -1,5 +1,8 @@
 ---
-import '../styles/style.scss';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 
 interface Props {
 	title?: string;
@@ -7,104 +10,22 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-
-const siteName = "junprog";
-const siteDescription = "日常、研究、勉強、趣味、等々。";
-const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
-
-const displayTitle = title ? `${title} – ${siteName}` : `${siteName} – ${siteDescription}`;
-const displayDescription = description || siteDescription;
 ---
 
 <!doctype html>
 <html lang="ja">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{displayTitle}</title>
-		<meta name="description" content={displayDescription} />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		
-		<!-- FontAwesome -->
-		<script src="https://kit.fontawesome.com/b4e4b1f764.js" crossorigin="anonymous"></script>
-
-		<!-- jQuery (required for legacy tools like dice and receptive field calc) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" is:inline></script>
-		
-		<!-- MathJax -->
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({tex2jax:{inlineMath:[['$','$'],['\\(','\\)']],processEscapes:true},CommonHTML: {matchFontHeight:false}});
-		</script>
-		<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-		<!-- Dark Mode Initialization Script -->
-		<script is:inline>
-			const theme = localStorage.getItem('theme');
-			if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-				document.documentElement.setAttribute('data-theme', 'dark');
-			} else {
-				document.documentElement.setAttribute('data-theme', 'light');
-			}
-		</script>
+		<BaseHead title={title} description={description} />
 	</head>
-	<body>
-		<div class="wrapper-masthead">
-			<div class="container">
-				<header class="masthead clearfix">
-					<a href="/" class="site-avatar">
-						<img src={siteAvatar} alt="avatar" />
-					</a>
+	<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
+		<Header>
+			<slot name="terminal" slot="terminal" />
+		</Header>
 
-					<div class="site-info">
-						<h1 class="site-name"><a href="/">{siteName}</a></h1>
-						<p class="site-description">{siteDescription}</p>
-					</div>
-
-					<nav>
-						<a href="/">Home</a>
-						<a href="/posts">Posts</a>
-						<button class="my-btn" id="theme-toggle">
-							<i class="fas fa-adjust fa-lg"></i>
-						</button>
-					</nav>
-				</header>
-
-				<!-- 疑似ターミナルUI -->
-				<slot name="terminal" />
-			</div>
-		</div>
-
-		<main id="main" role="main" class="container">
+		<main id="main" role="main" class="max-w-4xl mx-auto px-4 w-full">
 			<slot />
 		</main>
 
-		<div class="wrapper-footer">
-			<div class="container">
-				<footer class="footer">
-					<div class="svg-icons">
-						<a href="mailto:junya@uchidais.net"><i class="svg-icon email"></i></a>
-						<a href="https://github.com/junprog" target="_blank" rel="noopener noreferrer"><i class="svg-icon github"></i></a>
-						<a href="https://www.twitter.com/jun_prog" target="_blank" rel="noopener noreferrer"><i class="svg-icon twitter-x"></i></a>
-					</div>
-				</footer>
-			</div>
-		</div>
-
-		<!-- Dark Mode Toggle Event Script -->
-		<script is:inline>
-			const toggleBtn = document.getElementById('theme-toggle');
-			if (toggleBtn) {
-				toggleBtn.addEventListener('click', () => {
-					const currentMode = document.documentElement.getAttribute('data-theme');
-					if (currentMode === 'dark') {
-						document.documentElement.setAttribute('data-theme', 'light');
-						localStorage.setItem('theme', 'light');
-					} else {
-						document.documentElement.setAttribute('data-theme', 'dark');
-						localStorage.setItem('theme', 'dark');
-					}
-				});
-			}
-		</script>
+		<Footer />
 	</body>
 </html>

@@ -5,7 +5,6 @@ title: Very Deep Convolutional Networks For Large-Scale Image Recognition
 category: サーベイ
 tags: CV
 ---
-* 表題 ： Very Deep Convolutional Networks For Large-Scale Image Recognition
 * 著者 ： Karen Simonyan, Andrew Zisserman
 * 出典 ： arXiv, ICLR 2015
 * 一行要約 ： CNNの深さに着目して設計することでILSVRCのテストセットにてエラー率top-5 : 6.8%を記録し、ILSVRC-2014にて優勝したCNNモデルの論文。
@@ -63,7 +62,7 @@ RGB画像を224x224で入力する。
 
 ### Training
 
-* Configrationsの A から学習を始め、そのパラメータでより深いモデルのパラメータを初期化する。それ以外のパラメータのウェイト：$ \mathbf{w}の各要素 w $ 、バイアス：$ b $は、 $ w \sim \mathcal{N}( \mu = 0, \sigma = 0.1), b = 0 $ と初期化する。
+* Configrationsの A から学習を始め、そのパラメータでより深いモデルのパラメータを初期化する。それ以外のパラメータのウェイト：$ \mathbf{w} $ の各要素 $ w $ 、バイアス：$ b $は、 $ w \sim \mathcal{N}( \mu = 0, \sigma = 0.1), b = 0 $ と初期化する。
 * AugumentationはAlexNetの手法を使用する。
 * 加えてAumgumentationでスケーリングに関する手法を2つ提案する。まず高さx幅を等方的にスケーリングするための画像の短い方の長さを $ S $ とする。
     1. $ S $を固定して学習させる手法。

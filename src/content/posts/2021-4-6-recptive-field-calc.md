@@ -11,48 +11,64 @@ CNNのReceptive Fieldを動的に計算するページ。
 <!--more-->
 <script type="text/javascript" src="/scripts/calc_receptive_field.js"></script>
 <style type="text/css">
+:root {
+  --conv-color: #fce4ec;
+  --pool-color: #e3f2fd;
+  --content-border-color: #e5e7eb;
+}
+:root[data-theme='dark'],
+.dark {
+  --conv-color: #3b1c4a;
+  --pool-color: #1a3c5e;
+  --content-border-color: #4b5563;
+}
 .center {
 text-align: center;
 }
 .right {
 text-align: right;
 }
-div .conv {
-display: inline-block;
-white-space: nowrap;
-overflow-x: auto;
-text-align: center;
-width: 85%;
-height: auto;
+div .conv, div .pool {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin: 0.5rem auto;
+width: 100%;
+max-width: 650px;
 background: var(--conv-color);
 border: 1px solid var(--content-border-color);
-border-radius: 4px;
+border-radius: 8px;
 font-family: 'Courier New', Courier, monospace;
-padding: 0.4em 1em 0.4em 1em;
+font-size: 0.9em;
+padding: 0.75rem 1rem;
+box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+color: inherit;
 }
 div .pool {
-display: inline-block;
-white-space: nowrap;
-overflow-x: auto;
-text-align: center;
-width: 85%;
-height: auto;
 background: var(--pool-color);
-border-radius: 4px;
-font-family: 'Courier New', Courier, monospace;
-padding: 0.4em 1em 0.4em 1em;
 }
 .del-btn {
 margin-left: 20px;
+/* Reset prose button styles specifically for del-btn to make it small */
+padding: 0.25rem 0.5rem !important;
+font-size: 0.8em !important;
+background-color: #ef4444 !important; /* red-500 */
+color: white !important;
+border-radius: 0.25rem !important;
+}
+.del-btn:hover {
+background-color: #dc2626 !important; /* red-600 */
 }
 label {
 font-size: 15px;
 display: inline-block;
 width: 6em;
+font-weight: 500;
 }
 .input-form {
 display: inline-block;
 font-style: normal;
+margin-bottom: 0.5rem;
 }
 .input-box {
 width: 100px;
@@ -93,64 +109,66 @@ r_{i} = r_{i-1} + (k-1) \times j_{i-1}
 <blockquote>
 <p>
 <div>
-<label class="input-form" for="module">Module : </label>
-<select id="module">
+<label class="input-form font-medium" for="module">Module : </label>
+<select id="module" class="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all mr-4">
 <option disabled selected>Select Layer Module</option>
 <option class="module" value="Conv2d" data-id="conv">Conv2d</option>
 <option class="module" value="Pool2d" data-id="pool">Pool2d</option>
 </select>
-<button class='set' onclick="setDefault();">Set Default</button>
+<button class='set bg-blue-500 hover:bg-blue-600 text-white font-medium py-1.5 px-4 rounded-md shadow-sm transition-colors cursor-pointer border-none' onclick="setDefault();">Set Default</button>
 </div>
-<div>
-<form class="input-form">
-<label for="kernel_size">Kernel Size : </label>
-<input type="text" id="kernel_size" class="input-box">
+<div class="mt-4">
+<form class="input-form inline-block mr-4 mb-2">
+<label for="kernel_size" class="font-medium inline-block w-24">Kernel Size : </label>
+<input type="text" id="kernel_size" class="w-24 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all">
 </form>
-<form class="input-form">
-<label for="stride">Stride : </label>
-<input type="text" id="stride" class="input-box">
+<form class="input-form inline-block mr-4 mb-2">
+<label for="stride" class="font-medium inline-block w-20">Stride : </label>
+<input type="text" id="stride" class="w-24 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all">
 </form>
-<form class="input-form">
-<label for="padding">Padding : </label>
-<input type="text" id="padding" class="input-box">
+<form class="input-form inline-block mb-2">
+<label for="padding" class="font-medium inline-block w-20">Padding : </label>
+<input type="text" id="padding" class="w-24 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all">
 </form>
-<input type="button" id="addlayer" value="Add Layer" onclick="addLayer();">
+<div class="flex justify-end mt-2">
+<input type="button" id="addlayer" value="Add Layer" onclick="addLayer();" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-1.5 px-4 rounded-md shadow-sm transition-colors cursor-pointer border-none">
+</div>
 </div>
 </p>
 </blockquote>
 <blockquote style="border-left: 3px solid #ff662a;">
 <p>
-<div class="input-form">
+<div class="input-form font-medium">
 Example :
-<input type="button" id="vgg16" value="VGG16" onclick="vgg16();" style="margin-left: 10px;">
-<input type="button" id="vgg19" value="VGG19" onclick="vgg19();" style="margin-left: 10px;">
-<input type="button" id="resnet50" value="ResNet50" onclick="resnet50();" style="margin-left: 10px;">
+<input type="button" id="vgg16" value="VGG16" onclick="vgg16();" class="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-1.5 px-4 rounded-md shadow-sm transition-colors cursor-pointer border-none">
+<input type="button" id="vgg19" value="VGG19" onclick="vgg19();" class="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-1.5 px-4 rounded-md shadow-sm transition-colors cursor-pointer border-none">
+<input type="button" id="resnet50" value="ResNet50" onclick="resnet50();" class="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-1.5 px-4 rounded-md shadow-sm transition-colors cursor-pointer border-none">
 </div>
 </p>
 </blockquote>
 <div id="layers" class="center">
 </div>
-<p class="right">
-<input type="button" id="delete-all-layer" value="Delete All Layers" onclick="deleteAllLayers();">
+<p class="flex justify-end mt-4">
+<input type="button" id="delete-all-layer" value="Delete All Layers" onclick="deleteAllLayers();" class="bg-red-500 hover:bg-red-600 text-white font-medium py-1.5 px-4 rounded-md shadow-sm transition-colors cursor-pointer border-none">
 </p>
 <h2>
 順伝播
 </h2>
 <blockquote>
 <p>
-<div>
-<form class="input-form">
-<label for="input_size">Input Size : </label>
-<input type="text" id="input_size" class="input-box" value="224">
+<div class="flex items-center justify-between">
+<form class="input-form mb-0">
+<label for="input_size" class="font-medium inline-block w-24">Input Size : </label>
+<input type="text" id="input_size" class="w-24 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all" value="224">
 </form>
-<input type="button" id="calc-output-size" value="Forward" onclick="calcInfo();">
+<input type="button" id="calc-output-size" value="Forward" onclick="calcInfo();" class="bg-green-500 hover:bg-green-600 text-white font-medium py-1.5 px-4 rounded-md shadow-sm transition-colors cursor-pointer border-none">
 </div>
 </p>
 </blockquote>
 <div id="results" class="center" style="overflow-x: auto; display: block;">
 </div>
-<p class="right">
-<input type="button" id="delete-all-results" value="Delete Results" onclick="deleteAllResults();">
+<p class="flex justify-end mt-4">
+<input type="button" id="delete-all-results" value="Delete Results" onclick="deleteAllResults();" class="bg-red-500 hover:bg-red-600 text-white font-medium py-1.5 px-4 rounded-md shadow-sm transition-colors cursor-pointer border-none">
 </p>
 <h2>使い方</h2>
 <p>

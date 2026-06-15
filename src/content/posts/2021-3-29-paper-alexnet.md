@@ -5,7 +5,6 @@ title: ImageNet Classification with Deep Convolutional Neural Networks
 category: サーベイ
 tags: CV
 ---
-* 表題：ImageNet Classification with Deep Convolutional Neural Networks.
 * 著者：Alex Krizhevsky, Ilya Sutskever, and Geoffrey E. Hinton.
 * 出典：NeurIPS 2012
 * 一行要約：ILSVRCのテストセットにてエラー率top-5 : 17.0%, top-1 : 37.5%を記録し、ILSVRC-2012にて優勝したCNNモデルの論文。

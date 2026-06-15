@@ -5,7 +5,6 @@ title: Deep Residual Learning for Image Recognition
 category: サーベイ
 tags: CV
 ---
-* 表題 ： Deep Residual Rearning for Image Recognition.
 * 著者 ： Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
 * 出典 ： CVPR 2016
 * 一行要約 ： CNNに残差学習を取り入れる事で勾配消失(Degradation)の問題に対処でき、ILSVRCのテストセットにてエラー率top-5 : 3.57%を記録し、ILSVRC-2015にて優勝したCNNモデルの論文。
@@ -39,7 +38,9 @@ tags: CV
 
 * ショートカットコネクションにより恒等写像の加算を実現し、以下の定式で与えられる。
 
-$$ \mathbf{y} = \mathcal{F} ( \mathbf{x}, {W_{i}} ) + \mathbf{x} $$
+$$
+\mathbf{y} = \mathcal{F} ( \mathbf{x}, {W_{i}} ) + \mathbf{x}
+$$
 
 * ここで $ \mathbf{y}, \mathbf{x} $ はそれぞれ出力、入力ベクトルを示す。
 * $ \mathcal{F} ( \mathbf{x}, {W_{i}} ) $ は学習対象の写像であり、上記の図のような2つのレイヤの場合は、 $ \mathcal{F} = W_{2} \sigma ( W_{1}\mathbf{x} ) $ となる。
@@ -47,7 +48,9 @@ $$ \mathbf{y} = \mathcal{F} ( \mathbf{x}, {W_{i}} ) + \mathbf{x} $$
 
 * 恒等写像を加算する際にベクトルの次元を合わせる必要があるため、もし次元が一致しない場合は以下の定式を学習する。
 
-$$ \mathbf{y} = \mathcal{F} ( \mathbf{x}, {W_{i}} ) + W_{s} \mathbf{x} $$
+$$
+\mathbf{y} = \mathcal{F} ( \mathbf{x}, {W_{i}} ) + W_{s} \mathbf{x}
+$$
 
 * ここで $ W_{s} $ は次元調整に使用されるレイヤの重みである。(よくlinear proction とも呼ばれる)
 
