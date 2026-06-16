@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Terminal from "../components/Terminal.astro";
 import GadgetCard from "../components/GadgetCard.astro";
+import IsometricRoom from "../components/IsometricRoom.astro";
 ---
 
 <Layout title="about me">
@@ -179,82 +180,8 @@ import GadgetCard from "../components/GadgetCard.astro";
           </svg>
           愛用機材・ガジェット
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Camera Card -->
-          <GadgetCard
-            title="カメラ & レンズ"
-            description="野鳥撮影などに活躍する相棒たちです。"
-            images={[
-              "https://lh3.googleusercontent.com/pw/AP1GczOY1hO-HtTuj1ALZpYfQ1xYDy_0V3ACrMfZ0eKM0f_RjSFMB5x0qYjjfUf_pq52n_L-o83hHqfzXSWruKYN-ITxDTkAXPHwqrUeHpDreNwFdJbhlJr-6TLMS04kslCCEucVzWYtJA8OEEDzZ4hUSOxYgw=w1260-h945-s-no-gm?authuser=0",
-            ]}
-          >
-            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-              <li>
-                <span class="font-semibold text-gray-900 dark:text-gray-100"
-                  >ボディ:</span
-                > Nikon D3200 → Nikon Z5 → Canon EOS R6 Mark3
-              </li>
-              <li>
-                <span class="font-semibold text-gray-900 dark:text-gray-100"
-                  >レンズ:</span
-                >
-                <ul
-                  class="ml-4 mt-1.5 space-y-1.5 list-disc list-inside text-gray-500 dark:text-gray-400"
-                >
-                  <li>RF 35mm F1.8 MACRO IS STM</li>
-                  <li>RF 45mm F1.2 STM</li>
-                  <li>RF 70-200mm F2.8 L IS USM</li>
-                  <li>RF 100-500mm F4.5-7.1 L IS USM</li>
-                </ul>
-              </li>
-            </ul>
-          </GadgetCard>
 
-          <!-- PC Card -->
-          <GadgetCard
-            title="PC & デスク周り"
-            description="開発とゲームを快適にするための環境です。"
-            images={[
-              "https://lh3.googleusercontent.com/pw/AP1GczOP4TVs_MsmcRG-WiymzfoWeqPiITSSJAAicJ0XqpATvHUGTC_p46oUshRIctH6q8V4V1BinAE2b9iF5LsxzU8AVJX2KYE9TRUJ3Sq61Bh7Z-3xCq4KEgfInfnQVP_TVm9sd4OYEYXu7Ltq-hMKeU-kSQ=w1418-h945-s-no-gm?authuser=0",
-              "https://lh3.googleusercontent.com/pw/AP1GczOLwbL6Z8gnmNaKh6k0VTJqOX5148MI_5XPM_zezk_NKF-mpyn5bj84D5G5CKAqST05cTZv0pl4diBEUztifPqKEjKyxQG0wnWCp2srOlTS2yQYW85EPTgExtQwMuoZJIzjylUu0VuZcF_8p0WpXVrqPQ=w1260-h945-s-no-gm?authuser=0",
-            ]}
-          >
-            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-              <li>
-                <span class="font-semibold text-gray-900 dark:text-gray-100"
-                  >PC:</span
-                > 自作PC (Core i7 / RTX 3080)
-              </li>
-              <li>
-                <span class="font-semibold text-gray-900 dark:text-gray-100"
-                  >キーボード:</span
-                > HHKB
-              </li>
-            </ul>
-          </GadgetCard>
-
-          <!-- Audio Card -->
-          <GadgetCard
-            title="オーディオ"
-            description="音楽をいい音で聴くための環境です。"
-            images={[
-              "https://lh3.googleusercontent.com/pw/AP1GczNkLXXtI_QKYhCZvinNVroo_IfKATFeNulZA72kJL6P0oaCgwMPO56ApUvoIlGYpr88hU-fzYq3ThJM6STK4I6I1uR53oxqZBAQb-yVB0LTL94EWA9VqIoxuTzO7XCq8iFuISscKPi214OasWzn4S4oIw=w1260-h945-s-no-gm?authuser=0",
-            ]}
-          >
-            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-              <li>
-                <span class="font-semibold text-gray-900 dark:text-gray-100"
-                  >プリメインアンプ:</span
-                > Marantz STEREO 70s
-              </li>
-              <li>
-                <span class="font-semibold text-gray-900 dark:text-gray-100"
-                  >スピーカー:</span
-                > B&W 607 S3
-              </li>
-            </ul>
-          </GadgetCard>
-        </div>
+        <IsometricRoom />
       </section>
 
       <!-- サイトマップ -->
