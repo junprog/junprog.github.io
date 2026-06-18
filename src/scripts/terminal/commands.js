@@ -29,11 +29,9 @@ export function executeCommand(inputValue) {
         const helpText =
             `Available commands:
   ls          List files and directories in the current path
-  ll          Alias for 'ls -al'
   cd [path]   Change directory (use "cd .." to go up)
   cat [file]  Open/view a file (transitions to the page)
-  clear       Clear terminal history
-  help        Display this help message`;
+  clear       Clear terminal history`;
         addOutputHistory(helpText, false);
         renderHistory();
         clearInput();

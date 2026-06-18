@@ -11,6 +11,11 @@ import IsometricRoom from "../components/IsometricRoom.astro";
   <div class="max-w-4xl mx-auto pb-12">
     <!-- Header Section -->
     <div class="prose prose-slate dark:prose-invert max-w-none mb-10">
+      <h1
+        class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 tracking-tight"
+      >
+        About me
+      </h1>
       <p class="text-lg text-gray-600 dark:text-gray-400">
         こんにちは、<code>junprog</code>です。<br /><br />
         本ブログでは、日常であったこと、やってみたいことなど、思ったことをゆるく発信していきます。
@@ -18,7 +23,7 @@ import IsometricRoom from "../components/IsometricRoom.astro";
     </div>
 
     <div class="space-y-16">
-      <!-- 🛠️ スキル・技術スタック -->
+      <!-- 🛠️ スキル -->
       <section>
         <h2
           class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center gap-2"
@@ -35,11 +40,11 @@ import IsometricRoom from "../components/IsometricRoom.astro";
               stroke-width="2"
               d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
           </svg>
-          スキル・技術スタック
+          スキル
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div
-            class="flex items-start gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm"
+            class="flex items-start gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl"
           >
             <div
               class="p-3 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-lg"
@@ -67,7 +72,7 @@ import IsometricRoom from "../components/IsometricRoom.astro";
             </div>
           </div>
           <div
-            class="flex items-start gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm"
+            class="flex items-start gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl"
           >
             <div
               class="p-3 bg-pink-50 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-lg"
@@ -116,13 +121,14 @@ import IsometricRoom from "../components/IsometricRoom.astro";
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
             ></path>
           </svg>
-          最近ハマっていること
+          趣味
         </h2>
         <div
-          class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm"
+          class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-200 dark:border-gray-700"
         >
           <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-            多趣味な性格です。小さい頃からサイクリングや絵描き、楽器など色々触れては飽きを繰り返しています。
+            多趣味な性格です。小さい頃からサイクリングや絵描き、楽器など、色々触れては飽きを繰り返しています。<br
+            />
             現在は、以下の趣味に夢中になってます。
           </p>
           <div class="flex flex-wrap gap-3">
@@ -178,7 +184,7 @@ import IsometricRoom from "../components/IsometricRoom.astro";
               stroke-width="2"
               d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
           </svg>
-          愛用機材・ガジェット
+          愛用ガジェット
         </h2>
 
         <IsometricRoom />

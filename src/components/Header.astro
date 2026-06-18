@@ -23,7 +23,7 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 					<img
 						src={siteAvatar}
 						alt="avatar"
-						class="rounded-xl object-cover w-full h-full shadow-sm"
+						class="rounded-xl object-cover w-full h-full"
 					/>
 				</a>
 
@@ -66,7 +66,7 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 					class="text-gray-800 dark:text-gray-200 hover:text-blue-500 transition-colors focus:outline-none ml-1 sm:ml-2"
 					aria-label="Toggle dark mode"
 				>
-					<i class="fas fa-adjust fa-lg"></i>
+					<i class="fas fa-adjust"></i>
 				</button>
 			</nav>
 		</header>
@@ -79,14 +79,16 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 		</div>
 	</div>
 
-	<!-- ターミナル表示用トグルボタン -->
 	<button
 		id="terminal-toggle-btn"
 		class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-500 hover:text-blue-500 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer transition-all duration-300 z-50 focus:outline-none"
 		aria-label="Toggle Terminal"
 	>
-		<div id="terminal-toggle-icon" class="transition-transform duration-300 transform rotate-180 flex items-center justify-center w-full h-full">
-			<i class="fas fa-chevron-down text-sm"></i>
+		<div
+			id="terminal-toggle-icon"
+			class="transition-transform duration-300 transform flex items-center justify-center w-full h-full"
+		>
+			<i class="fas fa-chevron-up text-sm"></i>
 		</div>
 	</button>
 </div>
@@ -167,10 +169,12 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 			terminalContainer.classList.add("max-h-0", "opacity-0");
 			terminalContainer.style.transform = "scaleY(0)";
 		}
-		
-		const terminalToggleIcon = document.getElementById("terminal-toggle-icon");
+
+		const terminalToggleIcon = document.getElementById(
+			"terminal-toggle-icon",
+		);
 		if (terminalToggleIcon) {
-			terminalToggleIcon.style.transform = "rotate(0deg)";
+			terminalToggleIcon.style.transform = "rotate(180deg)";
 		}
 	}
 
@@ -208,9 +212,11 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 			terminalContainer.style.transform = "scaleY(1)";
 		}
 
-		const terminalToggleIcon = document.getElementById("terminal-toggle-icon");
+		const terminalToggleIcon = document.getElementById(
+			"terminal-toggle-icon",
+		);
 		if (terminalToggleIcon) {
-			terminalToggleIcon.style.transform = "rotate(180deg)";
+			terminalToggleIcon.style.transform = "rotate(0deg)";
 		}
 	}
 
@@ -224,6 +230,7 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 			headerTitle,
 			headerDesc,
 			terminalContainer,
+			document.getElementById("terminal-toggle-icon"),
 		];
 
 		elementsWithTransition.forEach((el) => {
