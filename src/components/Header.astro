@@ -6,18 +6,18 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 
 <div
 	id="site-header"
-	class="sticky top-0 z-50 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 mb-6 transition-all duration-300 relative"
+	class="group/header sticky top-0 z-50 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 mb-6 transition-all duration-300 relative"
 	style="overflow-anchor: none;"
 >
 	<div class="max-w-4xl mx-auto px-4">
 		<header
 			id="header-content"
-			class="py-6 flex flex-row items-center justify-between transition-all duration-300"
+			class="py-6 group-data-[terminal-hidden=true]/header:py-3 flex flex-row items-center justify-between transition-all duration-300"
 		>
 			<div class="flex items-center">
 				<a
 					href="/"
-					class="w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] mr-3 sm:mr-4 flex-shrink-0 block transition-all duration-300"
+					class="w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] group-data-[terminal-hidden=true]/header:w-[32px] group-data-[terminal-hidden=true]/header:h-[32px] group-data-[terminal-hidden=true]/header:sm:w-[40px] group-data-[terminal-hidden=true]/header:sm:h-[40px] mr-3 sm:mr-4 flex-shrink-0 block transition-all duration-300"
 					id="header-avatar"
 				>
 					<img
@@ -29,7 +29,7 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 
 				<div class="flex flex-col justify-center">
 					<h1
-						class="text-xl sm:text-[28px] font-light tracking-wide m-0 leading-tight transition-all duration-300"
+						class="text-xl sm:text-[28px] group-data-[terminal-hidden=true]/header:sm:text-xl font-light tracking-wide m-0 leading-tight transition-all duration-300"
 						id="header-title"
 					>
 						<a
@@ -39,7 +39,7 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 						>
 					</h1>
 					<p
-						class="text-gray-500 dark:text-gray-400 m-0 text-sm sm:text-base mt-1 transition-all duration-300 overflow-hidden hidden sm:block"
+						class="text-gray-500 dark:text-gray-400 m-0 text-sm sm:text-base mt-1 group-data-[terminal-hidden=true]/header:mt-0 max-h-10 group-data-[terminal-hidden=true]/header:max-h-0 opacity-100 group-data-[terminal-hidden=true]/header:opacity-0 transition-all duration-300 overflow-hidden hidden sm:block"
 						id="header-desc"
 					>
 						{siteDescription}
@@ -73,7 +73,7 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 		<!-- 疑似ターミナルUI -->
 		<div
 			id="terminal-container"
-			class="transition-all duration-500 ease-in-out overflow-hidden transform origin-top opacity-100 max-h-[500px]"
+			class="transition-all duration-500 ease-in-out overflow-hidden transform origin-top opacity-100 group-data-[terminal-hidden=true]/header:opacity-0 max-h-[500px] group-data-[terminal-hidden=true]/header:max-h-0 scale-y-100 group-data-[terminal-hidden=true]/header:scale-y-0"
 		>
 			<slot name="terminal" />
 		</div>
@@ -86,7 +86,7 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 	>
 		<div
 			id="terminal-toggle-icon"
-			class="transition-transform duration-300 transform flex items-center justify-center w-full h-full"
+			class="transition-transform duration-300 transform group-data-[terminal-hidden=true]/header:rotate-180 flex items-center justify-center w-full h-full"
 		>
 			<i class="fas fa-chevron-up text-sm"></i>
 		</div>
@@ -141,41 +141,7 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 		isTerminalVisible = false;
 		sessionStorage.setItem("terminal_visibility", "hidden");
 		setIgnoreScroll();
-
-		headerContent.classList.remove("py-6");
-		headerContent.classList.add("py-3");
-
-		headerAvatar.classList.remove(
-			"sm:w-[70px]",
-			"sm:h-[70px]",
-			"w-[50px]",
-			"h-[50px]",
-		);
-		headerAvatar.classList.add(
-			"w-[32px]",
-			"h-[32px]",
-			"sm:w-[40px]",
-			"sm:h-[40px]",
-		);
-
-		headerTitle.classList.remove("sm:text-[28px]");
-		headerTitle.classList.add("sm:text-xl");
-
-		headerDesc.classList.remove("max-h-10", "opacity-100", "mt-1");
-		headerDesc.classList.add("max-h-0", "opacity-0", "mt-0");
-
-		if (terminalContainer) {
-			terminalContainer.classList.remove("max-h-[500px]", "opacity-100");
-			terminalContainer.classList.add("max-h-0", "opacity-0");
-			terminalContainer.style.transform = "scaleY(0)";
-		}
-
-		const terminalToggleIcon = document.getElementById(
-			"terminal-toggle-icon",
-		);
-		if (terminalToggleIcon) {
-			terminalToggleIcon.style.transform = "rotate(180deg)";
-		}
+		siteHeader.dataset.terminalHidden = "true";
 	}
 
 	function showTerminal() {
@@ -183,41 +149,7 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 		isTerminalVisible = true;
 		sessionStorage.setItem("terminal_visibility", "visible");
 		setIgnoreScroll();
-
-		headerContent.classList.add("py-6");
-		headerContent.classList.remove("py-3");
-
-		headerAvatar.classList.add(
-			"sm:w-[70px]",
-			"sm:h-[70px]",
-			"w-[50px]",
-			"h-[50px]",
-		);
-		headerAvatar.classList.remove(
-			"w-[32px]",
-			"h-[32px]",
-			"sm:w-[40px]",
-			"sm:h-[40px]",
-		);
-
-		headerTitle.classList.add("sm:text-[28px]");
-		headerTitle.classList.remove("sm:text-xl");
-
-		headerDesc.classList.add("max-h-10", "opacity-100", "mt-1");
-		headerDesc.classList.remove("max-h-0", "opacity-0", "mt-0");
-
-		if (terminalContainer) {
-			terminalContainer.classList.add("max-h-[500px]", "opacity-100");
-			terminalContainer.classList.remove("max-h-0", "opacity-0");
-			terminalContainer.style.transform = "scaleY(1)";
-		}
-
-		const terminalToggleIcon = document.getElementById(
-			"terminal-toggle-icon",
-		);
-		if (terminalToggleIcon) {
-			terminalToggleIcon.style.transform = "rotate(0deg)";
-		}
+		delete siteHeader.dataset.terminalHidden;
 	}
 
 	// ページ読み込み時に状態を復元（アニメーションなしで即時反映）

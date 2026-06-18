@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import Terminal from "../components/Terminal.astro";
+import TaxonomyLinks from "../components/TaxonomyLinks.astro";
 import { sortPostsDesc, getPostUrl, CATEGORY_MAP } from "../utils/post";
 
 const posts = await getCollection("posts");
@@ -54,16 +55,5 @@ const CATEGORY_ICON: Record<string, string> = {
     })
   }
 
-  <div class="text-center mt-8 mb-4">
-    <a
-      href="/categories"
-      class="mx-4 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium"
-      >カテゴリ一覧</a
-    >
-    <a
-      href="/tags"
-      class="mx-4 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors font-medium"
-      >タグ一覧</a
-    >
-  </div>
+  <TaxonomyLinks />
 </Layout>

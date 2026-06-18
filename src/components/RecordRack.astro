@@ -1,0 +1,257 @@
+---
+import records from "../data/records.json";
+---
+
+<div class="record-rack-scope w-full relative my-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700 py-6 overflow-hidden">
+  
+  <!-- Desktop Navigation Buttons -->
+  <button class="rack-scroll-left absolute left-2 top-1/2 -translate-y-1/2 z-40 hidden sm:flex items-center justify-center w-12 h-12 bg-white/50 dark:bg-[#15181e]/70 backdrop-blur-md rounded-full shadow-[0_4px_15px_rgba(0,0,0,0.1)] border border-gray-200/50 dark:border-gray-700/50 text-gray-700 dark:text-gray-300 hover:bg-white/90 dark:hover:bg-[#1f232b]/90 hover:scale-110 transition-all pointer-events-auto cursor-pointer" aria-label="Scroll Left">
+    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+  </button>
+
+  <button class="rack-scroll-right absolute right-2 top-1/2 -translate-y-1/2 z-40 hidden sm:flex items-center justify-center w-12 h-12 bg-white/50 dark:bg-[#15181e]/70 backdrop-blur-md rounded-full shadow-[0_4px_15px_rgba(0,0,0,0.1)] border border-gray-200/50 dark:border-gray-700/50 text-gray-700 dark:text-gray-300 hover:bg-white/90 dark:hover:bg-[#1f232b]/90 hover:scale-110 transition-all pointer-events-auto cursor-pointer" aria-label="Scroll Right">
+    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+  </button>
+
+  <!-- Museum-style Collection Plaque -->
+  <div class="absolute top-4 left-4 sm:top-6 sm:left-8 z-30 pointer-events-none">
+    <div class="relative px-2 py-2 sm:px-3 sm:py-2.5 bg-white/70 dark:bg-[#15181e]/70 backdrop-blur-md border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-gray-200 dark:border-gray-700 shadow-inner">
+          <svg class="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-[0.55rem] sm:text-[0.6rem] tracking-[0.25em] text-gray-500 dark:text-gray-400 uppercase leading-tight">マイレコードラック</div>
+          <div class="text-xs sm:text-sm tracking-widest text-gray-800 dark:text-gray-200 uppercase mt-0.5 leading-none">{records.length} Records</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative w-full">
+    <!-- Continuous Sleek Shelf -->
+    <div class="absolute bottom-[4.5rem] left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent z-0"></div>
+    <div class="absolute bottom-[4.25rem] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 dark:via-gray-800 to-transparent z-0 blur-[1px]"></div>
+
+    <!-- Scrolling Records Container -->
+    <div class="rack-scroll-container w-full overflow-x-auto pb-24 pt-16 px-[10vw] sm:px-[15vw] flex gap-2 sm:gap-4 snap-x snap-mandatory scrollbar-hide relative z-10" style="scrollbar-width: none; -ms-overflow-style: none; -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 5%, black 15%, black 85%, transparent 95%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, transparent 5%, black 15%, black 85%, transparent 95%, transparent 100%);">
+      
+      <!-- Crate Digger Container (Isometric Parallelogram style) -->
+      <div class="rack-container flex gap-0 pt-8">
+
+        {records.map((record) => (
+          <div class="record-wrapper flex-shrink-0 flex flex-col items-start justify-end snap-start w-12 sm:w-[4.5rem] cursor-pointer first:ml-16 sm:first:ml-32">
+            <div class="relative mb-[2px] w-full">
+              
+              <!-- Record Jacket (Parallelogram Skew) -->
+              <div class="record-jacket relative w-48 h-48 sm:w-64 sm:h-64 origin-left">
+                
+                <!-- Drop shadow -->
+                <div class="record-shadow absolute inset-0 bg-black/50 blur-md rounded-sm -z-10"></div>
+
+                <!-- Vinyl Record (peeking out on hover) -->
+                <div class="record-vinyl absolute top-1/2 -translate-y-1/2 right-0 w-full h-full rounded-full bg-black shadow-inner z-0 border border-gray-800 flex items-center justify-center overflow-hidden">
+                  <div class="w-[98%] h-[98%] rounded-full border border-gray-800/50"></div>
+                  <div class="absolute w-[95%] h-[95%] rounded-full border border-gray-700/30"></div>
+                  <div class="absolute w-[90%] h-[90%] rounded-full border border-gray-800/50"></div>
+                  <div class="absolute w-[80%] h-[80%] rounded-full border border-gray-700/30"></div>
+                  <div class="absolute w-[70%] h-[70%] rounded-full border border-gray-800/40"></div>
+                  <div class="absolute w-[60%] h-[60%] rounded-full border border-gray-700/20"></div>
+                  <div class="absolute w-[50%] h-[50%] rounded-full border border-gray-800/50"></div>
+                  <!-- Center label -->
+                  <div class="absolute w-1/3 h-1/3 bg-[#e63946] rounded-full border border-gray-900 flex items-center justify-center shadow-inner">
+                      <div class="w-2 h-2 bg-gray-200 rounded-full shadow-inner border border-gray-400"></div>
+                      <div class="absolute inset-[6px] border-[0.5px] border-black/20 rounded-full border-dashed"></div>
+                  </div>
+                  <!-- Vinyl reflection -->
+                  <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent transform rotate-45 pointer-events-none"></div>
+                </div>
+
+                <!-- Front Cover -->
+                <div class="absolute inset-0 rounded-sm overflow-hidden border-[0.5px] border-black/20 dark:border-white/10 shadow-xl bg-gray-200 dark:bg-gray-800 z-10">
+                  <!-- Soft highlight for realistic print effect -->
+                  <div class="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none z-30"></div>
+                  <!-- Simulated Spine Overlay -->
+                  <div class="absolute left-0 top-0 bottom-0 w-4 bg-white/20 dark:bg-black/20 mix-blend-overlay z-20 border-r border-black/10 flex items-center justify-center">
+                    <span class="text-[0.45rem] sm:text-[0.55rem] font-bold text-black/70 dark:text-white/70 tracking-widest whitespace-nowrap rotate-90 pointer-events-none w-48 sm:w-64 text-center">{record.artistName} - {record.albumTitle}</span>
+                  </div>
+                  <img src={record.jacketUrl} alt={`${record.albumTitle} by ${record.artistName}`} class="w-full h-full object-cover" loading="lazy" />
+                  <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/30 mix-blend-overlay pointer-events-none"></div>
+                </div>
+              </div>
+
+              <!-- Hover Info Text (Glassmorphism) -->
+              <div class="record-info absolute -bottom-16 left-0 w-48 sm:w-64 opacity-0 pointer-events-none text-left z-50 transform -translate-x-2">
+                <div class="bg-white/70 dark:bg-[#0f1115]/70 backdrop-blur-md border border-gray-200/50 dark:border-[#00e5ff]/20 rounded-xl p-3 shadow-[0_8px_25px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_25px_rgba(0,229,255,0.1)]">
+                  <h3 class="text-sm font-bold text-gray-900 dark:text-gray-100 tracking-tight truncate" title={record.albumTitle}>{record.albumTitle}</h3>
+                  <p class="text-[0.65rem] text-gray-600 dark:text-gray-400 mt-1 font-medium tracking-wide uppercase truncate" title={record.artistName}>{record.artistName}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+        
+        <!-- "And more..." indicator -->
+        <div class="rack-pushable flex-shrink-0 flex items-end justify-start w-32 sm:w-48 ml-4 sm:ml-8 pb-8 pointer-events-none opacity-40 select-none snap-start">
+          <span class="text-[0.65rem] sm:text-xs font-bold tracking-[0.3em] text-gray-600 dark:text-gray-400 uppercase italic whitespace-nowrap">
+            And more...
+          </span>
+        </div>
+      </div>
+      
+      <!-- Spacer to ensure scrollability past the rightmost opened record -->
+      <div class="flex-shrink-0 w-12 sm:w-24 h-1 pointer-events-none"></div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* Use a specific scope to avoid affecting other elements */
+  .record-rack-scope {
+    position: relative;
+  }
+
+  /* Base Transitions */
+  .record-rack-scope .record-wrapper,
+  .record-rack-scope .rack-pushable {
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 10;
+  }
+  .record-rack-scope .record-jacket {
+    /* Isometric-like Parallelogram Skew */
+    transform: skewY(-15deg) scaleX(0.3);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .record-rack-scope .record-shadow {
+    /* Shadow inherits parent's skew/scale, so we only need to translate it */
+    transform: translateY(16px) translateX(24px);
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .record-rack-scope .record-vinyl {
+    transform: translateX(0);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .record-rack-scope .record-info {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /* Hover Logic using :has and ~ */
+  
+  /* 1. The hovered item */
+  .record-rack-scope .record-wrapper:hover {
+    z-index: 50;
+    transform: translateY(-8px) scale(1.05);
+  }
+  
+  .record-rack-scope .record-wrapper:hover .record-jacket {
+    /* Swing open to flat square */
+    transform: skewY(0deg) scaleX(1);
+  }
+  .record-rack-scope .record-wrapper:hover .record-shadow {
+    background-color: rgba(0,0,0,0.3);
+    /* Again, only translate/scale relative to the unskewed parent */
+    transform: translateY(24px) translateX(0) scale(1.05);
+    filter: blur(24px);
+  }
+  .record-rack-scope .record-wrapper:hover .record-vinyl {
+    transform: translateX(64px);
+  }
+  .record-rack-scope .record-wrapper:hover .record-info {
+    opacity: 1;
+    transition-delay: 0.1s;
+    transform: none;
+  }
+
+  /* 2. Items AFTER the hovered item */
+  .record-rack-scope .record-wrapper:hover ~ .record-wrapper,
+  .record-rack-scope .record-wrapper:hover ~ .rack-pushable {
+    /* Mobile push: exact distance to overlap expanded 192px jacket */
+    transform: translateX(140px);
+  }
+
+  @media (min-width: 640px) {
+    .record-rack-scope .record-wrapper:hover ~ .record-wrapper,
+    .record-rack-scope .record-wrapper:hover ~ .rack-pushable {
+      /* Desktop push: exact distance to overlap expanded 256px jacket */
+      transform: translateX(180px);
+    }
+  }
+
+  /* Scrollbar hiding */
+  .record-rack-scope .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  function setupRecordCooldowns() {
+    const wrappers = document.querySelectorAll('.record-rack-scope .record-wrapper');
+    wrappers.forEach(wrapper => {
+      // Prevent multiple listener attachments
+      if (wrapper.dataset.cooldownSetup) return;
+      wrapper.dataset.cooldownSetup = 'true';
+      
+      wrapper.addEventListener('mouseleave', () => {
+        // Temporarily disable pointer events to prevent rapid re-hover jitter
+        wrapper.style.pointerEvents = 'none';
+        
+        setTimeout(() => {
+          // Restore pointer events after cooldown
+          wrapper.style.pointerEvents = '';
+        }, 200); // 200ms cooldown
+      });
+    });
+  }
+
+  function setupRackScroll() {
+    const scrollContainers = document.querySelectorAll('.rack-scroll-container');
+    const leftBtns = document.querySelectorAll('.rack-scroll-left');
+    const rightBtns = document.querySelectorAll('.rack-scroll-right');
+
+    scrollContainers.forEach((container, index) => {
+      if (container.dataset.scrollSetup === 'true') return;
+      container.dataset.scrollSetup = 'true';
+
+      const leftBtn = leftBtns[index];
+      const rightBtn = rightBtns[index];
+      const scrollAmount = 200; // Scroll distance per click in pixels
+      
+      if (leftBtn && rightBtn) {
+        leftBtn.addEventListener('click', () => {
+          container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        
+        rightBtn.addEventListener('click', () => {
+          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+      }
+
+      // Intercept vertical mouse wheel for horizontal scrolling
+      container.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          const isAtLeft = container.scrollLeft <= 0;
+          const isAtRight = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
+          
+          if (e.deltaY < 0 && isAtLeft) return;
+          if (e.deltaY > 0 && isAtRight) return;
+          
+          e.preventDefault();
+          // Use smooth behavior to interpolate discrete mouse wheel ticks
+          container.scrollBy({ left: e.deltaY * 2.0, behavior: 'smooth' });
+        }
+      }, { passive: false });
+    });
+  }
+
+  // Run on initial load
+  setupRecordCooldowns();
+  setupRackScroll();
+  
+  // Run on Astro view transitions (if used in the project)
+  document.addEventListener('astro:page-load', () => {
+    setupRecordCooldowns();
+    setupRackScroll();
+  });
+</script>
