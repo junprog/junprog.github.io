@@ -1,115 +1,6 @@
 ---
 // IsometricRoom.astro
-const items = [
-  {
-    id: "eos-r6",
-    title: "EOS R6 Mark III",
-    x1: 70,
-    y1: 22,
-    x2: 74,
-    y2: 10,
-    link: "/posts/blog/my-gadget4",
-  },
-  {
-    id: "rf35",
-    title: "RF35mm F1.8 MACRO IS STM",
-    x1: 76,
-    y1: 28,
-    x2: 90,
-    y2: 20,
-    link: "/posts/blog/my-gadget5",
-  },
-  {
-    id: "rf45",
-    title: "RF45mm F1.2 STM",
-    x1: 80,
-    y1: 31,
-    x2: 96,
-    y2: 30,
-    link: "/posts/blog/my-gadget6",
-  },
-  {
-    id: "rf70-200",
-    title: "RF70-200mm F2.8 L IS USM",
-    x1: 68,
-    y1: 31,
-    x2: 100,
-    y2: 40,
-    link: "/posts/blog/my-gadget4",
-  },
-  {
-    id: "rf100-500",
-    title: "RF100-500mm F4.5-7.1 L IS USM",
-    x1: 78,
-    y1: 38,
-    x2: 100,
-    y2: 50,
-    link: "/posts/blog/my-gadget7",
-  },
-  {
-    id: "marantz-amp",
-    title: "Marantz STEREO 70s",
-    x1: 70,
-    y1: 55,
-    x2: 72,
-    y2: 90,
-    link: "/posts/blog/my-gadget3",
-  },
-  {
-    id: "bw-speaker",
-    title: "B&W 607 S3",
-    x1: 78,
-    y1: 60,
-    x2: 94,
-    y2: 70,
-    link: "/posts/blog/my-gadget3",
-  },
-  {
-    id: "record-rack-link",
-    title: "レコードラック⬇",
-    x1: 77,
-    y1: 68,
-    x2: 84,
-    y2: 82,
-    link: "#record-rack-root",
-  },
-  {
-    id: "dual-monitor",
-    title: "デスク周り",
-    x1: 36,
-    y1: 40,
-    x2: 6,
-    y2: 25,
-    link: null,
-  },
-  {
-    id: "keyboard",
-    title: "HHKB",
-    x1: 44,
-    y1: 48,
-    x2: 6,
-    y2: 50,
-    link: null,
-  },
-  {
-    id: "self-built-pc",
-    title: "自作PC",
-    x1: 34,
-    y1: 66,
-    x2: 6,
-    y2: 70,
-    link: null,
-  },
-  {
-    id: "chair",
-    title: "セイルチェア",
-    x1: 55,
-    y1: 65,
-    x2: 24,
-    y2: 90,
-    link: null,
-  },
-];
+import items from "../data/room-items.json";
 
 const imageUrl =
   "https://lh3.googleusercontent.com/pw/AP1GczNI9tHd5zdEvDZe3WjMAK15jD7V2QG6TWup7VS_q-12IgqlZePDxP9WIv3V8gTkIapq1SuSUwucdoBkugURBU4sQU2S3iwm2aEWkw3THWhi4TxU1Tf8yko7nwhb_3hVQdkX7S5GXCqy6jCV3f_l69Kc9A=w1195-h896-s-no-gm?authuser=0";
@@ -203,6 +94,8 @@ const darkImageUrl =
     overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    padding-left: 64px;
+    padding-right: 64px;
   }
 
   .isometric-container {
@@ -220,6 +113,7 @@ const darkImageUrl =
     height: auto;
     opacity: 0.9;
     transition: opacity 0.5s;
+    margin: 0 !important;
   }
 
   .light-img {
@@ -456,7 +350,7 @@ const darkImageUrl =
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       -ms-overflow-style: none;
-      padding: 0px 40px;
+      padding: 0px 64px;
       box-sizing: border-box;
     }
     .isometric-scroll-wrapper::-webkit-scrollbar {
@@ -469,6 +363,12 @@ const darkImageUrl =
     .label-pos-wrapper {
       left: var(--x);
       top: var(--y);
+    }
+    /* Disable float animations on mobile to prevent layout calculations */
+    .float-anim-0,
+    .float-anim-1,
+    .float-anim-2 {
+      animation: none !important;
     }
   }
 
@@ -502,6 +402,12 @@ const darkImageUrl =
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       });
+    }
+
+    // Skip the layout-thrashing frame loop on mobile viewports since animations are disabled
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) {
+      return () => {};
     }
 
     let isUpdating = false;
@@ -561,7 +467,7 @@ const darkImageUrl =
           }
         });
       },
-      { threshold: 0.05 }
+      { threshold: 0.05 },
     );
 
     observer.observe(container);

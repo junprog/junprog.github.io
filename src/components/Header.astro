@@ -99,10 +99,14 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 	if (toggleBtn) {
 		toggleBtn.addEventListener("click", () => {
 			const toggleTheme = () => {
-				const isDark = document.documentElement.classList.contains("dark");
+				const isDark =
+					document.documentElement.classList.contains("dark");
 				if (isDark) {
 					document.documentElement.classList.remove("dark");
-					document.documentElement.setAttribute("data-theme", "light");
+					document.documentElement.setAttribute(
+						"data-theme",
+						"light",
+					);
 					localStorage.setItem("theme", "light");
 				} else {
 					document.documentElement.classList.add("dark");
@@ -115,13 +119,19 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 				toggleTheme();
 			} else {
 				// 既存のCSSトランジションと干渉しないよう一時的にbodyのクラスを制御
-				document.body.classList.remove('transition-colors', 'duration-300');
+				document.body.classList.remove(
+					"transition-colors",
+					"duration-300",
+				);
 				document.startViewTransition(() => {
 					toggleTheme();
 				});
 				// トランジションが完了したら元に戻す
 				setTimeout(() => {
-					document.body.classList.add('transition-colors', 'duration-300');
+					document.body.classList.add(
+						"transition-colors",
+						"duration-300",
+					);
 				}, 500);
 			}
 		});
