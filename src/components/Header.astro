@@ -63,7 +63,7 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 				>
 				<button
 					id="theme-toggle"
-					class="text-gray-800 dark:text-gray-200 hover:text-blue-500 transition-colors focus:outline-none ml-1 sm:ml-2"
+					class="text-gray-800 dark:text-gray-200 hover:text-blue-500 transition-colors focus:outline-none ml-1 sm:ml-2 cursor-pointer"
 					aria-label="Toggle dark mode"
 				>
 					<i class="fas fa-adjust"></i>
@@ -98,15 +98,31 @@ const siteAvatar = "https://avatars.githubusercontent.com/u/39183997?v=4";
 	const toggleBtn = document.getElementById("theme-toggle");
 	if (toggleBtn) {
 		toggleBtn.addEventListener("click", () => {
-			const isDark = document.documentElement.classList.contains("dark");
-			if (isDark) {
-				document.documentElement.classList.remove("dark");
-				document.documentElement.setAttribute("data-theme", "light");
-				localStorage.setItem("theme", "light");
+			const toggleTheme = () => {
+				const isDark = document.documentElement.classList.contains("dark");
+				if (isDark) {
+					document.documentElement.classList.remove("dark");
+					document.documentElement.setAttribute("data-theme", "light");
+					localStorage.setItem("theme", "light");
+				} else {
+					document.documentElement.classList.add("dark");
+					document.documentElement.setAttribute("data-theme", "dark");
+					localStorage.setItem("theme", "dark");
+				}
+			};
+
+			if (!document.startViewTransition) {
+				toggleTheme();
 			} else {
-				document.documentElement.classList.add("dark");
-				document.documentElement.setAttribute("data-theme", "dark");
-				localStorage.setItem("theme", "dark");
+				// 既存のCSSトランジションと干渉しないよう一時的にbodyのクラスを制御
+				document.body.classList.remove('transition-colors', 'duration-300');
+				document.startViewTransition(() => {
+					toggleTheme();
+				});
+				// トランジションが完了したら元に戻す
+				setTimeout(() => {
+					document.body.classList.add('transition-colors', 'duration-300');
+				}, 500);
 			}
 		});
 	}

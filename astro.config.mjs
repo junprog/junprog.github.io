@@ -10,6 +10,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://junprog.github.io',
   integrations: [mdx(), sitemap()],
+  prefetch: true,
 
   markdown: {
     remarkPlugins: [remarkMath],

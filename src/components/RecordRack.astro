@@ -2,7 +2,7 @@
 import records from "../data/records.json";
 ---
 
-<div class="record-rack-scope w-full relative my-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700 py-6 overflow-hidden">
+<div id="record-rack-root" class="record-rack-scope w-full relative my-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl py-4 sm:py-6 overflow-hidden scroll-mt-24">
   
   <!-- Desktop Navigation Buttons -->
   <button class="rack-scroll-left absolute left-2 top-1/2 -translate-y-1/2 z-40 hidden sm:flex items-center justify-center w-12 h-12 bg-white/50 dark:bg-[#15181e]/70 backdrop-blur-md rounded-full shadow-[0_4px_15px_rgba(0,0,0,0.1)] border border-gray-200/50 dark:border-gray-700/50 text-gray-700 dark:text-gray-300 hover:bg-white/90 dark:hover:bg-[#1f232b]/90 hover:scale-110 transition-all pointer-events-auto cursor-pointer" aria-label="Scroll Left">
@@ -23,30 +23,38 @@ import records from "../data/records.json";
           </svg>
         </div>
         <div>
-          <div class="text-[0.55rem] sm:text-[0.6rem] tracking-[0.25em] text-gray-500 dark:text-gray-400 uppercase leading-tight">マイレコードラック</div>
-          <div class="text-xs sm:text-sm tracking-widest text-gray-800 dark:text-gray-200 uppercase mt-0.5 leading-none">{records.length} Records</div>
+          <div class="text-[0.55rem] sm:text-[0.6rem] tracking-[0.25em] text-gray-500 dark:text-gray-400 uppercase leading-tight">レコードラック</div>
+          <div class="text-xs sm:text-sm tracking-widest text-gray-800 dark:text-gray-200 mt-0.5 leading-none">{records.length} records</div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Drag Indicator Badge (Desktop Only) -->
+  <div class="absolute top-4 right-4 sm:top-6 sm:right-8 z-30 pointer-events-none hidden md:flex items-center gap-1.5 px-2 py-1 bg-white/30 dark:bg-[#15181e]/30 backdrop-blur-sm border border-gray-200/30 dark:border-gray-800/40 rounded-md shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+    <svg class="w-3 h-3 text-gray-400 dark:text-gray-500 opacity-80 animate-pulse-horizontal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+    </svg>
+    <span class="text-[0.55rem] tracking-[0.15em] font-semibold text-gray-400 dark:text-gray-500 uppercase leading-none">Drag to scroll</span>
+  </div>
+
   <div class="relative w-full">
     <!-- Continuous Sleek Shelf -->
-    <div class="absolute bottom-[4.5rem] left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent z-0"></div>
-    <div class="absolute bottom-[4.25rem] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-400 dark:via-gray-800 to-transparent z-0 blur-[1px]"></div>
+    <div class="absolute bottom-[3.5rem] sm:bottom-[4.5rem] left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent z-0"></div>
+    <div class="absolute bottom-[3.25rem] sm:bottom-[4.25rem] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent z-0 blur-[1px]"></div>
 
     <!-- Scrolling Records Container -->
-    <div class="rack-scroll-container w-full overflow-x-auto pb-24 pt-16 px-[10vw] sm:px-[15vw] flex gap-2 sm:gap-4 snap-x snap-mandatory scrollbar-hide relative z-10" style="scrollbar-width: none; -ms-overflow-style: none; -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 5%, black 15%, black 85%, transparent 95%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, transparent 5%, black 15%, black 85%, transparent 95%, transparent 100%);">
+    <div class="rack-scroll-container w-full overflow-x-auto pb-20 pt-10 sm:pb-24 sm:pt-16 rounded-2xl pl-[calc(50%-118px)] sm:pl-[calc(50%-170px)] scroll-pl-[calc(50%-118px)] sm:scroll-pl-[calc(50%-170px)] flex gap-2 sm:gap-4 snap-x snap-mandatory scrollbar-hide relative z-10 select-none" style="scrollbar-width: none; -ms-overflow-style: none; -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 5%, black 15%, black 85%, transparent 95%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, transparent 5%, black 15%, black 85%, transparent 95%, transparent 100%);">
       
       <!-- Crate Digger Container (Isometric Parallelogram style) -->
       <div class="rack-container flex gap-0 pt-8">
 
         {records.map((record) => (
-          <div class="record-wrapper flex-shrink-0 flex flex-col items-start justify-end snap-start w-12 sm:w-[4.5rem] cursor-pointer first:ml-16 sm:first:ml-32">
-            <div class="relative mb-[2px] w-full">
+          <div class="record-wrapper flex-shrink-0 flex flex-col items-start justify-end snap-start w-12 sm:w-[4.5rem] cursor-grab" tabindex="0">
+            <div class="record-content relative mb-[2px] w-full">
               
               <!-- Record Jacket (Parallelogram Skew) -->
-              <div class="record-jacket relative w-48 h-48 sm:w-64 sm:h-64 origin-left">
+              <div class="record-jacket relative w-40 h-40 sm:w-64 sm:h-64 origin-left">
                 
                 <!-- Drop shadow -->
                 <div class="record-shadow absolute inset-0 bg-black/50 blur-md rounded-sm -z-10"></div>
@@ -75,7 +83,7 @@ import records from "../data/records.json";
                   <div class="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none z-30"></div>
                   <!-- Simulated Spine Overlay -->
                   <div class="absolute left-0 top-0 bottom-0 w-4 bg-white/20 dark:bg-black/20 mix-blend-overlay z-20 border-r border-black/10 flex items-center justify-center">
-                    <span class="text-[0.45rem] sm:text-[0.55rem] font-bold text-black/70 dark:text-white/70 tracking-widest whitespace-nowrap rotate-90 pointer-events-none w-48 sm:w-64 text-center">{record.artistName} - {record.albumTitle}</span>
+                    <span class="text-[0.45rem] sm:text-[0.55rem] font-bold text-black/70 dark:text-white/70 tracking-widest whitespace-nowrap rotate-90 pointer-events-none w-40 sm:w-64 text-center">{record.artistName} - {record.albumTitle}</span>
                   </div>
                   <img src={record.jacketUrl} alt={`${record.albumTitle} by ${record.artistName}`} class="w-full h-full object-cover" loading="lazy" />
                   <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/30 mix-blend-overlay pointer-events-none"></div>
@@ -83,26 +91,37 @@ import records from "../data/records.json";
               </div>
 
               <!-- Hover Info Text (Glassmorphism) -->
-              <div class="record-info absolute -bottom-16 left-0 w-48 sm:w-64 opacity-0 pointer-events-none text-left z-50 transform -translate-x-2">
-                <div class="bg-white/70 dark:bg-[#0f1115]/70 backdrop-blur-md border border-gray-200/50 dark:border-[#00e5ff]/20 rounded-xl p-3 shadow-[0_8px_25px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_25px_rgba(0,229,255,0.1)]">
-                  <h3 class="text-sm font-bold text-gray-900 dark:text-gray-100 tracking-tight truncate" title={record.albumTitle}>{record.albumTitle}</h3>
-                  <p class="text-[0.65rem] text-gray-600 dark:text-gray-400 mt-1 font-medium tracking-wide uppercase truncate" title={record.artistName}>{record.artistName}</p>
+              <div class="record-info absolute -bottom-12 sm:-bottom-18 left-0 w-[214px] sm:w-[310px] flex justify-center opacity-0 pointer-events-none z-50 select-text">
+                <div class="bg-white/70 dark:bg-[#0f1115]/70 backdrop-blur-md border border-gray-200/50 dark:border-[#00e5ff]/20 rounded-xl px-3 py-2 sm:px-4 sm:py-3 shadow-[0_8px_25px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_25px_rgba(0,229,255,0.1)] w-[180px] sm:w-[240px] overflow-hidden">
+                  <div class="w-full overflow-hidden relative" style="-webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);">
+                    <h3 class="marquee-text block w-max min-w-full text-center text-sm font-bold text-gray-900 dark:text-gray-100 tracking-tight whitespace-nowrap" title={record.albumTitle}>{record.albumTitle}</h3>
+                  </div>
+                  <div class="w-full overflow-hidden relative mt-1" style="-webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);">
+                    <p class="marquee-text block w-max min-w-full text-center text-[0.65rem] text-gray-600 dark:text-gray-400 font-medium tracking-wide uppercase whitespace-nowrap" title={record.artistName}>{record.artistName}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         ))}
-        
-        <!-- "And more..." indicator -->
-        <div class="rack-pushable flex-shrink-0 flex items-end justify-start w-32 sm:w-48 ml-4 sm:ml-8 pb-8 pointer-events-none opacity-40 select-none snap-start">
-          <span class="text-[0.65rem] sm:text-xs font-bold tracking-[0.3em] text-gray-600 dark:text-gray-400 uppercase italic whitespace-nowrap">
-            And more...
-          </span>
+
+        <!-- More to Come Placeholder Record -->
+        <div class="more-to-come-wrapper flex-shrink-0 flex flex-col items-start justify-end w-12 sm:w-[4.5rem] pointer-events-none z-[49]">
+          <div class="record-content is-future relative mb-[2px] w-full">
+            <div class="record-jacket relative w-40 h-40 sm:w-64 sm:h-64 origin-left flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-600 rounded-sm bg-gray-300/30 dark:bg-gray-600/10 backdrop-blur-[2px]">
+              <div class="flex flex-col items-center justify-center text-center px-4 select-none">
+                <svg class="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 dark:text-gray-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+                </svg>
+                <span class="text-[0.55rem] sm:text-[0.65rem] tracking-[0.15em] font-bold text-gray-400 dark:text-gray-500 uppercase whitespace-nowrap">More to come...</span>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Spacer to allow scrolling the last record to the center of the screen -->
+        <div class="w-[85vw] sm:w-[80vw] flex-shrink-0 h-1 pointer-events-none"></div>
       </div>
-      
-      <!-- Spacer to ensure scrollability past the rightmost opened record -->
-      <div class="flex-shrink-0 w-12 sm:w-24 h-1 pointer-events-none"></div>
     </div>
   </div>
 </div>
@@ -111,13 +130,41 @@ import records from "../data/records.json";
   /* Use a specific scope to avoid affecting other elements */
   .record-rack-scope {
     position: relative;
+    /* Force WebKit/Blink to clip transformed children at rounded corners */
+    isolation: isolate;
+    transform: translateZ(0);
+  }
+  .record-rack-scope::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 1rem;
+    pointer-events: none;
+    z-index: 60;
+  }
+  .dark .record-rack-scope::after {
+    border-color: var(--color-gray-700);
+  }
+  .record-rack-scope .rack-scroll-container {
+    isolation: isolate;
+    transform: translateZ(0);
+    cursor: grab;
+  }
+  .record-rack-scope .rack-scroll-container:active {
+    cursor: grabbing;
+  }
+  .record-rack-scope .rack-scroll-container.is-dragging,
+  .record-rack-scope .rack-scroll-container.is-dragging .record-wrapper {
+    cursor: grabbing !important;
   }
 
   /* Base Transitions */
-  .record-rack-scope .record-wrapper,
+  .record-rack-scope .record-content,
   .record-rack-scope .rack-pushable {
     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     z-index: 10;
+    will-change: transform;
   }
   .record-rack-scope .record-jacket {
     /* Isometric-like Parallelogram Skew */
@@ -139,43 +186,52 @@ import records from "../data/records.json";
 
   /* Hover Logic using :has and ~ */
   
-  /* 1. The hovered item */
-  .record-rack-scope .record-wrapper:hover {
+  /* 1. The focused item */
+  .record-rack-scope .record-content.is-focused {
     z-index: 50;
-    transform: translateY(-8px) scale(1.05);
+    transform: translateY(-4px) scale(1.10);
+    transform-origin: bottom left;
   }
   
-  .record-rack-scope .record-wrapper:hover .record-jacket {
+  .record-rack-scope .record-content.is-focused .record-jacket {
     /* Swing open to flat square */
     transform: skewY(0deg) scaleX(1);
   }
-  .record-rack-scope .record-wrapper:hover .record-shadow {
+  .record-rack-scope .record-content.is-focused .record-shadow {
     background-color: rgba(0,0,0,0.3);
     /* Again, only translate/scale relative to the unskewed parent */
     transform: translateY(24px) translateX(0) scale(1.05);
     filter: blur(24px);
   }
-  .record-rack-scope .record-wrapper:hover .record-vinyl {
-    transform: translateX(64px);
+  .record-rack-scope .record-content.is-focused .record-vinyl {
+    transform: translateX(54px);
   }
-  .record-rack-scope .record-wrapper:hover .record-info {
+  
+  .record-rack-scope .record-content.is-focused .record-info {
     opacity: 1;
+    pointer-events: auto;
     transition-delay: 0.1s;
     transform: none;
   }
 
-  /* 2. Items AFTER the hovered item */
-  .record-rack-scope .record-wrapper:hover ~ .record-wrapper,
-  .record-rack-scope .record-wrapper:hover ~ .rack-pushable {
-    /* Mobile push: exact distance to overlap expanded 192px jacket */
-    transform: translateX(140px);
+  /* --- Symmetrical Positioning & Gaps --- */
+  
+  /* Past records pushed slightly left to create a symmetrical gap */
+  .record-rack-scope .record-content.is-past {
+    transform: translateX(-35px);
+  }
+  
+  /* Future records pushed right to make room for the expanded active record */
+  .record-rack-scope .record-content.is-future {
+    transform: translateX(241px);
   }
 
   @media (min-width: 640px) {
-    .record-rack-scope .record-wrapper:hover ~ .record-wrapper,
-    .record-rack-scope .record-wrapper:hover ~ .rack-pushable {
-      /* Desktop push: exact distance to overlap expanded 256px jacket */
-      transform: translateX(180px);
+    .record-rack-scope .record-content.is-past {
+      transform: translateX(-25px);
+    }
+    .record-rack-scope .record-content.is-future {
+      transform: translateX(282px);
     }
   }
 
@@ -183,25 +239,159 @@ import records from "../data/records.json";
   .record-rack-scope .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  /* Marquee animation */
+  @keyframes pingPongMarquee {
+    0%, 15% { transform: translateX(0); }
+    45%, 55% { transform: translateX(var(--overflow-amount, 0px)); }
+    85%, 100% { transform: translateX(0); }
+  }
+  .record-rack-scope .animate-ping-pong {
+    animation: pingPongMarquee 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Horizontal Pulse animation for drag hint */
+  @keyframes pulseHorizontal {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(3px); opacity: 1; }
+  }
+  .record-rack-scope .animate-pulse-horizontal {
+    animation: pulseHorizontal 1.8s ease-in-out infinite;
+  }
 </style>
 
 <script>
-  function setupRecordCooldowns() {
-    const wrappers = document.querySelectorAll('.record-rack-scope .record-wrapper');
-    wrappers.forEach(wrapper => {
-      // Prevent multiple listener attachments
-      if (wrapper.dataset.cooldownSetup) return;
-      wrapper.dataset.cooldownSetup = 'true';
-      
-      wrapper.addEventListener('mouseleave', () => {
-        // Temporarily disable pointer events to prevent rapid re-hover jitter
-        wrapper.style.pointerEvents = 'none';
-        
-        setTimeout(() => {
-          // Restore pointer events after cooldown
-          wrapper.style.pointerEvents = '';
-        }, 200); // 200ms cooldown
+  function setupActiveRecord() {
+    const containers = document.querySelectorAll('.rack-scroll-container');
+    
+    containers.forEach(containerEl => {
+      const container = containerEl as HTMLElement;
+      if (container.dataset.activeSetup === 'true') return;
+      container.dataset.activeSetup = 'true';
+
+      const wrappers = Array.from(container.querySelectorAll('.record-wrapper')) as HTMLElement[];
+      if (!wrappers.length) return;
+
+      // Cache DOM elements and properties to prevent layout thrashing (forced reflow)
+      const recordItems = wrappers.map(w => {
+        const content = w.querySelector('.record-content') as HTMLElement;
+        const marquees = Array.from(w.querySelectorAll('.marquee-text')) as HTMLElement[];
+        return {
+          wrapper: w,
+          content,
+          marquees
+        };
       });
+
+      let currentIndex = 0;
+      let lastActiveIndex = -1;
+
+      const getRecordWidth = () => {
+        return wrappers.length >= 2 
+          ? wrappers[1].offsetLeft - wrappers[0].offsetLeft 
+          : wrappers[0].offsetWidth;
+      };
+
+      const updateActive = (force = false) => {
+        const scrollLeft = container.scrollLeft;
+        const recordWidth = getRecordWidth();
+
+        let newIndex = Math.round(scrollLeft / recordWidth);
+
+        if (newIndex < 0) newIndex = 0;
+        if (newIndex >= wrappers.length) newIndex = wrappers.length - 1;
+
+        // Skip DOM manipulation if the index hasn't changed (unless forced on resize)
+        if (newIndex === lastActiveIndex && !force) return;
+        lastActiveIndex = newIndex;
+        currentIndex = newIndex;
+
+        recordItems.forEach((item, index) => {
+          const content = item.content;
+          if (!content) return;
+
+          content.classList.remove('is-focused', 'is-past', 'is-future');
+          if (index < currentIndex) {
+            content.classList.add('is-past');
+            // Past records: z-index increases towards active record (right overlaps left)
+            const distance = currentIndex - index;
+            content.style.zIndex = (50 - distance).toString();
+
+            // Reset marquees
+            item.marquees.forEach(marquee => {
+               marquee.classList.remove('animate-ping-pong');
+               marquee.style.transform = 'translateX(0)';
+            });
+          } else if (index === currentIndex) {
+            content.classList.add('is-focused');
+            content.style.zIndex = '50';
+
+            // Marquee logic
+            item.marquees.forEach(marquee => {
+              marquee.classList.remove('animate-ping-pong');
+              marquee.style.transform = 'translateX(0)';
+              
+              const parent = marquee.parentElement;
+              if (parent) {
+                const parentWidth = parent.clientWidth;
+                const textWidth = marquee.scrollWidth;
+                
+                if (textWidth > parentWidth) {
+                  const overflow = textWidth - parentWidth;
+                  marquee.style.setProperty('--overflow-amount', `-${overflow + 8}px`);
+                  void marquee.offsetWidth; // Force reflow
+                  marquee.classList.add('animate-ping-pong');
+                }
+              }
+            });
+          } else {
+            content.classList.add('is-future');
+            // Future records: z-index increases away from active record (right overlaps left)
+            const distanceFromEnd = (wrappers.length - 1) - index;
+            content.style.zIndex = (49 - distanceFromEnd).toString();
+
+            // Reset marquees
+            item.marquees.forEach(marquee => {
+               marquee.classList.remove('animate-ping-pong');
+               marquee.style.transform = 'translateX(0)';
+            });
+          }
+        });
+      };
+
+      // Update on scroll smoothly with throttling to prevent redundant calculations
+      let ticking = false;
+      container.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateActive();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Randomly select a default active record index on load
+      const randomIndex = Math.floor(Math.random() * wrappers.length);
+      currentIndex = randomIndex;
+      lastActiveIndex = randomIndex;
+
+      // Scroll to the random record's position safely
+      const initScroll = () => {
+        const recordWidth = getRecordWidth();
+        container.scrollLeft = randomIndex * recordWidth;
+        updateActive(true);
+      };
+
+      // Execute on next frame to ensure layouts and widths are ready
+      requestAnimationFrame(initScroll);
+      
+      // Handle window resize: maintain the currently focused record
+      window.addEventListener('resize', () => {
+        const recordWidth = getRecordWidth();
+        container.scrollTo({ left: currentIndex * recordWidth, behavior: 'auto' });
+        requestAnimationFrame(() => updateActive(true));
+      }, { passive: true });
     });
   }
 
@@ -210,48 +400,146 @@ import records from "../data/records.json";
     const leftBtns = document.querySelectorAll('.rack-scroll-left');
     const rightBtns = document.querySelectorAll('.rack-scroll-right');
 
-    scrollContainers.forEach((container, index) => {
+    scrollContainers.forEach((containerEl, index) => {
+      const container = containerEl as HTMLElement;
       if (container.dataset.scrollSetup === 'true') return;
       container.dataset.scrollSetup = 'true';
 
-      const leftBtn = leftBtns[index];
-      const rightBtn = rightBtns[index];
-      const scrollAmount = 200; // Scroll distance per click in pixels
+      const leftBtn = leftBtns[index] as HTMLElement | undefined;
+      const rightBtn = rightBtns[index] as HTMLElement | undefined;
       
+      const getScrollAmount = () => {
+        const wrappers = Array.from(container.querySelectorAll('.record-wrapper')) as HTMLElement[];
+        if (wrappers.length >= 2) {
+          return wrappers[1].offsetLeft - wrappers[0].offsetLeft;
+        }
+        return 300;
+      };
+
+      const smoothScrollTo = (targetLeft: number) => {
+        container.style.scrollSnapType = 'none';
+        container.scrollTo({ left: targetLeft, behavior: 'smooth' });
+        
+        let scrollTimeout: number;
+        const checkScrollEnd = () => {
+          if (Math.abs(container.scrollLeft - targetLeft) < 1) {
+            container.style.scrollSnapType = '';
+          } else {
+            scrollTimeout = window.setTimeout(checkScrollEnd, 50);
+          }
+        };
+        scrollTimeout = window.setTimeout(checkScrollEnd, 50);
+      };
+
       if (leftBtn && rightBtn) {
         leftBtn.addEventListener('click', () => {
-          container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+          const w = getScrollAmount();
+          const currentIndex = Math.round(container.scrollLeft / w);
+          smoothScrollTo(Math.max(0, (currentIndex - 1) * w));
         });
         
         rightBtn.addEventListener('click', () => {
-          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          const w = getScrollAmount();
+          const currentIndex = Math.round(container.scrollLeft / w);
+          const wrappers = container.querySelectorAll('.record-wrapper');
+          const maxIndex = wrappers.length - 1;
+          const targetIndex = Math.min(maxIndex, currentIndex + 1);
+          smoothScrollTo(targetIndex * w);
         });
       }
 
-      // Intercept vertical mouse wheel for horizontal scrolling
-      container.addEventListener('wheel', (e) => {
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-          const isAtLeft = container.scrollLeft <= 0;
-          const isAtRight = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
-          
-          if (e.deltaY < 0 && isAtLeft) return;
-          if (e.deltaY > 0 && isAtRight) return;
-          
-          e.preventDefault();
-          // Use smooth behavior to interpolate discrete mouse wheel ticks
-          container.scrollBy({ left: e.deltaY * 2.0, behavior: 'smooth' });
+      // Drag to scroll for Desktop
+      let isDown = false;
+      let startX = 0;
+      let initialScrollLeft = 0;
+      let hasDragged = false;
+      let latestWalk = 0;
+      let dragTicking = false;
+
+      // Prevent native image drag which completely breaks mousemove tracking
+      container.addEventListener('dragstart', (e) => e.preventDefault());
+
+      container.addEventListener('mousedown', (e) => {
+        const ev = e as MouseEvent;
+        if (ev.button !== 0) return;
+        
+        // Prevent drag behavior when clicking text inside the active record-info box
+        if ((ev.target as HTMLElement).closest('.record-info')) {
+          return;
         }
-      }, { passive: false });
+
+        isDown = true;
+        hasDragged = false;
+        container.style.scrollSnapType = 'none';
+        container.classList.add('is-dragging');
+        document.body.style.cursor = 'grabbing';
+        startX = ev.pageX - container.offsetLeft;
+        initialScrollLeft = container.scrollLeft;
+      });
+
+      const stopDrag = () => {
+        if (!isDown) return;
+        isDown = false;
+        container.classList.remove('is-dragging');
+        document.body.style.cursor = '';
+        
+        if (hasDragged) {
+          // Smoothly glide to the nearest snap point manually
+          const w = getScrollAmount();
+          let targetIndex = Math.round(container.scrollLeft / w);
+          
+          // Get the record wrappers to calculate the clamp limit
+          const wrappers = container.querySelectorAll('.record-wrapper');
+          targetIndex = Math.max(0, Math.min(wrappers.length - 1, targetIndex));
+          
+          smoothScrollTo(targetIndex * w);
+        } else {
+          container.style.scrollSnapType = '';
+        }
+      };
+
+      container.addEventListener('mouseleave', stopDrag);
+      window.addEventListener('mouseup', stopDrag);
+
+      container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        const ev = e as MouseEvent;
+        const x = ev.pageX - container.offsetLeft;
+        latestWalk = (x - startX); // 1:1 tracking for perfect tactile feel
+        
+        if (Math.abs(latestWalk) > 5) {
+          hasDragged = true;
+        }
+        
+        if (hasDragged && !dragTicking) {
+          requestAnimationFrame(() => {
+            if (isDown) {
+              container.scrollTo({ left: initialScrollLeft - latestWalk, behavior: 'auto' });
+            }
+            dragTicking = false;
+          });
+          dragTicking = true;
+        }
+      });
+
+      // Prevent accidental clicks on records when ending a drag
+      container.addEventListener('click', (e) => {
+        if (hasDragged) {
+          e.preventDefault();
+          e.stopPropagation();
+          hasDragged = false;
+        }
+      }, true);
     });
   }
 
   // Run on initial load
-  setupRecordCooldowns();
+  setupActiveRecord();
   setupRackScroll();
   
   // Run on Astro view transitions (if used in the project)
   document.addEventListener('astro:page-load', () => {
-    setupRecordCooldowns();
+    setupActiveRecord();
     setupRackScroll();
   });
 </script>

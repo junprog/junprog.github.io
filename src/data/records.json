@@ -1,27 +1,15 @@
 [
   {
-    "id": "gjt-vv-vol2",
-    "artistName": "Great Jazz Trio",
-    "albumTitle": "The Great Jazz Trio At The Village Vanguard Vol.2",
-    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczPaOWdqq-Gk6gXA-9zjxZ5A3nB9lk9GvjogOfKV1tX3g6mVj2dsFs03oGBoKWmzeZgiyjoOMI9BH0aRDHPe09ILghlLknpU0svXrfpJVgPQGbVcXG5_XjRIRLfDUViDvMEY8O9JcXm5AlXEx5NEoF3xWA=w400-h400-s-no-gm?authuser=0"
+    "id": "cb-on-the-road",
+    "artistName": "Count Basie",
+    "albumTitle": "On The Road",
+    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczOAeMQzlvbzTt7eUOT5-SOqRWeJql7z7WKGLdbczQY1Zfh9JBkaChK3MAJSDHrQwcgUITPD_Ql2KlUPzVHGUtPucFhXEIPLVr75NZXGhmtcm1pHUqtDtWtLAHEd_9TBzScBqjXek3HtBpctNifV1cVrgg=w300-h300-s-no-gm?authuser=0"
   },
   {
-    "id": "cw-the-luckey-one",
-    "artistName": "Cory Wong",
-    "albumTitle": "The Lucky One",
-    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczPBwTeYO9rCUkUe7cNEpYjZ0VxqgvmgiCyYa0ECPkhMw45Uli_l0c6TXpiR7Tg149-_3y4Gva3PQrX-xskmvCp6n7mSpLuBwZ_Y9uHExjz2KhUT-BkZKTsP07p_oaPzS8_ODrQyukIe8PHTdEizYOuz0A=w894-h894-s-no-gm?authuser=0"
-  },
-  {
-    "id": "ewf-vest-vol1",
-    "artistName": "Earth, Wind & Fire",
-    "albumTitle": "THE BEST OF EARTH WIND & FIRE VOL.1",
-    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczN_8ddUtvYw9Gb2qOokCCIbN-7EU3hfndEgEtMPbaWnl1Xw_MPdk4Yule2aVUW_wAIwQwZvx8ROqBey6YOxQtSmvAvoPIqRY1oxhBLgsP64bST4s_JSvrfUbuWodCNITt2tgfpIgxTyzky4RlkbHk3ckg=w894-h894-s-no-gm?authuser=0"
-  },
-  {
-    "id": "hh-speak-like-a-child",
-    "artistName": "Herbie Hancock",
-    "albumTitle": "Speak Like A Child",
-    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczMvjVVi3c8qvd9aRuzQXzUvDKW92pFcwH6oytN84pxOlmyH69jG6DfwCIrQca55nLEpmFG8jeAgnN_gr5O8M6qfdohXhTeBAHfv33XtP45W28V-sBt1STg2DTZ0rIvZHVHt2YIAF1-E1JvEV80vY-qwOw=w894-h881-s-no-gm?authuser=0"
+    "id": "cb-the-atomic-mr-basie",
+    "artistName": "Count Basie",
+    "albumTitle": "The Atomic Mr. Basie",
+    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczPatBQNEgigTxXPD5Xy3LjnXqbIjPAvXIjF-pVAhhSSH9KJt1gAx0SuinZZmaWLdCT__eqbzPmZO6TopuDYdOHKERPfhY9F_lW-fbVx5Wsa-0lwX7Yf_jt57AJdEaVuAEf0HflsbMHr6Lb3GLp6X_WrOQ=w945-h945-s-no-gm?authuser=0"
   },
   {
     "id": "hm-helen-merrill",
@@ -34,30 +22,6 @@
     "artistName": "Sarah Vaughan",
     "albumTitle": "Sarah Vaughan",
     "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczPgygPAXb5Q8pKE25wwwHd_XHX1t30fydfv5vHmlqq2UKXd1Fbpza17qONV0YmAurlgDQ4UTShIDzn_UhHMfErlcXf5x3cxU2cXPHBybSgYHFq0h1_QO-XHLzLHl1mOEA1kkQahQEahyysWyyJjg5PeDg=w400-h400-s-no-gm?authuser=0"
-  },
-  {
-    "id": "dvq-time-out",
-    "artistName": "Dave Brubeck",
-    "albumTitle": "Time Out",
-    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczP0BVhXYp8257dQz_OpiWetJgfP8MV-vf7a0tUj7DYXBRVRsrjKDxqRHMUPhMcy9iq34fTfaGRpp3dj4LUy5xSjl4p4pIrJ9jRZBetVjGCFNXKlDNwsIt9O4b-Sv49Wx_p74EFuAXVcKRZvIhhN8OoYfA=w894-h894-s-no-gm?authuser=0"
-  },
-  {
-    "id": "cb-mr-study-in-brown",
-    "artistName": "Clifford Brown & Max Roach",
-    "albumTitle": "Study in Brown",
-    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczPqPqulT8HCFILkwmd174BNHoeQ-C0OFH9r-Jkufyo0QjTxLA7pCLS0qWpDzvsvEZb74MwdBkyvWppX5Oz-UwAaXBNWvsDE3BUNDWNGwt3CmCGhbXLjD9KACco2Fl2Ba3nWt63Xt24Ux0u1AiQX2HXAIA=w894-h894-s-no-gm?authuser=0"
-  },
-  {
-    "id": "kd-the-lullaby",
-    "artistName": "Kenny Drew",
-    "albumTitle": "The Lullaby",
-    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczM5-iUT79B3c6nwrdhfAwhHAI-RKPNqDGHIy0H2d53ahCZtwI5b2RNqJEkOW678TuR50EO36hb3v77n7jnoyx0pn3LzAGzFcC6amZnCsiTEOAs86t8NfxHr-IzeJsH7YXj1TuUj4WiaP030AYs_wy-T6g=w800-h800-s-no-gm?authuser=0"
-  },
-  {
-    "id": "tf-eclypso",
-    "artistName": "Tommy Flanagan",
-    "albumTitle": "Eclypso",
-    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczM1xbSHjbszr8KxrZ2U4jGHMRyEgd2PRnTBmkLP3DJxOQKEs0TKLKzDmpDuXGJX3Wzq2aEuWxzdZAJzgrm4Zag_iB8-CLs8gD8bS18NwbHYt-uETxlL89Qrb_S_wOAPEEw8YpfAes6ERF3-0Ndx2sGDCQ=w949-h945-s-no-gm?authuser=0"
   },
   {
     "id": "md-kind-of-blue",
@@ -120,21 +84,51 @@
     "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczP_HyNrFOyKWMjeX44tFpodXcvnspmWr8szf5diZ5SzFl23UsE5s70zBpqhAJHdIcyEawMS8FKlXCnTeNpzS2HKcU-PEC-hy3ljntEHwLK_rUFk8o-KWLLdWUl9fRoArkg7aPJkXbLwPn1mDlxiXwxYpQ=w956-h945-s-no-gm?authuser=0"
   },
   {
-    "id": "cb-on-the-road",
-    "artistName": "Count Basie",
-    "albumTitle": "On The Road",
-    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczOAeMQzlvbzTt7eUOT5-SOqRWeJql7z7WKGLdbczQY1Zfh9JBkaChK3MAJSDHrQwcgUITPD_Ql2KlUPzVHGUtPucFhXEIPLVr75NZXGhmtcm1pHUqtDtWtLAHEd_9TBzScBqjXek3HtBpctNifV1cVrgg=w300-h300-s-no-gm?authuser=0"
+    "id": "dvq-time-out",
+    "artistName": "Dave Brubeck",
+    "albumTitle": "Time Out",
+    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczP0BVhXYp8257dQz_OpiWetJgfP8MV-vf7a0tUj7DYXBRVRsrjKDxqRHMUPhMcy9iq34fTfaGRpp3dj4LUy5xSjl4p4pIrJ9jRZBetVjGCFNXKlDNwsIt9O4b-Sv49Wx_p74EFuAXVcKRZvIhhN8OoYfA=w894-h894-s-no-gm?authuser=0"
   },
   {
-    "id": "cb-the-atomic-mr-basie",
-    "artistName": "Count Basie",
-    "albumTitle": "The Atomic Mr. Basie",
-    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczPatBQNEgigTxXPD5Xy3LjnXqbIjPAvXIjF-pVAhhSSH9KJt1gAx0SuinZZmaWLdCT__eqbzPmZO6TopuDYdOHKERPfhY9F_lW-fbVx5Wsa-0lwX7Yf_jt57AJdEaVuAEf0HflsbMHr6Lb3GLp6X_WrOQ=w945-h945-s-no-gm?authuser=0"
+    "id": "cb-mr-study-in-brown",
+    "artistName": "Clifford Brown & Max Roach",
+    "albumTitle": "Study in Brown",
+    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczPqPqulT8HCFILkwmd174BNHoeQ-C0OFH9r-Jkufyo0QjTxLA7pCLS0qWpDzvsvEZb74MwdBkyvWppX5Oz-UwAaXBNWvsDE3BUNDWNGwt3CmCGhbXLjD9KACco2Fl2Ba3nWt63Xt24Ux0u1AiQX2HXAIA=w894-h894-s-no-gm?authuser=0"
   },
   {
-    "id": "sq-adventure",
+    "id": "tf-eclypso",
+    "artistName": "Tommy Flanagan",
+    "albumTitle": "Eclypso",
+    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczM1xbSHjbszr8KxrZ2U4jGHMRyEgd2PRnTBmkLP3DJxOQKEs0TKLKzDmpDuXGJX3Wzq2aEuWxzdZAJzgrm4Zag_iB8-CLs8gD8bS18NwbHYt-uETxlL89Qrb_S_wOAPEEw8YpfAes6ERF3-0Ndx2sGDCQ=w949-h945-s-no-gm?authuser=0"
+  },
+  {
+    "id": "hh-speak-like-a-child",
+    "artistName": "Herbie Hancock",
+    "albumTitle": "Speak Like A Child",
+    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczMvjVVi3c8qvd9aRuzQXzUvDKW92pFcwH6oytN84pxOlmyH69jG6DfwCIrQca55nLEpmFG8jeAgnN_gr5O8M6qfdohXhTeBAHfv33XtP45W28V-sBt1STg2DTZ0rIvZHVHt2YIAF1-E1JvEV80vY-qwOw=w894-h881-s-no-gm?authuser=0"
+  },
+  {
+    "id": "kd-the-lullaby",
+    "artistName": "Kenny Drew",
+    "albumTitle": "The Lullaby",
+    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczM5-iUT79B3c6nwrdhfAwhHAI-RKPNqDGHIy0H2d53ahCZtwI5b2RNqJEkOW678TuR50EO36hb3v77n7jnoyx0pn3LzAGzFcC6amZnCsiTEOAs86t8NfxHr-IzeJsH7YXj1TuUj4WiaP030AYs_wy-T6g=w800-h800-s-no-gm?authuser=0"
+  },
+  {
+    "id": "gjt-vv-vol2",
+    "artistName": "Great Jazz Trio",
+    "albumTitle": "The Great Jazz Trio At The Village Vanguard Vol.2",
+    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczPaOWdqq-Gk6gXA-9zjxZ5A3nB9lk9GvjogOfKV1tX3g6mVj2dsFs03oGBoKWmzeZgiyjoOMI9BH0aRDHPe09ILghlLknpU0svXrfpJVgPQGbVcXG5_XjRIRLfDUViDvMEY8O9JcXm5AlXEx5NEoF3xWA=w400-h400-s-no-gm?authuser=0"
+  },
+  {
+    "id": "ewf-vest-vol1",
+    "artistName": "Earth, Wind & Fire",
+    "albumTitle": "THE BEST OF EARTH WIND & FIRE VOL.1",
+    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczN_8ddUtvYw9Gb2qOokCCIbN-7EU3hfndEgEtMPbaWnl1Xw_MPdk4Yule2aVUW_wAIwQwZvx8ROqBey6YOxQtSmvAvoPIqRY1oxhBLgsP64bST4s_JSvrfUbuWodCNITt2tgfpIgxTyzky4RlkbHk3ckg=w894-h894-s-no-gm?authuser=0"
+  },
+  {
+    "id": "sq-adventures",
     "artistName": "THE SQUARE",
-    "albumTitle": "ADVENTURE",
+    "albumTitle": "ADVENTURES",
     "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczOAm4OfXUuqgoagx1_7t2Sf_zga7FsXa9mO0gywyUY7dzvtBLJA0yCCHAP4Sm-LBwy-2W3HMoa4sg3R7KaCFApF336D-k41Ssy1z6PtfsKPEi8joUrGTZBsz3LTrlgSvrY8HEznpIbyYIx0masoXm3Z5w=w400-h400-s-no-gm?authuser=0"
   },
   {
@@ -166,5 +160,11 @@
     "artistName": "宇多田ヒカル",
     "albumTitle": "One Last Kiss",
     "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczPrynF1SMOnOuMTSE5nT9k1YhVg9gAJkry7HShUUOYD1wb30xOnOrY-3pdTl5CA-Y9XMAFfYl8kn0dJXqJAwcRQDBqtI2ghLNHvI9ANEOrBMVjl6SqTtrFda6paX31Yeu-VUv3ztqHfIL7j4bFXWw3Wyg=w600-h600-s-no-gm?authuser=0"
+  },
+  {
+    "id": "cw-the-luckey-one",
+    "artistName": "Cory Wong",
+    "albumTitle": "The Lucky One",
+    "jacketUrl": "https://lh3.googleusercontent.com/pw/AP1GczPBwTeYO9rCUkUe7cNEpYjZ0VxqgvmgiCyYa0ECPkhMw45Uli_l0c6TXpiR7Tg149-_3y4Gva3PQrX-xskmvCp6n7mSpLuBwZ_Y9uHExjz2KhUT-BkZKTsP07p_oaPzS8_ODrQyukIe8PHTdEizYOuz0A=w894-h894-s-no-gm?authuser=0"
   }
 ]

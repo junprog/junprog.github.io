@@ -60,9 +60,18 @@ const items = [
     title: "B&W 607 S3",
     x1: 78,
     y1: 60,
-    x2: 82,
-    y2: 80,
+    x2: 94,
+    y2: 70,
     link: "/posts/blog/my-gadget3",
+  },
+  {
+    id: "record-rack-link",
+    title: "レコードラック⬇",
+    x1: 77,
+    y1: 68,
+    x2: 84,
+    y2: 82,
+    link: "#record-rack-root",
   },
   {
     id: "dual-monitor",
@@ -483,10 +492,22 @@ const darkImageUrl =
       wrapper.scrollLeft = (wrapper.scrollWidth - wrapper.clientWidth) / 2;
     }
 
-    let isUpdating = true;
+    // Smooth scroll for record-rack-link label
+    const rackLink = document.getElementById("label-record-rack-link");
+    if (rackLink) {
+      rackLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = document.getElementById("record-rack-root");
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    }
+
+    let isUpdating = false;
 
     function updateLines() {
-      if (!isUpdating) return;
+      if (!isUpdating || !container) return;
 
       const containerRect = container.getBoundingClientRect();
       const labels = document.querySelectorAll(".label");
@@ -512,7 +533,10 @@ const darkImageUrl =
 
           return { line, x2, y2 };
         })
-        .filter(Boolean);
+        .filter(
+          (item): item is { line: HTMLElement; x2: number; y2: number } =>
+            item !== null,
+        );
 
       // Write phase: update DOM
       updates.forEach(({ line, x2, y2 }) => {
@@ -523,17 +547,34 @@ const darkImageUrl =
       requestAnimationFrame(updateLines);
     }
 
-    // Start animation loop
-    updateLines();
+    // Use IntersectionObserver to start/stop loop based on visibility
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!isUpdating) {
+              isUpdating = true;
+              updateLines();
+            }
+          } else {
+            isUpdating = false;
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(container);
 
     // Clean up if component is unmounted (useful for view transitions)
     return () => {
       isUpdating = false;
+      observer.disconnect();
     };
   }
 
   // Handle standard load and Astro view transitions
-  let cleanup;
+  let cleanup: (() => void) | undefined;
   document.addEventListener("astro:page-load", () => {
     if (cleanup) cleanup();
     cleanup = initIsometricRoom();
