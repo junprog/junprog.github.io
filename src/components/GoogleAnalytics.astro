@@ -1,0 +1,27 @@
+---
+const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+
+// 開発環境および各種プレビュー環境（Vercel, Cloudflare Pages, Netlify, またはカスタムのプレビューフラグ）では計測を除外する
+const isDev = import.meta.env.DEV;
+const isVercelPreview = process.env.VERCEL_ENV === 'preview';
+const isCFPagesPreview = process.env.CF_PAGES === '1' && process.env.CF_PAGES_BRANCH !== 'master' && process.env.CF_PAGES_BRANCH !== 'main';
+const isNetlifyPreview = process.env.CONTEXT === 'deploy-preview';
+const isExplicitPreview = process.env.IS_PREVIEW === 'true' || process.env.PUBLIC_IS_PREVIEW === 'true';
+
+const shouldTrack = measurementId && !isDev && !isVercelPreview && !isCFPagesPreview && !isNetlifyPreview && !isExplicitPreview;
+---
+
+{shouldTrack && (
+  <>
+    <!-- Google tag (gtag.js) -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+    <script define:vars={{ measurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', measurementId);
+    </script>
+  </>
+)}

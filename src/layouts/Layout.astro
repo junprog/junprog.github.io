@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -16,6 +17,7 @@ const { title, description } = Astro.props;
 <html lang="ja">
 	<head>
 		<BaseHead title={title} description={description} />
+		<GoogleAnalytics />
 	</head>
 	<body
 		class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300 overflow-x-hidden"
